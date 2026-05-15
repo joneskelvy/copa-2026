@@ -198,7 +198,7 @@ header {
   border: 1px solid #323238;
   border-radius: 8px;
 
-  color: #FFF;
+  color: #000000;
 }
 
 .score-box span {
@@ -207,7 +207,7 @@ header {
 }
 
 .score-box strong {
-  font-size: 14px !important;
+  font-size: 20px !important;
   color: var(--card-color-primary) !important;
 }
 
@@ -216,6 +216,6 @@ header {
 
   font-size: 15px;
   font-weight: 700;
-
+  
   letter-spacing: 1px;
 }

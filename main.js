@@ -10,7 +10,7 @@ function createCard(date, day, games) {
   `
 }
 
-function createGame(player1, hour, player2) {
+function createGame(player1, hour, player2, score1 = "-", score2 = "-") {
 
   const player1Name = formatCountryName(player1)
   const player2Name = formatCountryName(player2)
@@ -21,25 +21,29 @@ function createGame(player1, hour, player2) {
       <div class="flag">
         <img 
           src="assets/icon-${player1}.svg" 
-          alt="Bandeira do ${player1Name}" 
-        />
-
-        <span class="tooltip">
-          ${player1Name}
-        </span>
+          alt="${player1Name}"
+          title="${player1Name}"
+        >
       </div>
 
-      <strong>${hour}</strong>
+      <div class="match-info">
+
+        <div class="score-box">
+          <span>${score1}</span>
+          <strong>x</strong>
+          <span>${score2}</span>
+        </div>
+
+        <small>${hour}</small>
+
+      </div>
 
       <div class="flag">
         <img 
           src="assets/icon-${player2}.svg" 
-          alt="Bandeira do ${player2Name}" 
-        />
-
-        <span class="tooltip">
-          ${player2Name}
-        </span>
+          alt="${player2Name}"
+          title="${player2Name}"
+        >
       </div>
 
     </li>

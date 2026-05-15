@@ -174,3 +174,48 @@ header {
   opacity: 1;
   visibility: visible;
 }
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  min-width: 90px;
+
+  padding: 8px 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #323238;
+  border-radius: 8px;
+
+  color: #FFF;
+}
+
+.score-box span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.score-box strong {
+  font-size: 14px !important;
+  color: var(--card-color-primary) !important;
+}
+
+.match-info small {
+  color: #f7dd43;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}

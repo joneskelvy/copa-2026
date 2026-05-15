@@ -15,6 +15,8 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-") {
   const player1Name = formatCountryName(player1)
   const player2Name = formatCountryName(player2)
 
+  
+
   return `
     <li>
 
@@ -257,4 +259,23 @@ document.querySelector("#cards").innerHTML =
 
 }
 
+async function getLiveGames() {
+
+  const response = await fetch(
+    "https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all",
+    {
+      method: "GET",
+
+      headers: {
+        "X-RapidAPI-Key": "ee4ff7aed956a2b95e3744750f395191",
+        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com"
+      }
+    }
+  )
+
+  const data = await response.json()
+
+  console.log(data)
+
+}
       

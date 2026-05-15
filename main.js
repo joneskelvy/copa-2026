@@ -246,4 +246,15 @@ document.querySelector("#cards").innerHTML =
       createGame("jordan", "23:00", "argentina")
     ) 
 
+    if ("serviceWorker" in navigator) {
+
+  navigator.serviceWorker
+    .register("./service-worker.js")
+
+    .then(() => {
+      console.log("Service Worker registrado")
+    })
+
+}
+
       

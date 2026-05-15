@@ -1,22 +1,104 @@
-function createGame(player1, hour, player2) {
+function createCard(date, day, games) {
   return `
-            <li>
-              <img src="assets/icon-${player1}.svg" alt="Bandeira do ${player1}" />
-              <strong>${hour}</strong>
-              <img src="assets/icon-${player2}.svg" alt="Bandeira da ${player2}" />
-            </li>
+    <div class="card">
+      <h2>${date} <span>${day}</span></h2>
+
+      <ul>
+        ${games}
+      </ul>
+    </div>
   `
 }
 
-function createCard(date, day, games) {
+function createGame(player1, hour, player2) {
+
+  const player1Name = formatCountryName(player1)
+  const player2Name = formatCountryName(player2)
+
   return `
-        <div class="card">
-          <h2>${date} <span>${day}</span></h2>
-          <ul>
-            ${games}
-          </ul>
-        </div>
-     `
+    <li>
+
+      <div class="flag">
+        <img 
+          src="assets/icon-${player1}.svg" 
+          alt="Bandeira do ${player1Name}" 
+        />
+
+        <span class="tooltip">
+          ${player1Name}
+        </span>
+      </div>
+
+      <strong>${hour}</strong>
+
+      <div class="flag">
+        <img 
+          src="assets/icon-${player2}.svg" 
+          alt="Bandeira do ${player2Name}" 
+        />
+
+        <span class="tooltip">
+          ${player2Name}
+        </span>
+      </div>
+
+    </li>
+  `
+}
+function formatCountryName(name) {
+  const countries = {
+    southafrica: "África do Sul",
+    southkorea: "Coréia do Sul",
+    ivorycoast: "Costa do Marfim",
+    capeverde: "Cabo Verde",
+    saudia: "Arábia Saudita",
+    newzealand: "Nova Zelândia",
+    czech: "Tchequia",
+    usa: "Estados Unidos",
+    qatar: "Catar",
+    switzerland: "Suíça",
+    brazil: "Brasil",
+    morocco: "Marrocos",
+    haiti: "Haiti",
+    scotland: "Escócia",
+    australia: "Austrália",
+    turkey: "Turquia",
+    germany: "Alemanha",
+    curacao: "Curaçao",
+    netherlands: "Holanda",
+    japan: "Japão",
+    sweden: "Suécia", 
+    tunisia: "Tunísia",
+    spain: "Espanha",
+    belgium: "Bélgica",
+    egypt: "Egito", 
+    iran: "Irã",
+    uruguay: "Uruguai",
+    france: "França",   
+    senegal: "Senegal",
+    iraq: "Iraque",
+    norway: "Noruega",
+    argentina: "Argentina",
+    algeria: "Argélia",
+    austria: "Áustria",
+    jordan: "Jordânia",
+    portugal: "Portugal",
+    congo: "Rep. Dem do Congo",
+    england: "Inglaterra",
+    croatia: "Croácia",
+    ghana: "Gana",
+    panama: "Panamá",
+    colombia: "Colômbia",
+    uzbekistan: "Uzbequistão",
+    paraguay: "Paraguai",
+    bosnia: "Bósnia e Herzegovina",  
+    canada: "Canadá",
+    mexico: "México",
+    ecuador: "Equador",
+  }
+
+  return countries[name] || 
+    name.charAt(0).toUpperCase() + name.slice(1)
 }
 
 document.querySelector("#cards").innerHTML =

@@ -26,6 +26,11 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-") {
           alt="${player1Name}"
           title="${player1Name}"
         >
+
+        <span class="country-name">
+        ${player1Name}
+        </span>
+
       </div>
 
       <div class="match-info">
@@ -46,6 +51,10 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-") {
           alt="${player2Name}"
           title="${player2Name}"
         >
+
+         <span class="country-name">
+         ${player2Name}
+        </span>
       </div>
 
     </li>
@@ -59,7 +68,7 @@ function formatCountryName(name) {
     capeverde: "Cabo Verde",
     saudia: "Arábia Saudita",
     newzealand: "Nova Zelândia",
-    czech: "Tchequia",
+    czech: "Tchéquia",
     usa: "Estados Unidos",
     qatar: "Catar",
     switzerland: "Suíça",

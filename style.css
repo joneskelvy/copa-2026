@@ -23,11 +23,33 @@ ul {
   list-style: none;
 }
 
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at top right,
+    rgba(59,130,246,.25),
+    transparent 30%);
+
+  pointer-events: none;
+}
+
 body {
-  background-color: #121214;
-  background-image: url(./assets/bg.svg);
-  background-position-x: center;
-  background-position-y: -715px;
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.85)
+    ),
+    url("./assets/bgstadium.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  min-height: 100vh;
 }
 
 body * {
@@ -50,9 +72,20 @@ header {
   gap: 32px;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+
+  transition: .3s;
+
+  border-color: #3b82f6;
+}
+
 .card {
   padding: 32px 23px;
   text-align: center;
+   box-shadow:
+    0 0 10px rgba(59,130,246,.4),
+    0 0 30px rgba(59,130,246,.4);
 
   background: #181f42;
   border-bottom: 2px solid var(--card-color-primary);

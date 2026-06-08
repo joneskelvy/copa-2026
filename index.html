@@ -26,17 +26,45 @@
 </head>
 
 <body class="dark blue">
+
   <div id="app">
+
     <header>
       <img
-        src="./assets/logo.fifa.svg.png"
+        src="./assets/arte.fifa.2026.png"
         alt="CALENDÁRIO COPA DO MUNDO FIFA 2026"
       />
     </header>
 
-    <main id="cards"></main>
+    <nav class="menu">
+
+      <button id="btnGames" class="active">
+        Jogos
+      </button>
+
+      <button id="btnChampions">
+        Campeões
+      </button>
+
+    </nav>
+
+    <main id="gamesScreen">
+      <div id="cards"></div>
+    </main>
+
+    <main id="championsScreen" class="hidden">
+
+      <h2 class="section-title">
+        Campeões das Copas do Mundo
+      </h2>
+
+      <div id="championsList"></div>
+
+    </main>
+
   </div>
 
   <script src="./main.js"></script>
+
 </body>
 </html>

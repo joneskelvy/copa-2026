@@ -116,6 +116,72 @@ function formatCountryName(name) {
     name.charAt(0).toUpperCase() + name.slice(1)
 }
 
+const champions = [
+  { year: 1930, champion: "Uruguai", flag: "uruguay" },
+  { year: 1934, champion: "Itália", flag: "italy" },
+  { year: 1938, champion: "Itália", flag: "italy" },
+  { year: 1950, champion: "Uruguai", flag: "uruguay" },
+  { year: 1954, champion: "Alemanha", flag: "germany" },
+  { year: 1958, champion: "Brasil", flag: "brazil" },
+  { year: 1962, champion: "Brasil", flag: "brazil" },
+  { year: 1966, champion: "Inglaterra", flag: "england" },
+  { year: 1970, champion: "Brasil", flag: "brazil" },
+  { year: 1974, champion: "Alemanha", flag: "germany" },
+  { year: 1978, champion: "Argentina", flag: "argentina" },
+  { year: 1982, champion: "Itália", flag: "italy" },
+  { year: 1986, champion: "Argentina", flag: "argentina" },
+  { year: 1990, champion: "Alemanha", flag: "germany" },
+  { year: 1994, champion: "Brasil", flag: "brazil" },
+  { year: 1998, champion: "França", flag: "france" },
+  { year: 2002, champion: "Brasil", flag: "brazil" },
+  { year: 2006, champion: "Itália", flag: "italy" },
+  { year: 2010, champion: "Espanha", flag: "spain" },
+  { year: 2014, champion: "Alemanha", flag: "germany" },
+  { year: 2018, champion: "França", flag: "france" },
+  { year: 2022, champion: "Argentina", flag: "argentina" }
+
+
+]
+
+function renderChampions() {
+
+  const championsList =
+    document.querySelector("#championsList")
+
+  if (!championsList) return
+
+  let html = ""
+
+  champions.forEach(cup => {
+
+    html += `
+  <div class="champion-card">
+
+    <span class="champion-year">
+      ${cup.year}
+    </span>
+
+    <div class="champion-team">
+
+      <img
+        src="assets/icon-${cup.flag}.svg"
+        alt="${cup.champion}"
+      >
+
+      <strong>
+        ${cup.champion}
+      </strong>
+
+    </div>
+
+  </div>
+    `
+  })
+
+  championsList.innerHTML = html
+}
+
+
 document.querySelector("#cards").innerHTML =
   createCard(
   "11/06",
@@ -286,5 +352,45 @@ async function getLiveGames() {
 
   console.log(data)
 
+}
+
+const btnGames =
+  document.querySelector("#btnGames")
+
+const btnChampions =
+  document.querySelector("#btnChampions")
+
+const gamesScreen =
+  document.querySelector("#gamesScreen")
+
+const championsScreen =
+  document.querySelector("#championsScreen")
+
+if (
+  btnGames &&
+  btnChampions &&
+  gamesScreen &&
+  championsScreen
+) {
+
+  btnGames.addEventListener("click", () => {
+
+    gamesScreen.classList.remove("hidden")
+    championsScreen.classList.add("hidden")
+
+    btnGames.classList.add("active")
+    btnChampions.classList.remove("active")
+  })
+
+  btnChampions.addEventListener("click", () => {
+
+    gamesScreen.classList.add("hidden")
+    championsScreen.classList.remove("hidden")
+
+    btnGames.classList.remove("active")
+    btnChampions.classList.add("active")
+  })
+
+  renderChampions()
 }
       

@@ -1,3 +1,43 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  margin-bottom: 32px;
+}
+
+.menu button {
+  padding: 12px 24px;
+
+  background: #181f42;
+
+  color: #fff;
+
+  border: 1px solid #43f333;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  transition: .3s;
+}
+
+.menu button:hover {
+  background: #43f333;
+  color: #000;
+}
+
+.menu button.active {
+  background: #43f333;
+  color: #000;
+}
+
+.hidden {
+  display: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -57,8 +97,16 @@ body * {
 }
 
 #app {
-  width: fit-content;
+  width: 100%;
+  max-width: 1280px;
+
   margin: 52px auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0 20px;
 }
 
 header {
@@ -66,10 +114,24 @@ header {
   text-align: center;
 }
 
+header img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
 #cards {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: 32px;
+
+  align-items: center;
+
+  gap: 48px;
 }
 
 .card:hover {
@@ -82,6 +144,7 @@ header {
 
 .card {
   padding: 32px 23px;
+  width: 320px;
   text-align: center;
    box-shadow:
     0 0 10px rgba(59,130,246,.4),
@@ -170,11 +233,41 @@ header {
 
 @media (min-width: 700px) {
   #cards {
-    max-width: 670px;
-    flex-direction: row;
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
   }
 }
+
+.round {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.round-badge {
+  margin-bottom: 24px;
+}
+
+.round-cards {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  gap: 24px;
+}
+
+.round-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
 .flag {
 
   display: flex;
@@ -305,4 +398,145 @@ header {
   line-height: 1.2;
 
   max-width: 80px;
+}
+
+#championsList {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 16px;
+}
+
+.champion-card {
+
+  width: 180px;
+
+  padding: 20px;
+
+  background: #181f42;
+
+  border-bottom: 2px solid #43f333;
+
+  border-radius: 8px;
+
+  text-align: center;
+}
+
+.champion-card span {
+
+  display: block;
+
+  color: #f7dd43;
+
+  margin-bottom: 10px;
+
+  font-size: 18px;
+
+  font-weight: bold;
+}
+
+.champion-card strong {
+
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.menu button {
+
+  padding: 12px 24px;
+
+  background: #181f42;
+
+  border: 1px solid #43f333;
+
+  border-radius: 8px;
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.menu button:hover {
+  background: #43f333;
+  color: #000;
+}
+
+.menu button.active {
+  background: #43f333;
+  color: #000;
+}
+
+.section-title {
+  text-align: center;
+  color: #f7dd43;
+  margin-bottom: 30px;
+}
+
+.champion-card {
+
+  background: #181f42;
+
+  border-bottom: 2px solid #f7dd43;
+
+  border-radius: 8px;
+
+  padding: 16px;
+
+  width: 220px;
+
+  text-align: center;
+}
+
+.champion-year {
+
+  display: block;
+
+  color: #f7dd43;
+
+  font-size: 18px;
+
+  margin-bottom: 12px;
+}
+
+.champion-team {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+}
+
+.champion-team img {
+
+  width: 32px;
+
+  height: 32px;
+}
+
+.champion-team strong {
+
+  color: #fff;
+
+  font-size: 16px;
 }

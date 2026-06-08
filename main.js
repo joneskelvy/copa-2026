@@ -393,4 +393,54 @@ if (
 
   renderChampions()
 }
-      
+
+function updateCountdown() {
+
+  const worldCupStart = new Date("2026-06-11T16:00:00");
+
+  const now = new Date();
+
+  const difference = worldCupStart - now;
+
+  if (difference <= 0) {
+
+    document.querySelector("#countdown").innerHTML =
+      "⚽ A Copa do Mundo 2026 começou!";
+
+    return;
+  }
+
+  const days =
+    Math.floor(difference / (1000 * 60 * 60 * 24));
+
+  const hours =
+    Math.floor(
+      (difference % (1000 * 60 * 60 * 24)) /
+      (1000 * 60 * 60)
+    );
+
+  const minutes =
+    Math.floor(
+      (difference % (1000 * 60 * 60)) /
+      (1000 * 60)
+    );
+
+  const seconds =
+    Math.floor(
+      (difference % (1000 * 60)) / 1000
+    );
+
+  document.querySelector("#countdown").innerHTML =
+    `
+      ⏳ Faltam
+      <strong>${days}</strong> dias,
+      <strong>${hours}</strong>h,
+      <strong>${minutes}</strong>min e
+      <strong>${seconds}</strong>s
+      para a Copa do Mundo FIFA 2026
+    `;
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);

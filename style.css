@@ -540,3 +540,36 @@ header img {
 
   font-size: 16px;
 }
+
+.countdown {
+
+  max-width: 900px;
+
+  margin: 20px auto 40px;
+
+  padding: 20px;
+
+  text-align: center;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  color: #fff;
+
+  background: rgba(24, 31, 66, 0.9);
+
+  border: 2px solid #f7dd43;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 0 10px rgba(247, 221, 67, .5);
+}
+
+.countdown strong {
+
+  color: #f7dd43;
+
+  font-size: 30px;
+}

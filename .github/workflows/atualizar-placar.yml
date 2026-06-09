@@ -4,7 +4,7 @@ on:
   schedule:
     # Roda todos os dias às 23:30 Horário de Brasília (02:30 UTC do dia seguinte)
     - cron: '30 2 * * *'
-  workflow_dispatch: # Permite que você execute manualmente clicando em um botão na aba Actions
+  workflow_dispatch: # Permite executar manualmente clicando no botão
 
 jobs:
   update-scores:
@@ -12,12 +12,12 @@ jobs:
 
     steps:
     - name: Checkout do código
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4 # Atualizado de v3 para v4
 
     - name: Configurar o Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4 # Atualizado de v3 para v4
       with:
-        node-version: '18'
+        node-version: '24' # Atualizado de 18/20 para 24
 
     - name: Executar script de atualização
       env:
@@ -25,7 +25,7 @@ jobs:
       run: node ./scripts/update-scores.js
 
     - name: Commitar e dar Push das alterações de volta para o repositório
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v5 # Atualizado de v4 para v5
       with:
         commit_message: "bot: placares do dia atualizados automaticamente [skip ci]"
         branch: main

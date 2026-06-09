@@ -391,23 +391,99 @@ function formatCountryName(name) {
   return names[name] || name.toUpperCase();
 }
 
-function renderAllCards() {
+function renderAllCards(searchTerm = "") {
   const cardsContainer = document.querySelector("#cards");
   if (!cardsContainer) return;
 
   let htmlResult = "";
+  const cleanedSearch = searchTerm.trim().toLowerCase();
 
   matchesData.forEach(dayBlock => {
     let gamesHtml = "";
+    let dayHasMatches = false;
     
     dayBlock.games.forEach(game => {
-      gamesHtml += createGame(game.home, game.hour, game.away, game.score1, game.score2, game.broadcasters);
+      const homeName = formatCountryName(game.home).toLowerCase();
+      const awayName = formatCountryName(game.away).toLowerCase();
+      
+      if (
+        cleanedSearch === "" || 
+        homeName.includes(cleanedSearch) || 
+        awayName.includes(cleanedSearch) ||
+        game.home.toLowerCase().includes(cleanedSearch) ||
+        game.away.toLowerCase().includes(cleanedSearch)
+      ) {
+        gamesHtml += createGame(game.home, game.hour, game.away, game.score1, game.score2, game.broadcasters);
+        dayHasMatches = true;
+      }
     });
 
-    htmlResult += createCard(dayBlock.date, dayBlock.day, gamesHtml);
+    if (dayHasMatches) {
+      htmlResult += createCard(dayBlock.date, dayBlock.day, gamesHtml);
+    }
   });
 
-  cardsContainer.innerHTML = htmlResult;
+  if (htmlResult === "") {
+    cardsContainer.innerHTML = `
+      <div class="no-results" style="text-align: center; color: var(--text-secondary); margin-top: 40px;">
+        <p style="font-size: 1.2rem;">⚽ Nenhuma partida encontrada para essa seleção.</p>
+      </div>
+    `;
+  } else {
+    cardsContainer.innerHTML = htmlResult;
+  }
+}
+
+// ==========================================
+// ESCUTADORES DE EVENTO DA BUSCA E BANDEIRAS
+// ==========================================
+const searchInput = document.querySelector("#search-input");
+const flagButtons = document.querySelectorAll(".filter-flag-btn");
+const clearFilterBtn = document.querySelector("#clear-filter");
+
+function clearAllFilters() {
+  if (searchInput) searchInput.value = "";
+  flagButtons.forEach(btn => btn.classList.remove("active"));
+  if (clearFilterBtn) clearFilterBtn.classList.add("hidden");
+  renderAllCards();
+}
+
+if (searchInput) {
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value;
+    
+    if (value.length > 0 && clearFilterBtn) {
+      clearFilterBtn.classList.remove("hidden");
+    } else if (value.length === 0 && clearFilterBtn) {
+      const hasActiveFlag = document.querySelector(".filter-flag-btn.active");
+      if (!hasActiveFlag) clearFilterBtn.classList.add("hidden");
+    }
+    
+    renderAllCards(value);
+  });
+}
+
+flagButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const country = button.getAttribute("data-country");
+    
+    if (button.classList.contains("active")) {
+      clearAllFilters();
+      return;
+    }
+
+    flagButtons.forEach(btn => btn.classList.remove("active"));
+    if (searchInput) searchInput.value = "";
+
+    button.classList.add("active");
+    if (clearFilterBtn) clearFilterBtn.classList.remove("hidden");
+
+    renderAllCards(country);
+  });
+});
+
+if (clearFilterBtn) {
+  clearFilterBtn.addEventListener("click", clearAllFilters);
 }
 
 const champions = [
@@ -460,6 +536,9 @@ if ("serviceWorker" in navigator) {
     .then(() => { console.log("Service Worker registrado") })
 }
 
+// ==========================================
+// CONTROLE DE TELAS (ABAS) E INICIALIZAÇÃO
+// ==========================================
 const btnGames = document.querySelector("#btnGames")
 const btnGroups = document.querySelector("#btnGroups")
 const btnChampions = document.querySelector("#btnChampions")
@@ -469,6 +548,7 @@ const groupsScreen = document.querySelector("#groupsScreen")
 const championsScreen = document.querySelector("#championsScreen")
 
 if (btnGames && btnGroups && btnChampions && gamesScreen && groupsScreen && championsScreen) {
+  
   btnGames.addEventListener("click", () => {
     gamesScreen.classList.remove("hidden")
     groupsScreen.classList.add("hidden")
@@ -477,6 +557,7 @@ if (btnGames && btnGroups && btnChampions && gamesScreen && groupsScreen && cham
     btnGames.classList.add("active")
     btnGroups.classList.remove("active")
     btnChampions.classList.remove("active")
+    renderAllCards() 
   })
 
   btnGroups.addEventListener("click", () => {
@@ -498,13 +579,23 @@ if (btnGames && btnGroups && btnChampions && gamesScreen && groupsScreen && cham
     btnGames.classList.remove("active")
     btnGroups.classList.remove("active")
     btnChampions.classList.add("active")
+    renderChampions()
   })
 
+  // ==========================================
+  // CORREÇÃO: EXECUÇÃO AUTOMÁTICA VISÍVEL NO STARTUP
+  // ==========================================
+  btnGames.classList.add("active") // Destaca o botão de jogos visualmente
+  
+  // Renderiza todas as informações em segundo plano
+  renderAllCards()   // Faz a lista de jogos aparecer de imediato!
   renderChampions()
-  renderAllCards()
   renderGroupsTable()
 }
 
+// ==========================================
+// CONTREGEM REGRESSIVA DA COPA
+// ==========================================
 function updateCountdown() {
   const worldCupStart = new Date("2026-06-11T16:00:00");
   const now = new Date();
@@ -561,3 +652,15 @@ function renderRandomFact() {
 }
 
 renderRandomFact();
+
+// ==========================================
+// INTERATIVIDADE DO BOTÃO DE ALTERNAR TEMA
+// ==========================================
+const themeToggleBtn = document.querySelector("#theme-toggle");
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", () => {
+    // Alterna a classe global no body do HTML
+    document.body.classList.toggle("light");
+    document.body.classList.toggle("dark");
+  });
+}

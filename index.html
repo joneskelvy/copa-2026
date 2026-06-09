@@ -57,20 +57,44 @@
       </button>
     </nav>
 
+    <!-- 2. Tela de Jogos (Visível por padrão) -->
     <main id="gamesScreen">
-      <div id="cards"></div> </main>
-
-      <main id="groupsScreen" class="hidden">
-      <h2 class="section-title">Classificação dos Grupos</h2>
-      <div id="groupsContainer" class="groups-grid">
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="🔍 Busque por uma seleção (ex: Brasil, França...)"
+        />
+        <div id="quick-filters" class="quick-filters">
+          <button class="filter-flag-btn" data-country="brazil" title="Brasil">
+            <img src="assets/icon-brazil.svg" alt="Brasil">
+          </button>
+          <button class="filter-flag-btn" data-country="argentina" title="Argentina">
+            <img src="assets/icon-argentina.svg" alt="Argentina">
+          </button>
+          <button class="filter-flag-btn" data-country="spain" title="Espanha">
+            <img src="assets/icon-spain.svg" alt="Espanha">
+          </button>
+          <button class="filter-flag-btn" data-country="france" title="França">
+            <img src="assets/icon-france.svg" alt="França">
+          </button>
+          <button class="filter-flag-btn" data-country="portugal" title="Portugal">
+            <img src="assets/icon-portugal.svg" alt="Portugal">
+          </button>
+          <button id="clear-filter" class="clear-filter-btn hidden">✖ Limpar</button>
         </div>
+      </div>
+
+      <div id="cards"></div>
     </main>
 
-    <main id="championsScreen" class="hidden">
-      <h2 class="section-title">
-        Campeões das Copas do Mundo
-      </h2>
+    <!-- 3. Tela de Grupos (Oculta por padrão via CSS "hidden") -->
+    <main id="groupsScreen" class="hidden">
+      <div id="groupsContainer"></div>
+    </main>
 
+    <!-- 4. Tela de Campeões Históricos (Oculta por padrão via CSS "hidden") -->
+    <main id="championsScreen" class="hidden">
       <div id="championsList"></div>
     </main>
 

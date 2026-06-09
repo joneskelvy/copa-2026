@@ -730,5 +730,96 @@ group-card {
   }
 }
 
+/* ==========================================
+   CONTAINER DA BUSCA (AJUSTADO)
+   ========================================== */
+.search-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
+/* Campo de Input com Fundo Sólido e Texto Forçado */
+#search-input {
+  width: 100%;
+  background-color: #1d1c25 !important; /* Força um fundo cinza escuro sólido */
+  border: 2px solid #323238 !important; /* Borda bem definida */
+  color: #FFFFFF !important;            /* Texto digitado FORÇADO em BRANCO */
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
 
+/* Quando clicar na caixinha de busca */
+#search-input:focus {
+  border-color: #F7DD43 !important; /* Borda Amarela da Copa */
+  background-color: #25242e !important;
+}
+
+/* Cor do texto de dica (Placeholder) */
+#search-input::placeholder {
+  color: #7c7c8a !important; /* Cinza claro para o texto "Busque por uma seleção..." */
+  opacity: 1;
+}
+
+/* ATALHOS DE BANDEIRAS RÁPIDAS (AJUSTADO) */
+.quick-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.filter-flag-btn {
+  background-color: #1d1c25 !important; /* Fundo sólido para a caixinha da bandeira */
+  border: 1px solid #323238 !important;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.filter-flag-btn img {
+  width: 32px; /* Aumentei um pouquinho para destacar melhor */
+  height: auto;
+  display: block;
+}
+
+.filter-flag-btn:hover,
+.filter-flag-btn.active {
+  border-color: #F7DD43 !important;
+  background-color: rgba(247, 221, 67, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+/* Botão de limpar filtro */
+.clear-filter-btn {
+  background-color: #E23E44 !important;
+  color: #FFFFFF !important;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.clear-filter-btn.hidden {
+  display: none;
+}
+
+/* Correção do alinhamento */
+.text-center {
+  text-align: center !important;
+}

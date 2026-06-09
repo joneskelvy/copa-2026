@@ -123,16 +123,35 @@ header img {
   border-radius: 12px;
 }
 
+/* Configuração do contêiner de cards */
 #cards {
-  width: 100%;
-
   display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  gap: 48px;
+  gap: 24px;
+  overflow-x: auto; /* Permite o scroll horizontal */
+  scroll-behavior: smooth;
+  padding: 20px 10px;
+  
+  /* Configura o efeito "imã" do carrossel */
+  scroll-snap-type: x mandatory; 
+  
+  /* Esconde a barra de rolagem padrão no Chrome, Safari e Opera */
+  -webkit-overflow-scrolling: touch;
 }
+
+#cards::-webkit-scrollbar {
+  display: none; /* Esconde a barra de rolagem visualmente */
+}
+
+/* Configuração de cada card dentro do carrossel */
+.card {
+  flex: 0 0 320px; /* Não deixa o card encolher e fixa a largura ideal para mobile */
+  scroll-snap-align: center; /* Faz o card travar no centro da tela ao arrastar */
+}
+
+.card {
+    flex: initial;
+    scroll-snap-align: none;
+  }
 
 .card:hover {
   transform: translateY(-5px);
@@ -718,15 +737,14 @@ group-card {
 /* ==========================================
    MEDIA QUERY: PARA CELULARES PEQUENOS (Ex: iPhone SE)
    ========================================== */
-@media (max-width: 360px) {
-  .group-table {
-    font-size: 0.8rem; /* Reduz um pouquinho mais a fonte se a tela for minúscula */
-  }
-  
-  .table-flag {
-    width: 20px;
-    height: 14px;
-    margin-right: 4px;
+/* Ajuste para telas maiores: desativa o carrossel no Desktop */
+@media (min-width: 1024px) {
+  #cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ou a estrutura de colunas que você já usava */
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding: 0;
   }
 }
 

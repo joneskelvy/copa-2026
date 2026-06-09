@@ -423,15 +423,15 @@ function renderAllCards(searchTerm = "") {
     }
   });
 
-  if (htmlResult === "") {
-    cardsContainer.innerHTML = `
-      <div class="no-results" style="text-align: center; color: var(--text-secondary); margin-top: 40px;">
-        <p style="font-size: 1.2rem;">⚽ Nenhuma partida encontrada para essa seleção.</p>
-      </div>
-    `;
-  } else {
-    cardsContainer.innerHTML = htmlResult;
-  }
+if (htmlResult === "") {
+  cardsContainer.innerHTML = `
+    <div class="no-results" style="width: 100%; text-align: center; color: var(--text-secondary); margin-top: 40px; scroll-snap-align: none;">
+      <p style="font-size: 1.2rem;">⚽ Nenhuma partida encontrada para essa seleção.</p>
+    </div>
+  `;
+} else {
+  cardsContainer.innerHTML = htmlResult;
+}
 }
 
 // ==========================================

@@ -625,3 +625,110 @@ header img {
   font-weight: 500;
 }
 
+/* Grid para organizar os grupos em colunas */
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 20px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card de cada grupo */
+group-card {
+  background: var(--card-bg-color, #202024); /* Ajuste para a sua cor de fundo do card */
+  border-radius: 8px;
+  border-bottom: 2px solid #f7dd43; /* Detalhe amarelo na borda, opcional */
+  padding: 16px;
+  width: 100%;
+  max-width: 380px; /* Tamanho ideal para caber em qualquer celular */
+  box-sizing: border-box;
+}
+
+.group-card h3 {
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: #f7dd43;
+  text-transform: uppercase;
+}
+
+/* Estrutura da Tabela */
+/* Evita que a tabela quebre o layout do celular */
+.group-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem; /* Diminui levemente a fonte no mobile para não quebrar linhas */
+}
+
+.group-table th, 
+.group-table td {
+  padding: 8px 4px; /* Espaçamento mais compacto nas laterais */
+  vertical-align: middle;
+}
+
+.group-table th, 
+.group-table td {
+  padding: 8px 4px; /* Espaçamento mais compacto nas laterais */
+  vertical-align: middle;
+}
+
+.group-table td {
+  padding: 8px 0;
+  color: #E1E1E6;
+  border-bottom: 1px solid #29282E;
+}
+
+/* Garante que os cards dos grupos fiquem bem distribuídos */
+#groupsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Alinhamentos e pesos visuais */
+.text-center {
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+/* Destaque para a zona de classificação para o mata-mata */
+.group-table tr:nth-child(1) td,
+.group-table tr:nth-child(2) td {
+  border-left: 3px solid #F7DD43; /* Amarelo indicando classificação direta */
+  padding-left: 4px;
+}
+
+/* Estilização da mini bandeira dentro da tabela */
+.table-flag {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ==========================================
+   MEDIA QUERY: PARA CELULARES PEQUENOS (Ex: iPhone SE)
+   ========================================== */
+@media (max-width: 360px) {
+  .group-table {
+    font-size: 0.8rem; /* Reduz um pouquinho mais a fonte se a tela for minúscula */
+  }
+  
+  .table-flag {
+    width: 20px;
+    height: 14px;
+    margin-right: 4px;
+  }
+}
+
+
+

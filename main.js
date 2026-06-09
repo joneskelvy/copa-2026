@@ -176,6 +176,122 @@ const matchesData = [
   }
 ];
 
+// Mapeamento dos grupos da Copa de 2026
+const groupsMapping = {
+  "Grupo A": ["mexico", "southafrica", "czech", "southkorea"],
+  "Grupo B": ["canada", "bosnia", "usa", "paraguay"],
+  "Grupo C": ["qatar", "switzerland", "brazil", "morocco"],
+  "Grupo D": ["haiti", "scotland", "australia", "turkey"],
+  "Grupo E": ["germany", "curacao", "netherlands", "japan"],
+  "Grupo F": ["ivorycoast", "ecuador", "sweden", "tunisia"],
+  "Grupo G": ["spain", "capeverde", "belgium", "egypt"],
+  "Grupo H": ["saudia", "uruguay", "iran", "newzealand"],
+  "Grupo I": ["france", "senegal", "iraq", "norway"],
+  "Grupo J": ["argentina", "algeria", "austria", "jordan"],
+  "Grupo K": ["portugal", "congo", "england", "croatia"],
+  "Grupo L": ["ghana", "panama", "uzbekistan", "colombia"]
+};
+
+// ==========================================
+// CÁLCULO AUTOMÁTICO DOS GRUPOS
+// ==========================================
+function calculateGroups() {
+  const tableData = {};
+
+  // Inicializa todos os países mapeados com 0 pontos
+  Object.values(groupsMapping).flat().forEach(country => {
+    tableData[country] = { name: country, P: 0, V: 0, E: 0, D: 0, GP: 0, GC: 0, SG: 0 };
+  });
+
+  // Percorre todos os blocos de dias do seu matchesData
+  matchesData.forEach(dayBlock => {
+    dayBlock.games.forEach(game => {
+      if (game.score1 !== "-" && game.score2 !== "-") {
+        const g1 = parseInt(game.score1);
+        const g2 = parseInt(game.score2);
+        const p1 = game.home;
+        const p2 = game.away;
+
+        if (!tableData[p1] || !tableData[p2]) return;
+
+        tableData[p1].GP += g1; tableData[p1].GC += g2;
+        tableData[p2].GP += g2; tableData[p2].GC += g1;
+
+        if (g1 > g2) {
+          tableData[p1].P += 3; tableData[p1].V += 1;
+          tableData[p2].D += 1;
+        } else if (g2 > g1) {
+          tableData[p2].P += 3; tableData[p2].V += 1;
+          tableData[p1].D += 1;
+        } else {
+          tableData[p1].P += 1; tableData[p1].E += 1;
+          tableData[p2].P += 1; tableData[p2].E += 1;
+        }
+
+        tableData[p1].SG = tableData[p1].GP - tableData[p1].GC;
+        tableData[p2].SG = tableData[p2].GP - tableData[p2].GC;
+      }
+    });
+  });
+
+  return tableData;
+}
+
+// ==========================================
+// RENDERIZAÇÃO DA TABELA DE GRUPOS
+// ==========================================
+function renderGroupsTable() {
+  const container = document.querySelector("#groupsContainer");
+  if (!container) return;
+
+  const stats = calculateGroups();
+  let html = "";
+
+  Object.entries(groupsMapping).forEach(([groupName, teams]) => {
+    // Ordenação (Pontos -> Vitórias -> Saldo de Gols)
+    const sortedTeams = teams
+      .map(t => stats[t] || { name: t, P: 0, V: 0, E: 0, D: 0, GP: 0, GC: 0, SG: 0 })
+      .sort((a, b) => b.P - a.P || b.V - a.V || b.SG - a.SG);
+
+    let rowsHtml = "";
+    sortedTeams.forEach((team, index) => {
+      const formattedName = formatCountryName(team.name);
+      
+      rowsHtml += `
+        <tr>
+          <td><span class="font-bold">${index + 1}°</span></td>
+          <td><img class="table-flag" src="assets/icon-${team.name}.svg" alt="${formattedName}"> ${formattedName}</td>
+          <td class="text-center font-bold">${team.P}</td>
+          <td class="text-center">${team.V}</td>
+          <td class="text-center">${team.SG}</td>
+        </tr>
+      `;
+    });
+
+    html += `
+      <div class="group-card">
+        <h3>${groupName}</h3>
+        <table class="group-table">
+          <thead>
+            <tr>
+              <th style="width: 10%">#</th>
+              <th style="width: 50%">Seleção</th>
+              <th class="text-center" style="width: 13%">P</th>
+              <th class="text-center" style="width: 13%">V</th>
+              <th class="text-center" style="width: 14%">SG</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+          </tbody>
+        </table>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
 function createCard(date, day, gamesHtml) {
   return `
     <div class="card">
@@ -222,9 +338,9 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcas
 }
 
 function formatCountryName(name) {
-  const countries = {
+  const names = {
     southafrica: "África do Sul",
-    southkorea: "Coréia do Sul",
+    southkorea: "Coreia do Sul",
     ivorycoast: "Costa do Marfim",
     capeverde: "Cabo Verde",
     saudia: "Arábia Saudita",
@@ -259,7 +375,7 @@ function formatCountryName(name) {
     austria: "Áustria",
     jordan: "Jordânia",
     portugal: "Portugal",
-    congo: "Rep. Dem do Congo",
+    congo: "Rep. Dem. do Congo",
     england: "Inglaterra",
     croatia: "Croácia",
     ghana: "Gana",
@@ -267,13 +383,12 @@ function formatCountryName(name) {
     colombia: "Colômbia",
     uzbekistan: "Uzbequistão",
     paraguay: "Paraguai",
-    bosnia: "Bósnia e Herzegovina",  
+    bosnia: "Bósnia e Herz.",  
     canada: "Canadá",
     mexico: "México",
     ecuador: "Equador",
-  }
-
-  return countries[name] || name.charAt(0).toUpperCase() + name.slice(1)
+  };
+  return names[name] || name.toUpperCase();
 }
 
 function renderAllCards() {
@@ -282,7 +397,6 @@ function renderAllCards() {
 
   let htmlResult = "";
 
-  // Percorre o array estruturado e transforma em HTML na tela
   matchesData.forEach(dayBlock => {
     let gamesHtml = "";
     
@@ -319,7 +433,7 @@ const champions = [
   { year: 2014, champion: "Alemanha", flag: "germany" },
   { year: 2018, champion: "França", flag: "france" },
   { year: 2022, champion: "Argentina", flag: "argentina" }
-]
+];
 
 function renderChampions() {
   const championsList = document.querySelector("#championsList")
@@ -347,27 +461,48 @@ if ("serviceWorker" in navigator) {
 }
 
 const btnGames = document.querySelector("#btnGames")
+const btnGroups = document.querySelector("#btnGroups")
 const btnChampions = document.querySelector("#btnChampions")
+
 const gamesScreen = document.querySelector("#gamesScreen")
+const groupsScreen = document.querySelector("#groupsScreen")
 const championsScreen = document.querySelector("#championsScreen")
 
-if (btnGames && btnChampions && gamesScreen && championsScreen) {
+if (btnGames && btnGroups && btnChampions && gamesScreen && groupsScreen && championsScreen) {
   btnGames.addEventListener("click", () => {
     gamesScreen.classList.remove("hidden")
+    groupsScreen.classList.add("hidden")
     championsScreen.classList.add("hidden")
+    
     btnGames.classList.add("active")
+    btnGroups.classList.remove("active")
     btnChampions.classList.remove("active")
+  })
+
+  btnGroups.addEventListener("click", () => {
+    gamesScreen.classList.add("hidden")
+    groupsScreen.classList.remove("hidden")
+    championsScreen.classList.add("hidden")
+    
+    btnGames.classList.remove("active")
+    btnGroups.classList.add("active")
+    btnChampions.classList.remove("active")
+    renderGroupsTable()
   })
 
   btnChampions.addEventListener("click", () => {
     gamesScreen.classList.add("hidden")
+    groupsScreen.classList.add("hidden")
     championsScreen.classList.remove("hidden")
+    
     btnGames.classList.remove("active")
+    btnGroups.classList.remove("active")
     btnChampions.classList.add("active")
   })
 
   renderChampions()
   renderAllCards()
+  renderGroupsTable()
 }
 
 function updateCountdown() {
@@ -375,8 +510,11 @@ function updateCountdown() {
   const now = new Date();
   const difference = worldCupStart - now;
 
+  const countdownElement = document.querySelector("#countdown");
+  if (!countdownElement) return;
+
   if (difference <= 0) {
-    document.querySelector("#countdown").innerHTML = "⚽ A Copa do Mundo 2026 começou!";
+    countdownElement.innerHTML = "⚽ A Copa do Mundo 2026 começou!";
     return;
   }
 
@@ -385,7 +523,7 @@ function updateCountdown() {
   const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-  document.querySelector("#countdown").innerHTML = `
+  countdownElement.innerHTML = `
     ⏳ Faltam
     <strong>${days}</strong> dias,
     <strong>${hours}</strong>h,
@@ -414,17 +552,12 @@ const worldCupFacts = [
   "O jogador mais velho a disputar e marcar um gol em uma Copa foi Roger Milla, de Camarões, com 42 anos de idade em 1994."
 ];
 
-
 function renderRandomFact() {
   const factTextElement = document.querySelector("#fact-text");
   if (!factTextElement) return;
 
-  // Sorteia um número entre 0 e o tamanho máximo da lista
   const randomIndex = Math.floor(Math.random() * worldCupFacts.length);
-  
-  // Insere a frase sorteada na tela
   factTextElement.textContent = worldCupFacts[randomIndex];
 }
 
-// Chame a função para ela rodar assim que a página abrir
 renderRandomFact();

@@ -7,7 +7,7 @@ async function fetchResults() {
   try {
     // ID 1 geralmente é o da Copa do Mundo na API-Football
     const response = await fetch(
-   `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${today}`, 
+   `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=1&season=2026&date=${today}`,
       {
         method: "GET",
         headers: {

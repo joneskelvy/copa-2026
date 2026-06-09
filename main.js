@@ -1,10 +1,10 @@
 // O robô do GitHub lê este array todas as noites e altera os hifens pelos gols reais
 const matchesData = [
   {
-    date: "09/06",
+    date: "11/06",
     day: "quinta",
     games: [
-      { id: "china-thailand", home: "china", hour: "08:35", away: "thailand", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
+      { id: "mexico-southafrica", home: "mexico", hour: "16:00", away: "southafrica", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
       { id: "southkorea-czech", home: "southkorea", hour: "23:00", away: "czech", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]
   },

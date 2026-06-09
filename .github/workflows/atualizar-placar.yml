@@ -1,0 +1,31 @@
+name: Atualizar Resultados da Copa automaticamente
+
+on:
+  schedule:
+    # Roda todos os dias às 23:30 Horário de Brasília (02:30 UTC do dia seguinte)
+    - cron: '30 2 * * *'
+  workflow_dispatch: # Permite que você execute manualmente clicando em um botão na aba Actions
+
+jobs:
+  update-scores:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+
+    - name: Configurar o Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Executar script de atualização
+      env:
+        RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+      run: node ./scripts/update-scores.js
+
+    - name: Commitar e dar Push das alterações de volta para o repositório
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "bot: placares do dia atualizados automaticamente [skip ci]"
+        branch: main

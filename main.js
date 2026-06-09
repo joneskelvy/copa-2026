@@ -614,13 +614,15 @@ function updateCountdown() {
   const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
+  const daysText = days === 1 ? "dia" : "dias";
+
   countdownElement.innerHTML = `
-    ⏳ Faltam
-    <strong>${days}</strong> dias,
+ ⏳ Falta
+    <strong>${days}</strong> ${daysText},
     <strong>${hours}</strong>h,
     <strong>${minutes}</strong>min e
     <strong>${seconds}</strong>s
-    para a Copa do Mundo FIFA 2026
+    para o início da Copa do Mundo FIFA 2026
   `;
 }
 

@@ -4,7 +4,7 @@ const matchesData = [
     date: "09/06",
     day: "quinta",
     games: [
-      { id: "china-tailandia", home: "china", hour: "08:35", away: "tailandia", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
+      { id: "china-thailand", home: "china", hour: "08:35", away: "thailand", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
       { id: "southkorea-czech", home: "southkorea", hour: "23:00", away: "czech", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]
   },

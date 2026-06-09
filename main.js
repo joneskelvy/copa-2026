@@ -397,3 +397,34 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+// LISTA DE CURIOSIDADES HISTÓRICAS
+const worldCupFacts = [
+  "O primeiro gol contra da história das Copas foi marcado pelo zagueiro Manuel Rosas, do México, a favor do Chile, na Copa de 1930.",
+  "A Itália (1934 e 1938) e o Brasil (1958 e 1962) são os únicos países na história que conseguiram vencer duas Copas seguidas.",
+  "A primeira Copa do Mundo a usar cartões amarelos e vermelhos foi a de 1970, no México. Antes disso, as advertências eram apenas verbais.",
+  "Em 1930, a final entre Uruguai e Argentina foi jogada com duas bolas diferentes (uma em cada tempo) porque os times não entravam em acordo.",
+  "A primeira Copa do Mundo, em 1930, foi disputada inteiramente na cidade de Montevidéu, no Uruguai.",
+  "O Brasil é o único país que participou de todas as edições da Copa do Mundo de futebol.",
+  "O gol mais rápido da história das Copas foi marcado por Hakan Sükür, da Turquia, aos 11 segundos de jogo contra a Coreia do Sul em 2002.",
+  "A Copa de 2026 é a maior da história, com 48 seleções e sediada por 3 países: Canadá, EUA e México.",
+  "O maior artilheiro da história das Copas é o alemão Miroslav Klose, com 16 gols, superando o Ronaldo Fenômeno.",
+  "Pelé é o jogador mais jovem a vencer uma Copa do Mundo (17 anos em 1958) e o único a ser tricampeão como jogador.",
+  "A taça original da Copa, a Taça Jules Rimet, foi roubada no Brasil em 1983 e nunca foi recuperada; dizem que foi derretida.",
+  "O jogador mais velho a disputar e marcar um gol em uma Copa foi Roger Milla, de Camarões, com 42 anos de idade em 1994."
+];
+
+
+function renderRandomFact() {
+  const factTextElement = document.querySelector("#fact-text");
+  if (!factTextElement) return;
+
+  // Sorteia um número entre 0 e o tamanho máximo da lista
+  const randomIndex = Math.floor(Math.random() * worldCupFacts.length);
+  
+  // Insere a frase sorteada na tela
+  factTextElement.textContent = worldCupFacts[randomIndex];
+}
+
+// Chame a função para ela rodar assim que a página abrir
+renderRandomFact();

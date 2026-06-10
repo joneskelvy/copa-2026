@@ -87,7 +87,7 @@ const matchesData = [
   },
   {
     date: "20/06",
-    day: "sabado",
+    day: "sábado",
     games: [
       { id: "turkey-paraguay", home: "turkey", hour: "00:00", away: "paraguay", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "netherlands-sweden", home: "netherlands", hour: "14:00", away: "sweden", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
@@ -162,7 +162,7 @@ const matchesData = [
   },
   {
     date: "27/06",
-    day: "sabado",
+    day: "sábado",
     games: [
       { id: "egypt-iran", home: "egypt", hour: "00:00", away: "iran", score1: "-", score2: "-", broadcasters: [] },
       { id: "newzealand-belgium", home: "newzealand", hour: "00:00", away: "belgium", score1: "-", score2: "-", broadcasters: [] },
@@ -340,7 +340,7 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcas
 function formatCountryName(name) {
   const names = {
     southafrica: "África do Sul",
-    southkorea: "Coréia do Sul",
+    southkorea: "Coreia do Sul",
     ivorycoast: "Costa do Marfim",
     capeverde: "Cabo Verde",
     saudia: "Arábia Saudita",
@@ -627,7 +627,7 @@ function updateCountdown() {
 }
 
 updateCountdown();
-setInterval(updateCountdown, 1000);
+countdownInterval = setInterval(updateCountdown, 1000);
 
 // LISTA DE CURIOSIDADES HISTÓRICAS
 const worldCupFacts = [

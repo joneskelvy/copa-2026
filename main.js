@@ -179,17 +179,17 @@ const matchesData = [
 // Mapeamento dos grupos da Copa de 2026
 const groupsMapping = {
   "Grupo A": ["mexico", "southafrica", "czech", "southkorea"],
-  "Grupo B": ["canada", "bosnia", "usa", "paraguay"],
-  "Grupo C": ["qatar", "switzerland", "brazil", "morocco"],
-  "Grupo D": ["haiti", "scotland", "australia", "turkey"],
-  "Grupo E": ["germany", "curacao", "netherlands", "japan"],
-  "Grupo F": ["ivorycoast", "ecuador", "sweden", "tunisia"],
-  "Grupo G": ["spain", "capeverde", "belgium", "egypt"],
-  "Grupo H": ["saudia", "uruguay", "iran", "newzealand"],
+  "Grupo B": ["canada", "bosnia", "switzerland", "qatar"],
+  "Grupo C": ["scotland", "haiti", "brazil", "morocco"],
+  "Grupo D": ["usa", "paraguay", "australia", "turkey"],
+  "Grupo E": ["germany", "curacao", "ecuador", "ivorycoast"],
+  "Grupo F": ["netherlands", "japan", "sweden", "tunisia"],
+  "Grupo G": ["iran", "newzealand", "belgium", "egypt"],
+  "Grupo H": ["saudia", "capeverde", "spain", "uruguay"],
   "Grupo I": ["france", "senegal", "iraq", "norway"],
   "Grupo J": ["argentina", "algeria", "austria", "jordan"],
-  "Grupo K": ["portugal", "congo", "england", "croatia"],
-  "Grupo L": ["ghana", "panama", "uzbekistan", "colombia"]
+  "Grupo K": ["portugal", "congo", "uzbekistan", "colombia"],
+  "Grupo L": ["ghana", "panama", "croatia", "england"]
 };
 
 // ==========================================

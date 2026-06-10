@@ -63,7 +63,7 @@
         <input 
           type="text" 
           id="search-input" 
-          placeholder="🔍 Busque por uma seleção (ex: Brasil, França...)"
+          placeholder="🔍 Busque por (ex: Brasil, França...)"
         />
         <div id="quick-filters" class="quick-filters">
           <button class="filter-flag-btn" data-country="brazil" title="Brasil">
@@ -80,6 +80,12 @@
           </button>
           <button class="filter-flag-btn" data-country="portugal" title="Portugal">
             <img src="assets/icon-portugal.svg" alt="Portugal">
+          </button>
+          <button class="filter-flag-btn" data-country="england" title="Inglaterra">
+            <img src="assets/icon-england.svg" alt="Inglaterra">
+          </button>
+          <button class="filter-flag-btn" data-country="germany" title="Alemanha">
+            <img src="assets/icon-germany.svg" alt="Alemanha">
           </button>
           <button id="clear-filter" class="clear-filter-btn hidden">✖ Limpar</button>
         </div>
@@ -101,6 +107,50 @@
   </div>
 
   <script src="./main.js"></script>
+
+<footer class="main-footer">
+  <div class="footer-container">
+    
+    <!-- Título/Info -->
+    <div class="footer-section">
+      <h3>Copa do Mundo 2026</h3>
+    </div>
+
+    <!-- Navegação -->
+    <div class="footer-section links">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#top">Início</a></li>
+        <li><a href="https://www.fifa.com" target="_blank" rel="noopener noreferrer">Site Oficial da FIFA</a></li>
+      </ul>
+    </div>
+
+    <!-- NOVO: Redes Sociais (GitHub e LinkedIn) -->
+    <div class="footer-section social">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://github.com/joneskelvy" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jones-ferreira" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+    </div>
+
+    <!-- Tecnologias (Corrigido para não quebrar) -->
+    <div class="footer-section tech">
+      <h4>Desenvolvido com</h4>
+      <div class="tech-badges">
+        <span>HTML5</span>
+        <span>CSS3</span>
+        <span>JavaScript</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Direitos Autorais -->
+  <div class="footer-bottom">
+    <p>&copy; 2026 - Desenvolvido para fins de estudo e entretenimento. Todos os direitos reservados às respectivas marcas.</p>
+  </div>
+</footer>
 
 </body>
 </html>

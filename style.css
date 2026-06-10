@@ -823,3 +823,229 @@ group-card {
 .text-center {
   text-align: center !important;
 }
+
+/* ==========================================
+   ESTILIZAÇÃO DO FOOTER
+   ========================================== */
+.main-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999; /* Garante que ele fique por cima de todos os cards */
+  
+  
+  background-color: var(--card-bg, #1f2229);
+  color: var(--text-secondary, #8f9299);
+  padding: 15px 20px; /* Reduzi um pouco o espaçamento para não ocupar muita tela no mobile */
+  border-top: 1px solid var(--border-color, #2f333d);
+  font-family: sans-serif;
+  
+  /* Efeito opcional de desfoque (glassmorphism) para ficar ainda mais moderno */
+  backdrop-filter: blur(8px);
+  background-color: rgba(31, 34, 41, 0.9); /* Ajuste a opacidade conforme seu tema */
+}
+
+.footer-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer-section h3 {
+  color: var(--text-primary, #f7f9fa);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.footer-section h4 {
+  color: var(--text-primary, #f7f9fa);
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.footer-section p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Links do Rodapé */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  color: var(--text-secondary, #8f9299);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-section ul li a:hover {
+  color: var(--nlw-green, #74ffd2); /* Cor de destaque (substitua pela cor do seu projeto se necessário) */
+}
+
+/* Badges de Tecnologia */
+.tech-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tech-badges span {
+  background-color: var(--bg-body, #121414);
+  color: var(--text-primary, #f7f9fa);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 1px solid var(--border-color, #2f333d);
+}
+
+/* Faixa de Direitos Autorais */
+.footer-bottom {
+  max-width: 1024px;
+  margin: 10px auto 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color, #2f333d);
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* ==========================================
+   RESPONSIVIDADE (DESKTOP)
+   ========================================== */
+@media (min-width: 768px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-section {
+    flex: 1;
+  }
+  
+  .footer-section.info {
+    flex: 2; /* Deixa a descrição com um pouco mais de espaço */
+    padding-right: 40px;
+  }
+}
+
+body {
+  /* Adiciona um espaço no fim da página proporcional ao tamanho do seu footer */
+  padding-bottom: 80px; 
+}
+
+@media (min-width: 768px) {
+  body {
+    /* No desktop o footer é maior, então aumentamos o espaço reserva */
+    padding-bottom: 220px; 
+  }
+}/* ==========================================
+   ESTILIZAÇÃO DO FOOTER (NÃO SUSPENSO)
+   ========================================== */
+.main-footer {
+  /* REMOVIDO: position: fixed, bottom: 0, left: 0 e backdrop-filter */
+  width: 100%;
+  
+  background-color: #14161b; /* Cor sólida, já que não flutua mais por cima de nada */
+  color: var(--text-secondary, #8f9299);
+  padding: 24px 20px; /* Um pouco mais de respiro vertical para o mobile */
+  border-top: 1px solid var(--border-color, #2f333d);
+  font-family: sans-serif;
+  box-sizing: border-box;
+  margin-top: 50px; /* Empurra o footer para longe dos últimos cards de jogos */
+}
+
+/* No Mobile, exibe apenas os créditos diretamente */
+.main-footer .footer-container {
+  display: none; 
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  opacity: 0.8;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================
+   DESKTOP (Estrutura completa em linha)
+   ========================================== */
+@media (min-width: 768px) {
+  .main-footer {
+    padding: 20px 40px; /* Um pouco mais de altura no desktop para ficar elegante */
+    margin-top: 80px;
+  }
+
+  .main-footer .footer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  .footer-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-section h3, 
+  .footer-section h4 {
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--text-primary, #f7f9fa);
+    white-space: nowrap;
+  }
+
+  .footer-section p {
+    display: none; /* Mantém oculto o texto muito longo para priorizar o design slim */
+  }
+
+  .footer-section ul {
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-section ul li a {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #8f9299);
+    text-decoration: none;
+  }
+  
+  .footer-section ul li a:hover {
+    color: var(--text-primary, #f7f9fa);
+  }
+
+  .tech-badges {
+    display: flex;
+    gap: 5px;
+  }
+
+  .tech-badges span {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+}

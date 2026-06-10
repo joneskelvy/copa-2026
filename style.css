@@ -124,26 +124,14 @@ header img {
 }
 
 #cards {
+  width: 100%;
+
   display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px;
+  flex-direction: column;
 
-  scrollbar-width: thin;
-}
+  align-items: center;
 
-#cards::-webkit-scrollbar {
-  height: 8px;
-}
-
-#cards::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-}
-
-.card {
-  min-width: 320px;
-  flex-shrink: 0;
+  gap: 48px;
 }
 
 .card:hover {
@@ -230,7 +218,7 @@ header img {
 }
 
 .card {
- animation: appear 0.6s ease-out;
+  animation: appear 3s;
 }
 
 @keyframes appear {
@@ -678,14 +666,15 @@ group-card {
 .group-table td {
   padding: 8px 4px; /* Espaçamento mais compacto nas laterais */
   vertical-align: middle;
-  color: #c4c4cc; /* Um cinza claro visível, mas que não briga com o amarelo */
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
+}
+
+.group-table th, 
+.group-table td {
+  padding: 8px 4px; /* Espaçamento mais compacto nas laterais */
+  vertical-align: middle;
 }
 
 .group-table td {
-  vertical-align: middle;
   padding: 8px 0;
   color: #E1E1E6;
   border-bottom: 1px solid #29282E;
@@ -710,11 +699,10 @@ group-card {
 }
 
 /* Destaque para a zona de classificação para o mata-mata */
-.group-table th:nth-child(1),
-.group-table td:nth-child(1) {
-  width: 40px;       /* Reduz o espaço da coluna de posições (1º, 2º...) */
-  text-align: center; /* Centraliza a hashtag e os números perfeitamente */
-  padding-left: 6px;
+.group-table tr:nth-child(1) td,
+.group-table tr:nth-child(2) td {
+  border-left: 3px solid #F7DD43; /* Amarelo indicando classificação direta */
+  padding-left: 4px;
 }
 
 /* Estilização da mini bandeira dentro da tabela */
@@ -783,7 +771,6 @@ group-card {
 /* ATALHOS DE BANDEIRAS RÁPIDAS (AJUSTADO) */
 .quick-filters {
   display: flex;
-  justify-content: center;
   gap: 10px;
   align-items: center;
   overflow-x: auto;

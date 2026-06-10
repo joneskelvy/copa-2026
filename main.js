@@ -257,8 +257,8 @@ function renderGroupsTable() {
     sortedTeams.forEach((team, index) => {
       const formattedName = formatCountryName(team.name);
       
-      rowsHtml += `
-        <tr>
+      rowsHtml += 
+         `<tr>
           <td><span class="font-bold">${index + 1}°</span></td>
           <td><img class="table-flag" src="assets/icon-${team.name}.svg" alt="${formattedName}"> ${formattedName}</td>
           <td class="text-center font-bold">${team.P}</td>

@@ -1,43 +1,6 @@
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-
-  margin-bottom: 32px;
-}
-
-.menu button {
-  padding: 12px 24px;
-
-  background: #181f42;
-
-  color: #fff;
-
-  border: 1px solid #43f333;
-
-  border-radius: 8px;
-
-  cursor: pointer;
-
-  font-weight: 700;
-
-  transition: .3s;
-}
-
-.menu button:hover {
-  background: #43f333;
-  color: #000;
-}
-
-.menu button.active {
-  background: #43f333;
-  color: #000;
-}
-
-.hidden {
-  display: none;
-}
-
+/* ==========================================
+   RESET & CONFIGURAÇÕES GERAIS
+   ========================================== */
 * {
   margin: 0;
   padding: 0;
@@ -65,30 +28,17 @@ ul {
 
 body::before {
   content: "";
-
   position: fixed;
   inset: 0;
-
-  background:
-    radial-gradient(circle at top right,
-    rgba(59,130,246,.25),
-    transparent 30%);
-
+  background: radial-gradient(circle at top right, rgba(59,130,246,.25), transparent 30%);
   pointer-events: none;
 }
 
 body {
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.75),
-      rgba(0,0,0,0.85)
-    ),
-    url("./assets/bgstadium.jpg");
-
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url("./assets/bgstadium.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
   min-height: 100vh;
 }
 
@@ -99,16 +49,16 @@ body * {
 #app {
   width: 100%;
   max-width: 1280px;
-
   margin: 52px auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 0 20px;
 }
 
+/* ==========================================
+   HEADER & COMPONENTES EXTRA
+   ========================================== */
 header {
   margin-bottom: 63px;
   text-align: center;
@@ -123,454 +73,28 @@ header img {
   border-radius: 12px;
 }
 
-#cards {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  gap: 48px;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-
-  transition: .3s;
-
-  border-color: #3b82f6;
-}
-
-.card {
-  padding: 32px 23px;
-  width: 320px;
-  text-align: center;
-   box-shadow:
-    0 0 10px rgba(59,130,246,.4),
-    0 0 30px rgba(59,130,246,.4);
-
-  background: #181f42;
-  border-bottom: 2px solid var(--card-color-primary);
-  border-radius: 6px;
-}
-
-.card h2 {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-
-  padding: 8px 16px;
-  border: 1px solid var(--card-color-border-title);
-  border-radius: 6px;
-
-  width: fit-content;
-  margin-inline: auto;
-  margin-bottom: 53px;
-
-  color: #f7dd43;
-}
-
-.card h2 span {
-  color: #e1e1e6;
-  font-size: 16px;
-  text-transform: uppercase;
-}
-
-.card ul {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  width: 270px;
-}
-
-.card ul li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card ul li + li {
-  padding-top: 24px;
-  border-top: 1px solid #2424bc;
-}
-
-.card ul li strong {
-  font-weight: 900;
-  font-size: 36px;
-  line-height: 125%;
-
-  color: #e1e1e6;
-}
-
-.card h2:hover,
-.card ul li strong:hover,
-.card ul li img:hover {
-  transform: scale(1.2);
-}
-
-.card h2:hover,
-.card ul li strong,
-.card ul li img {
-  transition: transform 0.2s;
-}
-
-.card {
-  animation: appear 3s;
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@media (min-width: 700px) {
-  #cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px;
-  }
-}
-
-.round {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.round-badge {
-  margin-bottom: 24px;
-}
-
-.round-cards {
-  width: 100%;
-
-  display: flex;
-  flex-wrap: wrap;
-
-  justify-content: center;
-  gap: 24px;
-}
-
-.round-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-}
-
-.flag {
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 6px;
-
-  width: 85px;
-
-  text-align: center;
-}
-
-.country-name {
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  color: #E1E1E6;
-
-  line-height: 1.2;
-
-  max-width: 85px;
-
-  word-break: break-word;
-}
-
-.tooltip {
-  position: absolute;
-
-  bottom: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  background-color: #000;
-  color: #fff;
-
-  padding: 6px 10px;
-  border-radius: 6px;
-
-  font-size: 12px;
-  white-space: nowrap;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition: all 0.3s;
-}
-
-/* Exibe o tooltip ao passar o mouse */
-.flag:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-.match-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.score-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
-  min-width: 90px;
-
-  padding: 8px 14px;
-
-  background: #ffffff;
-
-  border: 1px solid #323238;
-  border-radius: 8px;
-
-  color: #000000;
-}
-
-.score-box span {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.score-box strong {
-  font-size: 20px !important;
-  color: var(--card-color-primary) !important;
-}
-
-.match-info small {
-  color: #f7dd43;
-
-  font-size: 15px;
-  font-weight: 700;
-  
-  letter-spacing: 1px;
-}
-
-.flag {
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  gap: 8px;
-
-  width: 80px;
-}
-
-.country-name {
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  color: #E1E1E6;
-
-  text-align: center;
-
-  line-height: 1.2;
-
-  max-width: 80px;
-}
-
-#championsList {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  justify-content: center;
-
-  gap: 16px;
-}
-
-.champion-card {
-
-  width: 180px;
-
-  padding: 20px;
-
-  background: #181f42;
-
-  border-bottom: 2px solid #43f333;
-
-  border-radius: 8px;
-
-  text-align: center;
-}
-
-.champion-card span {
-
-  display: block;
-
-  color: #f7dd43;
-
-  margin-bottom: 10px;
-
-  font-size: 18px;
-
-  font-weight: bold;
-}
-
-.champion-card strong {
-
-  color: white;
-}
-
-.hidden {
-  display: none;
-}
-
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 30px;
-}
-
-.menu button {
-
-  padding: 12px 24px;
-
-  background: #181f42;
-
-  border: 1px solid #43f333;
-
-  border-radius: 8px;
-
-  color: white;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition: .3s;
-}
-
-.menu button:hover {
-  background: #43f333;
-  color: #000;
-}
-
-.menu button.active {
-  background: #43f333;
-  color: #000;
-}
-
 .section-title {
   text-align: center;
   color: #f7dd43;
   margin-bottom: 30px;
 }
 
-.champion-card {
-
-  background: #181f42;
-
-  border-bottom: 2px solid #f7dd43;
-
-  border-radius: 8px;
-
-  padding: 16px;
-
-  width: 220px;
-
-  text-align: center;
-}
-
-.champion-year {
-
-  display: block;
-
-  color: #f7dd43;
-
-  font-size: 18px;
-
-  margin-bottom: 12px;
-}
-
-.champion-team {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-}
-
-.champion-team img {
-
-  width: 32px;
-
-  height: 32px;
-}
-
-.champion-team strong {
-
-  color: #fff;
-
-  font-size: 16px;
-}
-
 .countdown {
-
   max-width: 900px;
-
   margin: 20px auto 40px;
-
   padding: 20px;
-
   text-align: center;
-
   font-size: 24px;
-
   font-weight: 700;
-
   color: #fff;
-
   background: rgba(24, 31, 66, 0.9);
-
   border: 2px solid #f7dd43;
-
   border-radius: 12px;
-
-  box-shadow:
-    0 0 10px rgba(247, 221, 67, .5);
+  box-shadow: 0 0 10px rgba(247, 221, 67, .5);
 }
 
 .countdown strong {
-
   color: #f7dd43;
-
   font-size: 30px;
 }
 
@@ -579,16 +103,16 @@ header img {
   border: 1px solid #323238;
   border-radius: 6px;
   padding: 12px 16px;
-  margin: 15px auto 0 auto; /* Margem superior para afastar da imagem */
-  max-width: 450px; /* Reduzido um pouco para encaixar melhor no topo */
+  margin: 15px auto 0 auto;
+  max-width: 450px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  display: block; /* Garante que se comporte como bloco independente */
+  display: block;
 }
 
 .fact-title {
   display: block;
-  color: #f7dd43; /* Amarelo da Copa */
+  color: #f7dd43;
   font-weight: 900;
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -625,113 +149,39 @@ header img {
   font-weight: 500;
 }
 
-/* Grid para organizar os grupos em colunas */
-.groups-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  padding: 20px 0;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Card de cada grupo */
-group-card {
-  background: var(--card-bg-color, #202024); /* Ajuste para a sua cor de fundo do card */
-  border-radius: 8px;
-  border-bottom: 2px solid #f7dd43; /* Detalhe amarelo na borda, opcional */
-  padding: 16px;
-  width: 100%;
-  max-width: 380px; /* Tamanho ideal para caber em qualquer celular */
-  box-sizing: border-box;
-}
-
-.group-card h3 {
-  text-align: center;
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-  color: #f7dd43;
-  text-transform: uppercase;
-}
-
-/* Estrutura da Tabela */
-/* Evita que a tabela quebre o layout do celular */
-.group-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem; /* Diminui levemente a fonte no mobile para não quebrar linhas */
-}
-
-.group-table th, 
-.group-table td {
-  padding: 8px 4px; /* Espaçamento mais compacto nas laterais */
-  vertical-align: middle;
-}
-
-.group-table th, 
-.group-table td {
-  padding: 8px 4px; /* Espaçamento mais compacto nas laterais */
-  vertical-align: middle;
-}
-
-.group-table td {
-  padding: 8px 0;
-  color: #E1E1E6;
-  border-bottom: 1px solid #29282E;
-}
-
-/* Garante que os cards dos grupos fiquem bem distribuídos */
-#groupsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 10px;
-}
-
-/* Alinhamentos e pesos visuais */
-.text-center {
-  text-align: center;
-}
-
-.font-bold {
-  font-weight: bold;
-}
-
-/* Destaque para a zona de classificação para o mata-mata */
-.group-table tr:nth-child(1) td,
-.group-table tr:nth-child(2) td {
-  border-left: 3px solid #F7DD43; /* Amarelo indicando classificação direta */
-  padding-left: 4px;
-}
-
-/* Estilização da mini bandeira dentro da tabela */
-.table-flag {
-  width: 24px;
-  height: 16px;
-  object-fit: cover;
-  border-radius: 2px;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-
 /* ==========================================
-   MEDIA QUERY: PARA CELULARES PEQUENOS (Ex: iPhone SE)
+   MENU DE FILTROS / BOTÕES
    ========================================== */
-@media (max-width: 360px) {
-  .group-table {
-    font-size: 0.8rem; /* Reduz um pouquinho mais a fonte se a tela for minúscula */
-  }
-  
-  .table-flag {
-    width: 20px;
-    height: 14px;
-    margin-right: 4px;
-  }
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.menu button {
+  padding: 12px 24px;
+  background: #181f42;
+  color: #fff;
+  border: 1px solid #43f333;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.menu button:hover,
+.menu button.active {
+  background: #43f333;
+  color: #000;
+}
+
+.hidden {
+  display: none;
 }
 
 /* ==========================================
-   CONTAINER DA BUSCA (AJUSTADO)
+   BUSCA E FILTROS RÁPIDOS
    ========================================== */
 .search-container {
   max-width: 600px;
@@ -742,12 +192,11 @@ group-card {
   gap: 12px;
 }
 
-/* Campo de Input com Fundo Sólido e Texto Forçado */
 #search-input {
   width: 100%;
-  background-color: #1d1c25 !important; /* Força um fundo cinza escuro sólido */
-  border: 2px solid #323238 !important; /* Borda bem definida */
-  color: #FFFFFF !important;            /* Texto digitado FORÇADO em BRANCO */
+  background-color: #1d1c25 !important;
+  border: 2px solid #323238 !important;
+  color: #FFFFFF !important;
   padding: 14px 16px;
   border-radius: 8px;
   font-size: 16px;
@@ -756,19 +205,16 @@ group-card {
   box-sizing: border-box;
 }
 
-/* Quando clicar na caixinha de busca */
 #search-input:focus {
-  border-color: #F7DD43 !important; /* Borda Amarela da Copa */
+  border-color: #F7DD43 !important;
   background-color: #25242e !important;
 }
 
-/* Cor do texto de dica (Placeholder) */
 #search-input::placeholder {
-  color: #7c7c8a !important; /* Cinza claro para o texto "Busque por uma seleção..." */
+  color: #7c7c8a !important;
   opacity: 1;
 }
 
-/* ATALHOS DE BANDEIRAS RÁPIDAS (AJUSTADO) */
 .quick-filters {
   display: flex;
   gap: 10px;
@@ -778,7 +224,7 @@ group-card {
 }
 
 .filter-flag-btn {
-  background-color: #1d1c25 !important; /* Fundo sólido para a caixinha da bandeira */
+  background-color: #1d1c25 !important;
   border: 1px solid #323238 !important;
   padding: 8px;
   border-radius: 6px;
@@ -790,7 +236,7 @@ group-card {
 }
 
 .filter-flag-btn img {
-  width: 32px; /* Aumentei um pouquinho para destacar melhor */
+  width: 32px;
   height: auto;
   display: block;
 }
@@ -802,7 +248,6 @@ group-card {
   transform: translateY(-2px);
 }
 
-/* Botão de limpar filtro */
 .clear-filter-btn {
   background-color: #E23E44 !important;
   color: #FFFFFF !important;
@@ -815,156 +260,370 @@ group-card {
   white-space: nowrap;
 }
 
-.clear-filter-btn.hidden {
-  display: none;
+/* ==========================================
+   CARDS DE JOGOS / RODADAS
+   ========================================== */
+#cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
 }
 
-/* Correção do alinhamento */
-.text-center {
-  text-align: center !important;
+.card {
+  padding: 32px 23px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(59,130,246,.4), 0 0 30px rgba(59,130,246,.4);
+  background: #181f42;
+  border-bottom: 2px solid var(--card-color-primary);
+  border-radius: 6px;
+  animation: appear 0.6s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: .3s;
+  border-color: #3b82f6;
+}
+
+.card h2 {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid var(--card-color-border-title);
+  border-radius: 6px;
+  width: fit-content;
+  margin-inline: auto;
+  margin-bottom: 53px;
+  color: #f7dd43;
+  transition: transform 0.2s;
+}
+
+.card h2 span {
+  color: #e1e1e6;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 270px;
+}
+
+.card ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card ul li + li {
+  padding-top: 24px;
+  border-top: 1px solid #2424bc;
+}
+
+.card ul li strong {
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 125%;
+  color: #e1e1e6;
+  transition: transform 0.2s;
+}
+
+.card ul li img {
+  transition: transform 0.2s;
+}
+
+.card h2:hover,
+.card ul li strong:hover,
+.card ul li img:hover {
+  transform: scale(1.2);
+}
+
+@keyframes appear {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.round {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.round-badge {
+  margin-bottom: 24px;
+}
+
+.round-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.flag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 80px;
+}
+
+.country-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #E1E1E6;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 80px;
+  word-break: break-word;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.flag:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 90px;
+  padding: 8px 14px;
+  background: #ffffff;
+  border: 1px solid #323238;
+  border-radius: 8px;
+  color: #000000;
+}
+
+.score-box span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.score-box strong {
+  font-size: 20px !important;
+  color: var(--card-color-primary) !important;
+}
+
+.match-info small {
+  color: #f7dd43;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 /* ==========================================
-   ESTILIZAÇÃO DO FOOTER
+   TELA DE CAMPEÕES (ESCUDOS ATUALIZADOS)
    ========================================== */
-.main-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999; /* Garante que ele fique por cima de todos os cards */
-  
-  
-  background-color: var(--card-bg, #1f2229);
-  color: var(--text-secondary, #8f9299);
-  padding: 15px 20px; /* Reduzi um pouco o espaçamento para não ocupar muita tela no mobile */
-  border-top: 1px solid var(--border-color, #2f333d);
-  font-family: sans-serif;
-  
-  /* Efeito opcional de desfoque (glassmorphism) para ficar ainda mais moderno */
-  backdrop-filter: blur(8px);
-  background-color: rgba(31, 34, 41, 0.9); /* Ajuste a opacidade conforme seu tema */
-}
-
-.footer-container {
-  max-width: 1024px;
-  margin: 0 auto;
+#championsList {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
 }
 
-.footer-section h3 {
-  color: var(--text-primary, #f7f9fa);
-  font-size: 1.4rem;
-  margin-bottom: 10px;
+.champion-card {
+  background: #181f42;
+  border-bottom: 2px solid #04f724;
+  border-radius: 8px;
+  padding: 16px;
+  width: 220px;
+  text-align: center;
 }
 
-.footer-section h4 {
-  color: var(--text-primary, #f7f9fa);
-  font-size: 1.1rem;
+.champion-year {
+  display: block;
+  color: #ffffff;
+  font-size: 18px;
   margin-bottom: 12px;
 }
 
-.footer-section p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* Links do Rodapé */
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-section ul li {
-  margin-bottom: 8px;
-}
-
-.footer-section ul li a {
-  color: var(--text-secondary, #8f9299);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
-}
-
-.footer-section ul li a:hover {
-  color: var(--nlw-green, #74ffd2); /* Cor de destaque (substitua pela cor do seu projeto se necessário) */
-}
-
-/* Badges de Tecnologia */
-.tech-badges {
+.champion-team {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.tech-badges span {
-  background-color: var(--bg-body, #121414);
-  color: var(--text-primary, #f7f9fa);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  border: 1px solid var(--border-color, #2f333d);
+.champion-team img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
 }
 
-/* Faixa de Direitos Autorais */
-.footer-bottom {
-  max-width: 1024px;
-  margin: 10px auto 0 auto;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color, #2f333d);
-  text-align: center;
-  font-size: 0.8rem;
+.champion-team strong {
+  color: #fff;
+  font-size: 16px;
 }
 
 /* ==========================================
-   RESPONSIVIDADE (DESKTOP)
+   ESTILIZAÇÃO UNIFICADA DOS GRUPOS (IGUAL CARDS)
    ========================================== */
-@media (min-width: 768px) {
-  .footer-container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .footer-section {
-    flex: 1;
-  }
-  
-  .footer-section.info {
-    flex: 2; /* Deixa a descrição com um pouco mais de espaço */
-    padding-right: 40px;
-  }
+#groupsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 10px;
 }
 
-body {
-  /* Adiciona um espaço no fim da página proporcional ao tamanho do seu footer */
-  padding-bottom: 80px; 
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 20px 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-  body {
-    /* No desktop o footer é maior, então aumentamos o espaço reserva */
-    padding-bottom: 220px; 
-  }
-}/* ==========================================
-   ESTILIZAÇÃO DO FOOTER (NÃO SUSPENSO)
+.group-card {
+  padding: 32px 23px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(59,130,246,.4), 0 0 30px rgba(59,130,246,.4);
+  background: #181f42;
+  border-bottom: 2px solid #f7dd43;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.group-card:hover {
+  transform: translateY(-5px);
+  border-color: #3b82f6;
+}
+
+.group-card h3 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* ESTRUTURA E ALINHAMENTO DA TABELA */
+.group-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+/* Alinhamento dos cabeçalhos da tabela */
+.group-table th {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: 12px;
+}
+
+/* Ajuste de distância nas colunas específicas */
+.group-table th:nth-child(1),
+.group-table td:nth-child(1) {
+  width: 35px;
+  text-align: center;
+  padding-left: 4px;
+}
+
+.group-table th:nth-child(2),
+.group-table td:nth-child(2) {
+  text-align: left;
+}
+
+.group-table th:nth-child(3), .group-table td:nth-child(3),
+.group-table th:nth-child(4), .group-table td:nth-child(4),
+.group-table th:nth-child(5), .group-table td:nth-child(5) {
+  width: 35px;
+  text-align: center;
+}
+
+.group-table tr {
+  border-bottom: 1px solid #04f724;
+}
+
+.group-table td {
+  padding: 10px 0;
+  color: #E1E1E6;
+  vertical-align: middle;
+}
+
+/* Alinhamento em linha das Flags na classificação */
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+
+.team-cell span {
+  white-space: nowrap;
+}
+
+/* Ajuste fino da mini bandeira */
+.table-flag {
+  width: 24px;
+  height: 16px;
+  min-width: 24px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Linha Amarela de Classificação */
+.group-table tr:nth-child(1) td,
+.group-table tr:nth-child(2) td {
+  border-left: 1px solid #F7DD43;
+  padding-left: 4px;
+}
+
+/* ==========================================
+   RODAPÉ (ESTÁTICO / DESIGN SLIM)
    ========================================== */
 .main-footer {
-  /* REMOVIDO: position: fixed, bottom: 0, left: 0 e backdrop-filter */
   width: 100%;
-  
-  background-color: #14161b; /* Cor sólida, já que não flutua mais por cima de nada */
-  color: var(--text-secondary, #8f9299);
-  padding: 24px 20px; /* Um pouco mais de respiro vertical para o mobile */
-  border-top: 1px solid var(--border-color, #2f333d);
+  background-color: #14161b;
+  color: #8f9299;
+  padding: 24px 20px;
+  border-top: 1px solid #2f333d;
   font-family: sans-serif;
   box-sizing: border-box;
-  margin-top: 50px; /* Empurra o footer para longe dos últimos cards de jogos */
+  margin-top: 60px;
 }
 
-/* No Mobile, exibe apenas os créditos diretamente */
 .main-footer .footer-container {
   display: none; 
 }
@@ -974,16 +633,23 @@ body {
   font-size: 0.75rem;
   line-height: 1.4;
   opacity: 0.8;
-  margin: 0;
-  padding: 0;
 }
 
 /* ==========================================
-   DESKTOP (Estrutura completa em linha)
+   RESPONSIVIDADE & ADAPTAÇÕES
    ========================================== */
+@media (min-width: 700px) {
+  #cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
 @media (min-width: 768px) {
   .main-footer {
-    padding: 20px 40px; /* Um pouco mais de altura no desktop para ficar elegante */
+    padding: 20px 40px;
     margin-top: 80px;
   }
 
@@ -1007,12 +673,12 @@ body {
   .footer-section h4 {
     font-size: 0.85rem;
     margin: 0;
-    color: var(--text-primary, #f7f9fa);
+    color: #f7f9fa;
     white-space: nowrap;
   }
 
   .footer-section p {
-    display: none; /* Mantém oculto o texto muito longo para priorizar o design slim */
+    display: none;
   }
 
   .footer-section ul {
@@ -1025,12 +691,12 @@ body {
 
   .footer-section ul li a {
     font-size: 0.8rem;
-    color: var(--text-secondary, #8f9299);
+    color: #8f9299;
     text-decoration: none;
   }
   
   .footer-section ul li a:hover {
-    color: var(--text-primary, #f7f9fa);
+    color: #f7f9fa;
   }
 
   .tech-badges {
@@ -1043,9 +709,25 @@ body {
     font-size: 0.7rem;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
+    color: #fff;
   }
+}
 
-  .footer-bottom {
-    font-size: 0.75rem;
+@media (max-width: 360px) {
+  .group-table {
+    font-size: 0.8rem;
   }
+  
+  .table-flag {
+    width: 20px;
+    height: 14px;
+  }
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.font-bold {
+  font-weight: bold;
 }

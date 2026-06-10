@@ -340,7 +340,7 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcas
 function formatCountryName(name) {
   const names = {
     southafrica: "África do Sul",
-    southkorea: "Coreia do Sul",
+    southkorea: "Coréia do Sul",
     ivorycoast: "Costa do Marfim",
     capeverde: "Cabo Verde",
     saudia: "Arábia Saudita",

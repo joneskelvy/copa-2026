@@ -731,3 +731,225 @@ header img {
 .font-bold {
   font-weight: bold;
 }
+
+/* ==========================================
+   MÓDULO SEJA TÉCNICO (NOVA ABA)
+   ========================================== */
+.setup-container {
+  margin: 10px auto 30px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+.setup-container select {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid #43f333;
+  border-radius: 8px;
+  background-color: #1d1c25;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.setup-container select:focus {
+  border-color: #f7dd43;
+}
+
+.coach-layout {
+  display: flex;
+  gap: 30px;
+  max-width: 1000px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+/* O Campo de Futebol Integrado */
+.field {
+  width: 340px;
+  height: 480px;
+  background-color: #0b5e29;
+  border: 4px solid #ffffff;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(59,130,246,.4);
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.06) 50%, transparent 50%);
+  background-size: 100% 30px;
+}
+
+.field::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 2px; background: rgba(255,255,255,0.7);
+}
+
+.center-circle {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 80px; height: 80px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Slots de Posição */
+.position-slot {
+  width: 60px;
+  height: 60px;
+  border: 2px dashed rgba(255,255,255,0.5);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.position-slot:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Jogador Escalado (Dentro do Campo) */
+.position-slot.filled {
+  background: #f7dd43 !important;
+  color: #000000 !important;
+  border: 2px solid #181f42 !important;
+  font-size: 10px;
+  line-height: 1.1;
+  padding: 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Banco de Escolha de Elenco */
+.players-pool {
+  width: 320px;
+  background: #181f42;
+  padding: 24px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(59,130,246,.4);
+  border-bottom: 2px solid #f7dd43;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.pool-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.coach-player-card {
+  background: #1d1c25;
+  border: 1px solid #323238;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.coach-player-card:hover {
+  border-color: #43f333;
+  background-color: rgba(67, 243, 51, 0.05);
+}
+
+.badge-pos {
+  font-size: 10px;
+  color: #000;
+  background: #43f333;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 900;
+}
+
+/* Seção Compartilhar */
+.share-section {
+  display: none;
+  width: 100%;
+  max-width: 690px;
+  text-align: center;
+  background: #181f42;
+  border: 2px solid #43f333;
+  color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(67, 243, 51, 0.4);
+  margin: 10px auto;
+  animation: appear 0.4s ease-out;
+}
+
+.share-section h2 {
+  color: #f7dd43;
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.share-section p {
+  color: #e1e1e6;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.btn-share-social {
+  padding: 10px 24px;
+  background: #1d1c25;
+  color: #fff;
+  border: 1px solid #f7dd43;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 0 6px;
+  transition: .2s;
+}
+
+.btn-share-social:hover {
+  background: #f7dd43;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Ajuste Responsivo para o Campo */
+@media (min-width: 700px) {
+  .field {
+    width: 400px;
+    height: 540px;
+  }
+  .position-slot {
+    width: 70px;
+    height: 70px;
+    font-size: 12px;
+  }
+  .position-slot.filled {
+    font-size: 11px;
+  }
+}
+
+/* Card desabilitado quando o jogador já está escalado no campo */
+.coach-player-card.already-scaled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none; /* Bloqueia cliques adicionais */
+  border-color: #323238 !important;
+  background-color: #121214 !important;
+}

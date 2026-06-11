@@ -547,48 +547,73 @@ const gamesScreen = document.querySelector("#gamesScreen")
 const groupsScreen = document.querySelector("#groupsScreen")
 const championsScreen = document.querySelector("#championsScreen")
 
-if (btnGames && btnGroups && btnChampions && gamesScreen && groupsScreen && championsScreen) {
+const btnCoach = document.querySelector("#btnCoach")
+const coachScreen = document.querySelector("#coachScreen")
+
+if (btnGames && btnGroups && btnChampions && btnCoach && gamesScreen && groupsScreen && championsScreen && coachScreen) {
   
-  btnGames.addEventListener("click", () => {
+btnGames.addEventListener("click", () => {
     gamesScreen.classList.remove("hidden")
     groupsScreen.classList.add("hidden")
     championsScreen.classList.add("hidden")
+    coachScreen.classList.add("hidden") // Oculta o técnico
     
     btnGames.classList.add("active")
     btnGroups.classList.remove("active")
     btnChampions.classList.remove("active")
+    btnCoach.classList.remove("active")
+
     renderAllCards() 
   })
 
+  // Clique na aba GRUPOS
   btnGroups.addEventListener("click", () => {
     gamesScreen.classList.add("hidden")
     groupsScreen.classList.remove("hidden")
     championsScreen.classList.add("hidden")
+    coachScreen.classList.add("hidden") // Oculta o técnico
     
     btnGames.classList.remove("active")
     btnGroups.classList.add("active")
     btnChampions.classList.remove("active")
+    btnCoach.classList.remove("active")
+    
     renderGroupsTable()
   })
 
+  // Clique na aba CAMPEÕES
   btnChampions.addEventListener("click", () => {
     gamesScreen.classList.add("hidden")
     groupsScreen.classList.add("hidden")
     championsScreen.classList.remove("hidden")
+    coachScreen.classList.add("hidden") // Oculta o técnico
     
     btnGames.classList.remove("active")
     btnGroups.classList.remove("active")
     btnChampions.classList.add("active")
+    btnCoach.classList.remove("active")
+    
     renderChampions()
   })
 
-  // ==========================================
-  // CORREÇÃO: EXECUÇÃO AUTOMÁTICA VISÍVEL NO STARTUP
-  // ==========================================
-  btnGames.classList.add("active") // Destaca o botão de jogos visualmente
-  
-  // Renderiza todas as informações em segundo plano
-  renderAllCards()   // Faz a lista de jogos aparecer de imediato!
+  // Clique na aba SEJA TÉCNICO (O que estava faltando!)
+  btnCoach.addEventListener("click", () => {
+    gamesScreen.classList.add("hidden")
+    groupsScreen.classList.add("hidden")
+    championsScreen.classList.add("hidden")
+    coachScreen.classList.remove("hidden") // Mostra o técnico
+    
+    btnGames.classList.remove("active")
+    btnGroups.classList.remove("active")
+    btnChampions.classList.remove("active")
+    btnCoach.classList.add("active")
+    
+    initCoachModule() // Inicializa o campo e as peças
+  })
+
+  // CONFIGURAÇÃO INICIAL AO ABRIR A PÁGINA
+  btnGames.classList.add("active")
+  renderAllCards()   
   renderChampions()
   renderGroupsTable()
 }
@@ -653,16 +678,236 @@ function renderRandomFact() {
   factTextElement.textContent = worldCupFacts[randomIndex];
 }
 
-renderRandomFact();
 
-// ==========================================
-// INTERATIVIDADE DO BOTÃO DE ALTERNAR TEMA
-// ==========================================
-const themeToggleBtn = document.querySelector("#theme-toggle");
-if (themeToggleBtn) {
-  themeToggleBtn.addEventListener("click", () => {
-    // Alterna a classe global no body do HTML
-    document.body.classList.toggle("light");
-    document.body.classList.toggle("dark");
+const currentSquad = [
+  { id: 1, name: "Alisson", pos: "GOL" }, { id: 2, name: "Ederson", pos: "GOL" },
+  { id: 3, name: "Marquinhos", pos: "ZAG" }, { id: 4, name: "G. Magalhães", pos: "ZAG" },
+  { id: 5, name: "Danilo", pos: "LAT" }, { id: 6, name: "Arana", pos: "LAT" },
+  { id: 7, name: "Casemiro", pos: "MEI" }, { id: 8, name: "B. Guimarães", pos: "MEI" },
+  { id: 9, name: "Lucas Paquetá", pos: "MEI" }, { id: 10, name: "João Gomes", pos: "MEI" },
+  { id: 11, name: "Vinícius Jr.", pos: "ATA" }, { id: 12, name: "Rodrygo", pos: "ATA" },
+  { id: 13, name: "Raphinha", pos: "ATA" }, { id: 14, name: "Endrick", pos: "ATA" },
+  { id: 15, name: "Neymar Jr.", pos: "ATA" }
+];
+
+const formationsCoords = {
+  "433": [
+    { name: "GOL", x: 50, y: 90 },
+    { name: "LD", x: 15, y: 72 }, { name: "ZAG", x: 38, y: 75 }, { name: "ZAG", x: 62, y: 75 }, { name: "LE", x: 85, y: 72 },
+    { name: "VOL", x: 50, y: 53 }, { name: "MEI", x: 28, y: 42 }, { name: "MEI", x: 72, y: 42 },
+    { name: "PD", x: 20, y: 18 }, { name: "CA", x: 50, y: 12 }, { name: "PE", x: 80, y: 18 }
+  ],
+  "442": [
+    { name: "GOL", x: 50, y: 90 },
+    { name: "LD", x: 15, y: 72 }, { name: "ZAG", x: 38, y: 75 }, { name: "ZAG", x: 62, y: 75 }, { name: "LE", x: 85, y: 72 },
+    { name: "VOL", x: 35, y: 52 }, { name: "VOL", x: 65, y: 52 }, { name: "MEI", x: 20, y: 38 }, { name: "MEI", x: 80, y: 38 },
+    { name: "ATA", x: 35, y: 15 }, { name: "ATA", x: 65, y: 15 }
+  ],
+  "352": [
+    { name: "GOL", x: 50, y: 90 },
+    { name: "ZAG", x: 25, y: 75 }, { name: "ZAG", x: 50, y: 78 }, { name: "ZAG", x: 75, y: 75 },
+    { name: "AAL", x: 12, y: 48 }, { name: "VOL", x: 38, y: 54 }, { name: "VOL", x: 62, y: 54 }, { name: "AAL", x: 88, y: 48 },
+    { name: "ARM", x: 50, y: 35 },
+    { name: "ATA", x: 35, y: 15 }, { name: "ATA", x: 65, y: 15 }
+  ]
+};
+
+let activeFieldSlot = null;
+let coachModuleInitialized = false;
+let scaledPlayerIds = []; // Controla os IDs que já estão em campo
+
+function initCoachModule() {
+  renderPoolList();
+  
+  if (!coachModuleInitialized) {
+    changeFormation();
+    coachModuleInitialized = true;
+  }
+}
+
+// Renderiza a lista lateral de jogadores (banco de reservas)
+function renderPoolList() {
+  const poolList = document.getElementById('pool-list');
+  if (!poolList) return;
+  
+  poolList.innerHTML = "";
+  currentSquad.forEach(p => {
+    const card = document.createElement('div');
+    
+    // Se o jogador já estiver no campo, adiciona a classe visual de bloqueio
+    const isScaled = scaledPlayerIds.includes(p.id);
+    card.className = `coach-player-card ${isScaled ? 'already-scaled' : ''}`;
+    card.innerHTML = `<span>${p.name}</span> <span class="badge-pos">${p.pos}</span>`;
+    
+    card.onclick = () => {
+      if (scaledPlayerIds.includes(p.id)) {
+        alert(`${p.name} já está escalado noutra posição!`);
+        return;
+      }
+      
+      if (!activeFieldSlot) {
+        alert("Primeiro, clique numa posição vazia no campo de futebol!");
+        return;
+      }
+      
+      fillSlotWithPlayer(p);
+    };
+    poolList.appendChild(card);
+  });
+}
+
+// Retorna o ID do jogador com base no nome gravado na vaga do campo
+function playerAlreadyScaledId(name) {
+  const found = currentSquad.find(p => p.name === name);
+  return found ? found.id : null;
+}
+
+function changeFormation() {
+  const field = document.getElementById('football-field');
+  if (!field) return;
+
+  const oldSlots = field.querySelectorAll('.position-slot');
+  oldSlots.forEach(slot => slot.remove());
+  
+  // Reseta as variáveis para não misturar esquemas táticos
+  scaledPlayerIds = []; 
+  activeFieldSlot = null;
+
+  const currentType = document.getElementById('formation').value;
+  formationsCoords[currentType].forEach((pos) => {
+    const slot = document.createElement('div');
+    slot.className = 'position-slot';
+    slot.style.left = pos.x + '%';
+    slot.style.top = pos.y + '%';
+    slot.innerText = pos.name;
+    
+    slot.onclick = (e) => {
+      e.stopPropagation(); // Evita cliques fantasmas no fundo do campo
+
+      // Se a vaga já tem um jogador, remove o jogador e liberta-o na lista lateral
+      if (slot.classList.contains('filled')) {
+        const playerName = slot.querySelector('strong').innerText;
+        const playerId = playerAlreadyScaledId(playerName);
+        
+        if (playerId) {
+          scaledPlayerIds = scaledPlayerIds.filter(id => id !== playerId);
+        }
+        
+        slot.classList.remove('filled');
+        slot.style.background = 'none';
+        slot.style.borderColor = 'rgba(255,255,255,0.4)';
+        slot.innerText = pos.name;
+        
+        if (activeFieldSlot === slot) activeFieldSlot = null;
+        
+        renderPoolList();
+        verifyLineupComplete();
+      } else {
+        // Remove a borda de seleção amarela de qualquer outra vaga anterior
+        document.querySelectorAll('.position-slot').forEach(s => {
+          if (!s.classList.contains('filled')) {
+            s.style.borderColor = 'rgba(255,255,255,0.4)';
+          }
+        });
+        
+        // Ativa a vaga atual com destaque amarelo para receber o jogador
+        slot.style.borderColor = '#f7dd43';
+        activeFieldSlot = slot;
+      }
+    };
+    field.appendChild(slot);
+  });
+  
+  renderPoolList();
+  verifyLineupComplete();
+}
+
+function fillSlotWithPlayer(player) {
+  if (!activeFieldSlot) return;
+
+  // Adiciona o ID do jogador à lista de bloqueados para não repetir
+  scaledPlayerIds.push(player.id);
+
+  // Insere o nome do jogador na vaga selecionada
+  activeFieldSlot.innerHTML = `<strong>${player.name}</strong>`;
+  activeFieldSlot.classList.add('filled');
+  activeFieldSlot.style.borderColor = 'transparent';
+  
+  // Limpa a seleção ativa para o próximo jogador
+  activeFieldSlot = null;
+  
+  // Atualiza os cards laterais e valida se completou os 11
+  renderPoolList();
+  verifyLineupComplete();
+}
+
+function verifyLineupComplete() {
+  const slotsFilled = document.querySelectorAll('.position-slot.filled').length;
+  const shareSection = document.getElementById('share-section');
+  if (shareSection) {
+    if (slotsFilled === 11) {
+      shareSection.style.display = 'block';
+    } else {
+      shareSection.style.display = 'none';
+    }
+  }
+}
+
+function shareLineup(platform) {
+  const message = encodeURIComponent("⚽ Montei a minha escalação oficial do Brasil para a Copa de 2026! Quem escalarias?");
+  if (platform === 'WhatsApp') {
+    window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
+  } else {
+    window.open(`https://twitter.com/intent/tweet?text=${message}`, '_blank');
+  }
+}
+
+// =========================================================================
+// DOWNLOAD DA ESCALAÇÃO COM HTML2CANVAS
+// =========================================================================
+function downloadLineup() {
+  const fieldElement = document.getElementById("football-field");
+  const downloadBtn = document.getElementById("btnDownload");
+  
+  if (!fieldElement) return;
+
+  if (downloadBtn) {
+    downloadBtn.disabled = true;
+    downloadBtn.textContent = "⌛ A gerar imagem...";
+  }
+
+  html2canvas(fieldElement, {
+    logging: false,
+    useCORS: true,
+    backgroundColor: "#0b5e29",
+    scale: 2,
+    onclone: (clonedDoc) => {
+      const clonedWatermark = clonedDoc.querySelector('.watermark');
+      if (clonedWatermark) {
+        clonedWatermark.style.display = 'block';
+      }
+    }
+  }).then(canvas => {
+    const imageURI = canvas.toDataURL("image/png");
+    
+    const createDownloadLink = document.createElement("a");
+    createDownloadLink.download = "minha-escalacao-selecao-2026.png";
+    createDownloadLink.href = imageURI;
+    
+    document.body.appendChild(createDownloadLink);
+    createDownloadLink.click();
+    document.body.removeChild(createDownloadLink);
+
+    if (downloadBtn) {
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = "💾 Baixar Imagem";
+    }
+  }).catch(error => {
+    console.error("Erro ao gerar a imagem da escalação:", error);
+    alert("Não foi possível gerar a imagem de momento!");
+    if (downloadBtn) {
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = "💾 Baixar Imagem";
+    }
   });
 }

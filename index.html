@@ -55,6 +55,9 @@
       <button id="btnChampions">
         Campeões
       </button>
+      <button id="btnCoach">
+        Seja Técnico
+      </button>
     </nav>
 
     <!-- 2. Tela de Jogos (Visível por padrão) -->
@@ -101,7 +104,47 @@
       <div id="championsList"></div>
     </main>
 
+    <main id="coachScreen" class="hidden">
+  <div class="setup-container">
+    <label for="formation">Esquema Tático: </label>
+    <select id="formation" onchange="changeFormation()">
+      <option value="433">4-3-3</option>
+      <option value="442">4-4-2</option>
+      <option value="352">3-5-2</option>
+      <option value="343">3-4-3</option>
+      <option value="532">5-3-2</option>
+      <option value="541">4-5-1</option>
+    </select>
   </div>
+
+  <div class="coach-layout">
+    <!-- Campo de Futebol -->
+    <div class="field" id="football-field">
+      <div class="center-circle"></div>
+    </div>
+
+    <!-- Banco de Elenco -->
+    <div class="players-pool">
+      <div class="pool-title">Selecione o titular para a vaga:</div>
+      <div id="pool-list"></div>
+    </div>
+  </div>
+
+  <!-- Janela de Compartilhamento -->
+  <div class="share-section" id="share-section">
+    <h2>🇧🇷 Seu time está escalado!</h2>
+    <p>Pronto, agora compartilhe nas redes sociais sua escalação oficial.</p>
+    <button class="btn-share-social" onclick="shareLineup('WhatsApp')">WhatsApp</button>
+    <button class="btn-share-social" onclick="shareLineup('X')">X / Twitter</button>
+    <button class="btn-share-social" id="btnDownload" onclick="downloadLineup()" style="border-color: #43f333;">💾 Baixar Imagem</button>
+  </div>
+</main>
+  
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script src="./main.js"></script>
 
   <script src="./main.js"></script>
 

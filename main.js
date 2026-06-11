@@ -672,11 +672,27 @@ const worldCupFacts = [
 
 function renderRandomFact() {
   const factTextElement = document.querySelector("#fact-text");
-  if (!factTextElement) return;
+  if (!factTextElement) {
+    console.warn("Elemento #fact-text não foi encontrado no HTML.");
+    return;
+  }
 
   const randomIndex = Math.floor(Math.random() * worldCupFacts.length);
   factTextElement.textContent = worldCupFacts[randomIndex];
 }
+
+// GARANTE QUE O HTML JÁ EXISTE ANTES DE EXECUTAR
+document.addEventListener("DOMContentLoaded", () => {
+  // Carrega a primeira curiosidade assim que a página abre
+  renderRandomFact();
+
+  // Opcional: Se o seu elemento de texto (ou um botão de caixa de factos) puder ser clicado para mudar de facto
+  const factBox = document.querySelector("#fact-text");
+  if (factBox) {
+    factBox.style.cursor = "pointer";
+    factBox.addEventListener("click", renderRandomFact);
+  }
+});
 
 
 const currentSquad = [

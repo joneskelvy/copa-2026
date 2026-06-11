@@ -680,14 +680,20 @@ function renderRandomFact() {
 
 
 const currentSquad = [
-  { id: 1, name: "Alisson", pos: "GOL" }, { id: 2, name: "Ederson", pos: "GOL" },
-  { id: 3, name: "Marquinhos", pos: "ZAG" }, { id: 4, name: "G. Magalhães", pos: "ZAG" },
-  { id: 5, name: "Danilo", pos: "LAT" }, { id: 6, name: "Arana", pos: "LAT" },
-  { id: 7, name: "Casemiro", pos: "MEI" }, { id: 8, name: "B. Guimarães", pos: "MEI" },
-  { id: 9, name: "Lucas Paquetá", pos: "MEI" }, { id: 10, name: "João Gomes", pos: "MEI" },
-  { id: 11, name: "Vinícius Jr.", pos: "ATA" }, { id: 12, name: "Rodrygo", pos: "ATA" },
-  { id: 13, name: "Raphinha", pos: "ATA" }, { id: 14, name: "Endrick", pos: "ATA" },
-  { id: 15, name: "Neymar Jr.", pos: "ATA" }
+  { id: 1, name: "Alisson", pos: "GOL" }, { id: 2, name: "Ederson", pos: "GOL" }, {id: 3, name: "Weverton", pos: "GOL"},
+  { id: 4, name: "Marquinhos", pos: "ZAG" }, { id: 5, name: "G. Magalhães", pos: "ZAG" },
+  { id: 6, name: "Bremer", pos: "ZAG" }, { id: 7, name: "Leo Pereira", pos: "ZAG" },
+  {id: 8, name: "Ibañez", pos: "ZAG"},
+  { id: 9, name: "Danilo", pos: "LAT" }, { id: 12, name: "Alex Sandro", pos: "LAT" },
+  {id: 10, name: "Douglas Santos", pos: "LAT"}, 
+  { id: 26, name: "Éderson", pos: "MEI" }, { id: 11, name: "B. Guimarães", pos: "VOL" },
+  { id: 13, name: "Casemiro", pos: "VOL" }, 
+  { id: 14, name: "Lucas Paquetá", pos: "MEI" }, { id: 15, name: "Fabinho", pos: "VOL" },
+  { id: 16, name: "Vinícius Jr.", pos: "ATA" }, { id: 17, name: "Danilo Santos", pos: "MEI" },
+  { id: 18, name: "Raphinha", pos: "ATA" }, { id: 19, name: "Endrick", pos: "ATA" },
+  { id: 20, name: "Neymar Jr.", pos: "ATA" }, { id: 21, name: "Igor Thiago", pos: "ATA" },
+  { id: 22, name: "G. Martinelli", pos: "ATA" }, { id: 23, name: "Matheus Cunha", pos: "ATA" },
+  { id: 24, name: "Rayan", pos: "ATA" }, { id: 25, name: "Luiz Henrique", pos: "ATA" }
 ];
 
 const formationsCoords = {
@@ -695,7 +701,7 @@ const formationsCoords = {
     { name: "GOL", x: 50, y: 90 },
     { name: "LD", x: 15, y: 72 }, { name: "ZAG", x: 38, y: 75 }, { name: "ZAG", x: 62, y: 75 }, { name: "LE", x: 85, y: 72 },
     { name: "VOL", x: 50, y: 53 }, { name: "MEI", x: 28, y: 42 }, { name: "MEI", x: 72, y: 42 },
-    { name: "PD", x: 20, y: 18 }, { name: "CA", x: 50, y: 12 }, { name: "PE", x: 80, y: 18 }
+    { name: "ATA", x: 20, y: 18 }, { name: "ATA", x: 50, y: 12 }, { name: "ATA", x: 80, y: 18 }
   ],
   "442": [
     { name: "GOL", x: 50, y: 90 },
@@ -706,8 +712,8 @@ const formationsCoords = {
   "352": [
     { name: "GOL", x: 50, y: 90 },
     { name: "ZAG", x: 25, y: 75 }, { name: "ZAG", x: 50, y: 78 }, { name: "ZAG", x: 75, y: 75 },
-    { name: "AAL", x: 12, y: 48 }, { name: "VOL", x: 38, y: 54 }, { name: "VOL", x: 62, y: 54 }, { name: "AAL", x: 88, y: 48 },
-    { name: "ARM", x: 50, y: 35 },
+    { name: "LD", x: 12, y: 48 }, { name: "VOL", x: 38, y: 54 }, { name: "VOL", x: 62, y: 54 }, { name: "LE", x: 88, y: 48 },
+    { name: "MEI", x: 50, y: 35 },
     { name: "ATA", x: 35, y: 15 }, { name: "ATA", x: 65, y: 15 }
   ]
 };
@@ -854,11 +860,31 @@ function verifyLineupComplete() {
 }
 
 function shareLineup(platform) {
-  const message = encodeURIComponent("⚽ Montei a minha escalação oficial do Brasil para a Copa de 2026! Quem escalarias?");
+  // 1. Captura todos os jogadores que foram escalados no campo
+  const filledSlots = document.querySelectorAll('.position-slot.filled');
+  let lineupText = "";
+
+  // 2. Monta o texto com os nomes de quem está em campo
+  if (filledSlots.length > 0) {
+    lineupText = "\n\nMeu Time Escalado:\n";
+    filledSlots.forEach(slot => {
+      const playerName = slot.querySelector('strong').innerText;
+      lineupText += `• ${playerName}\n`;
+    });
+  }
+
+  // 3. Pega o link atual do seu projeto (funciona local ou quando estiver publicado no GitHub Pages/Vercel)
+  const projectLink = window.location.href;
+
+  // 4. Monta a mensagem final personalizada
+  const messageText = `⚽ Montei a minha escalação oficial do Brasil para a Copa de 2026! Quem você escalaria?${lineupText}\nMonte o seu time aqui também: ${projectLink}`;
+  const encodedMessage = encodeURIComponent(messageText);
+
+  // 5. Redireciona para a plataforma escolhida
   if (platform === 'WhatsApp') {
-    window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
   } else {
-    window.open(`https://twitter.com/intent/tweet?text=${message}`, '_blank');
+    window.open(`https://twitter.com/intent/tweet?text=${encodedMessage}`, '_blank');
   }
 }
 

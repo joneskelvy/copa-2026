@@ -675,6 +675,8 @@ countdownInterval = setInterval(updateCountdown, 1000);
 
 // LISTA DE CURIOSIDADES HISTÓRICAS
 const worldCupFacts = [
+  "A Copa do Mundo de 2026 terá 03 sedes, os jogos serão distribuídos em: 78 partidas nos Estados Unidos, 13 partidas no México e 13 partidas no Canadá.",
+  "Eliminada sem sofrer gols: A Suíça detém o recorde curioso de ter sido eliminada de uma Copa sem sofrer nenhum gol na edição de 2006. A equipe caiu nas oitavas de final para a Ucrânia, nos pênaltis, após um empate em 0 a 0 no tempo.",
   "O primeiro gol contra da história das Copas foi marcado pelo zagueiro Manuel Rosas, do México, a favor do Chile, na Copa de 1930.",
   "A Itália (1934 e 1938) e o Brasil (1958 e 1962) são os únicos países na história que conseguiram vencer duas Copas seguidas.",
   "A primeira Copa do Mundo a usar cartões amarelos e vermelhos foi a de 1970, no México. Antes disso, as advertências eram apenas verbais.",
@@ -687,6 +689,7 @@ const worldCupFacts = [
   "Pelé é o jogador mais jovem a vencer uma Copa do Mundo (17 anos em 1958) e o único a ser tricampeão como jogador.",
   "A taça original da Copa, a Taça Jules Rimet, foi roubada no Brasil em 1983 e nunca foi recuperada; dizem que foi derretida.",
   "O jogador mais velho a disputar e marcar um gol em uma Copa foi Roger Milla, de Camarões, com 42 anos de idade em 1994."
+  
 ];
 
 function renderRandomFact() {

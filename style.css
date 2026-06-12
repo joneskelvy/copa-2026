@@ -976,3 +976,52 @@ header img {
   transform: translateY(-2px);          /* Leve efeito de subir o botão */
   box-shadow: 0 4px 8px rgba(247, 221, 67, 0.3);
 }
+
+/* Container do Carrossel de Abas */
+.tabs-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;              /* Permite rolar para os lados */
+  scroll-behavior: smooth;       /* Suaviza o movimento */
+  scroll-snap-type: x mandatory;  /* Faz o efeito "ímã" elástico de aplicativo */
+  padding: 10px 16px;
+  width: 100%;
+  max-width: 480px;              /* Limita a largura máxima no desktop */
+  margin: 0 auto 32px auto;      /* Centraliza na tela e empurra o conteúdo para baixo */
+  
+  /* Melhora o deslize em telas touch */
+  -webkit-overflow-scrolling: touch; 
+}
+
+/* Esconde a barra de rolagem horizontal padrão do navegador para ficar estético */
+.tabs-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilo padrão dos botões dentro do carrossel */
+.tabs-carousel button {
+  flex: 0 0 auto;                /* Impede que o texto quebre ou os botões encolham */
+  scroll-snap-align: center;      /* Centraliza o botão focado quando deslizar */
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid transparent;
+  border-radius: 99px;           /* Design moderno em formato pílula */
+  background-color: #202024;
+  color: #8d8d99;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Estado ativo do botão selecionado */
+.tabs-carousel button.active {
+  background-color: var(--card-color-primary, #f7dd43);
+  color: #121214;
+  box-shadow: 0 4px 12px rgba(247, 221, 67, 0.2);
+}
+
+/* Efeito Hover para computadores */
+.tabs-carousel button:hover:not(.active) {
+  color: #ffffff;
+  border-color: rgba(247, 221, 67, 0.4);
+}

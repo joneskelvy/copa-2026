@@ -953,3 +953,26 @@ header img {
   border-color: #323238 !important;
   background-color: #121214 !important;
 }
+
+/* Transforma as tags de transmissão em botões clicáveis */
+.broadcasts {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.btn-streaming {
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-streaming:hover {
+  background-color: #f7dd43 !important; /* Muda a cor de fundo para o amarelo do tema */
+  color: #121214 !important;            /* Texto escuro no hover para dar contraste */
+  transform: translateY(-2px);          /* Leve efeito de subir o botão */
+  box-shadow: 0 4px 8px rgba(247, 221, 67, 0.3);
+}

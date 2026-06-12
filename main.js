@@ -303,9 +303,32 @@ function createCard(date, day, gamesHtml) {
   `
 }
 
+const streamingLinks = {
+  "Globo": "https://globoplay.globo.com/",
+  "SporTV": "https://globoplay.globo.com/canais/sportv/",
+  "CazéTV": "https://www.youtube.com/@CazeTV",
+  "SBT": "https://www.sbt.com.br/ao-vivo"
+};
+
 function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcasters = []) {
   const player1Name = formatCountryName(player1)
   const player2Name = formatCountryName(player2)
+
+  // Transforma cada canal de transmissão em um link/botão clicável
+  const broadcastsHtml = broadcasters.length ? `
+    <div class="broadcasts">
+      ${broadcasters.map(channel => {
+        // Se o canal existir no mapeamento, usa o link. Se não, gera uma busca automática no Google pelo jogo.
+        const url = streamingLinks[channel] || `https://www.google.com/search?q=onde+assistir+${player1Name}+x+${player2Name}`;
+        
+        return `
+          <a href="${url}" target="_blank" rel="noopener noreferrer" class="broadcast-tag btn-streaming">
+            ${channel}
+          </a>
+        `;
+      }).join("")}
+    </div>
+  ` : "";
 
   return `
     <li>
@@ -322,11 +345,7 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcas
         </div>
         <small>${hour}</small>
      
-        ${broadcasters.length ? `
-          <div class="broadcasts">
-            ${broadcasters.map(channel => `<span class="broadcast-tag">${channel}</span>`).join("")}
-          </div>
-        ` : ""}
+        ${broadcastsHtml}
       </div>
 
       <div class="flag">

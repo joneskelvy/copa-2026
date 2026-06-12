@@ -12,7 +12,7 @@ const matchesData = [
     date: "12/06",
     day: "sexta",
     games: [
-      { id: "canada-bosnia", home: "canada", hour: "16:00", away: "bosnia", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "canada-bosnia", home: "canada", hour: "16:00", away: "bosnia", score1: "1", score2: "1", broadcasters: ["CazéTV"] },
       { id: "usa-paraguay", home: "usa", hour: "22:00", away: "paraguay", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] }
     ]
   },

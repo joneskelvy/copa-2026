@@ -20,9 +20,9 @@ const matchesData = [
     date: "13/06",
     day: "sábado",
     games: [
-      { id: "qatar-switzerland", home: "qatar", hour: "16:00", away: "switzerland", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "brazil-morocco", home: "brazil", hour: "19:00", away: "morocco", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
-      { id: "haiti-scotland", home: "haiti", hour: "22:00", away: "scotland", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
+      { id: "qatar-switzerland", home: "qatar", hour: "16:00", away: "switzerland", score1: "1", score2: "1", broadcasters: ["CazéTV"] },
+      { id: "brazil-morocco", home: "brazil", hour: "19:00", away: "morocco", score1: "1", score2: "1", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
+      { id: "haiti-scotland", home: "haiti", hour: "22:00", away: "scotland", score1: "0", score2: "1", broadcasters: ["CazéTV"] }
     ]
   },
   {

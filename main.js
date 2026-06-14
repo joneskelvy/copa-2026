@@ -29,7 +29,7 @@ const matchesData = [
     date: "14/06",
     day: "domingo",
     games: [
-      { id: "australia-turkey", home: "australia", hour: "01:00", away: "turkey", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV"] },
+      { id: "australia-turkey", home: "australia", hour: "01:00", away: "turkey", score1: "2", score2: "0", broadcasters: ["Globo", "SporTV", "CazéTV"] },
       { id: "germany-curacao", home: "germany", hour: "14:00", away: "curacao", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
       { id: "netherlands-japan", home: "netherlands", hour: "17:00", away: "japan", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
       { id: "ivorycoast-ecuador", home: "ivorycoast", hour: "20:00", away: "ecuador", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV"] },
@@ -73,7 +73,7 @@ const matchesData = [
       { id: "czech-southafrica", home: "czech", hour: "13:00", away: "southafrica", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
       { id: "switzerland-bosnia", home: "switzerland", hour: "16:00", away: "bosnia", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
       { id: "canada-qatar", home: "canada", hour: "19:00", away: "qatar", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "mexico-southkorea", home: "mexico", hour: "16:00", away: "southkorea", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] }
+      { id: "mexico-southkorea", home: "mexico", hour: "22:00", away: "southkorea", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] }
     ]
   },
   {

@@ -254,16 +254,16 @@ function renderGroupsTable() {
       .sort((a, b) => b.P - a.P || b.V - a.V || b.SG - a.SG);
 
     let rowsHtml = "";
+
     sortedTeams.forEach((team, index) => {
       const formattedName = formatCountryName(team.name);
-      
-      rowsHtml += 
-         `<tr>
+      rowsHtml += `
+        <tr>
           <td><span class="font-bold">${index + 1}°</span></td>
           <td><img class="table-flag" src="assets/icon-${team.name}.svg" alt="${formattedName}"> ${formattedName}</td>
           <td class="text-center font-bold">${team.P}</td>
           <td class="text-center">${team.V}</td>
-          <td class="text-center">${team.SG}</td>
+          <td class="text-center">${team.E}</td> <td class="text-center">${team.D}</td> <td class="text-center">${team.SG}</td>
         </tr>
       `;
     });
@@ -275,10 +275,10 @@ function renderGroupsTable() {
           <thead>
             <tr>
               <th style="width: 10%">#</th>
-              <th style="width: 50%">Seleção</th>
-              <th class="text-center" style="width: 13%">P</th>
-              <th class="text-center" style="width: 13%">V</th>
-              <th class="text-center" style="width: 14%">SG</th>
+              <th style="width: 40%">Seleção</th>
+              <th class="text-center" style="width: 10%">P</th>
+              <th class="text-center" style="width: 10%">V</th>
+              <th class="text-center" style="width: 10%">E</th> <th class="text-center" style="width: 10%">D</th> <th class="text-center" style="width: 10%">SG</th>
             </tr>
           </thead>
           <tbody>

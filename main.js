@@ -32,8 +32,8 @@ const matchesData = [
       { id: "australia-turkey", home: "australia", hour: "01:00", away: "turkey", score1: "2", score2: "0", broadcasters: ["Globo", "SporTV", "CazéTV"] },
       { id: "germany-curacao", home: "germany", hour: "14:00", away: "curacao", score1: "7", score2: "1", broadcasters: ["CazéTV"] },
       { id: "netherlands-japan", home: "netherlands", hour: "17:00", away: "japan", score1: "2", score2: "2", broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"] },
-      { id: "ivorycoast-ecuador", home: "ivorycoast", hour: "20:00", away: "ecuador", score1: "-", score2: "-", broadcasters: ["Globo", "SporTV", "CazéTV"] },
-      { id: "sweden-tunisia", home: "sweden", hour: "23:00", away: "tunisia", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] }
+      { id: "ivorycoast-ecuador", home: "ivorycoast", hour: "20:00", away: "ecuador", score1: "1", score2: "0", broadcasters: ["Globo", "SporTV", "CazéTV"] },
+      { id: "sweden-tunisia", home: "sweden", hour: "23:00", away: "tunisia", score1: "5", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] }
     ]
   },
   {

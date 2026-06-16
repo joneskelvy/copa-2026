@@ -42,8 +42,8 @@ const matchesData = [
     games: [
       { id: "spain-capeverde", home: "spain", hour: "13:00", away: "capeverde", score1: "0", score2: "0", broadcasters: ["CazéTV"] },
       { id: "belgium-egypt", home: "belgium", hour: "16:00", away: "egypt", score1: "1", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] },
-      { id: "saudia-uruguay", home: "saudia", hour: "19:00", away: "uruguay", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
-      { id: "iran-newzealand", home: "iran", hour: "22:00", away: "newzealand", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
+      { id: "saudia-uruguay", home: "saudia", hour: "19:00", away: "uruguay", score1: "1", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
+      { id: "iran-newzealand", home: "iran", hour: "22:00", away: "newzealand", score1: "2", score2: "2", broadcasters: ["CazéTV"] }
     ]
   },
   {

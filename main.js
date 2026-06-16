@@ -600,6 +600,36 @@ btnGames.addEventListener("click", () => {
     renderGroupsTable()
   })
 
+  function scrollToTodayGame() {
+  // 1. Pega a data de hoje e formata para o padrão do seu projeto (ex: "16/06")
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const todayFormatted = `${day}/${month}`;
+
+  // 2. Procura pelo card que tem essa data correspondente
+  // No seu HTML, os títulos dos cards usam a estrutura: <h2>11/06 <span>quinta</span></h2>
+  const headers = document.querySelectorAll('.card h2');
+  let targetCard = null;
+
+  for (let h2 of headers) {
+    if (h2.textContent.includes(todayFormatted)) {
+      targetCard = h2.closest('.card'); // Encontra o card pai completo
+      break;
+    }
+  }
+
+  // 3. Se encontrou o jogo de hoje, faz o scroll suave até ele
+  if (targetCard) {
+    setTimeout(() => {
+      targetCard.scrollIntoView({
+        behavior: 'smooth', // Desliza suavemente, sem dar aquele tranco feio
+        block: 'center'     // Centraliza o card na tela do usuário
+      });
+    }, 500); // Um pequeno atraso de meio segundo para dar tempo da página renderizar tudo antes
+  }
+}
+
   // Clique na aba CAMPEÕES
   btnChampions.addEventListener("click", () => {
     gamesScreen.classList.add("hidden")
@@ -705,8 +735,18 @@ function renderRandomFact() {
 
 // GARANTE QUE O HTML JÁ EXISTE ANTES DE EXECUTAR
 document.addEventListener("DOMContentLoaded", () => {
-  // Carrega a primeira curiosidade assim que a página abre
-  renderRandomFact();
+  // ... suas configurações de abas e buscas ...
+
+  // Garante a renderização dos cards na inicialização
+  renderAllCards();
+  renderGroupsTable();
+  
+  // Força a execução imediata das curiosidades e do cronômetro
+  updateCountdown(); 
+  const countdownInterval = setInterval(updateCountdown, 1000);
+
+  // Executa o scroll automático para o jogo do dia
+  scrollToTodayGame();
 
   // Opcional: Se o seu elemento de texto (ou um botão de caixa de factos) puder ser clicado para mudar de facto
   const factBox = document.querySelector("#fact-text");

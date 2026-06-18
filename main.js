@@ -63,7 +63,7 @@ const matchesData = [
       { id: "portugal-congo", home: "portugal", hour: "14:00", away: "congo", score1: "1", score2: "1", broadcasters: ["CazéTV"] },
       { id: "england-croatia", home: "england", hour: "17:00", away: "croatia", score1: "4", score2: "2", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
       { id: "ghana-panama", home: "ghana", hour: "20:00", away: "panama", score1: "1", score2: "0", broadcasters: ["CazéTV"] },
-      { id: "uzbekistan-colombia", home: "uzbekistan", hour: "23:00", away: "colombia", score1: "1", score2: "2", broadcasters: ["CazéTV", "Globo", "SporTV"] }
+      { id: "uzbekistan-colombia", home: "uzbekistan", hour: "23:00", away: "colombia", score1: "1", score2: "3", broadcasters: ["CazéTV", "Globo", "SporTV"] }
     ]
   },
   {

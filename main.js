@@ -80,7 +80,7 @@ const matchesData = [
     date: "19/06",
     day: "sexta",
     games: [
-      { id: "usa-australia", home: "usa", hour: "16:00", away: "australia", score1: "1", score2: "0", broadcasters: ["CazéTV"] },
+      { id: "usa-australia", home: "usa", hour: "16:00", away: "australia", score1: "2", score2: "0", broadcasters: ["CazéTV"] },
       { id: "scotland-morocco", home: "scotland", hour: "19:00", away: "morocco", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
       { id: "brazil-haiti", home: "brazil", hour: "21:30", away: "haiti", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] }
     ]

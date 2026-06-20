@@ -81,15 +81,15 @@ const matchesData = [
     day: "sexta",
     games: [
       { id: "usa-australia", home: "usa", hour: "16:00", away: "australia", score1: "2", score2: "0", broadcasters: ["CazéTV"] },
-      { id: "scotland-morocco", home: "scotland", hour: "19:00", away: "morocco", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "brazil-haiti", home: "brazil", hour: "21:30", away: "haiti", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] }
+      { id: "scotland-morocco", home: "scotland", hour: "19:00", away: "morocco", score1: "0", score2: "1", broadcasters: ["CazéTV"] },
+      { id: "brazil-haiti", home: "brazil", hour: "21:30", away: "haiti", score1: "3", score2: "0", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] }
     ]
   },
   {
     date: "20/06",
     day: "sábado",
     games: [
-      { id: "turkey-paraguay", home: "turkey", hour: "00:00", away: "paraguay", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "turkey-paraguay", home: "turkey", hour: "00:00", away: "paraguay", score1: "0", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "netherlands-sweden", home: "netherlands", hour: "14:00", away: "sweden", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
       { id: "germany-ivorycoast", home: "germany", hour: "17:00", away: "ivorycoast", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
       { id: "ecuador-curacao", home: "ecuador", hour: "21:00", away: "curacao", score1: "-", score2: "-", broadcasters: ["CazéTV"] }

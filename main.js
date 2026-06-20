@@ -90,7 +90,7 @@ const matchesData = [
     day: "sábado",
     games: [
       { id: "turkey-paraguay", home: "turkey", hour: "00:00", away: "paraguay", score1: "0", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] },
-      { id: "netherlands-sweden", home: "netherlands", hour: "14:00", away: "sweden", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "netherlands-sweden", home: "netherlands", hour: "14:00", away: "sweden", score1: "5", score2: "1", broadcasters: ["CazéTV"] },
       { id: "germany-ivorycoast", home: "germany", hour: "17:00", away: "ivorycoast", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
       { id: "ecuador-curacao", home: "ecuador", hour: "21:00", away: "curacao", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]

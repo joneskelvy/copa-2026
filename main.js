@@ -560,27 +560,33 @@ if ("serviceWorker" in navigator) {
 // ==========================================
 const btnGames = document.querySelector("#btnGames")
 const btnGroups = document.querySelector("#btnGroups")
-const btnChampions = document.querySelector("#btnChampions")
 
+const btnKnockout = document.querySelector("#btnKnockout");
+const knockoutScreen = document.querySelector("#knockoutScreen");
+
+const btnChampions = document.querySelector("#btnChampions")
+const championsScreen = document.querySelector("#championsScreen")
 const gamesScreen = document.querySelector("#gamesScreen")
 const groupsScreen = document.querySelector("#groupsScreen")
-const championsScreen = document.querySelector("#championsScreen")
+
 
 const btnCoach = document.querySelector("#btnCoach")
 const coachScreen = document.querySelector("#coachScreen")
 
-if (btnGames && btnGroups && btnChampions && btnCoach && gamesScreen && groupsScreen && championsScreen && coachScreen) {
+if (btnGames && btnGroups && btnKnockout && btnChampions && btnCoach && gamesScreen && groupsScreen && championsScreen && coachScreen) {
   
 btnGames.addEventListener("click", () => {
     gamesScreen.classList.remove("hidden")
     groupsScreen.classList.add("hidden")
     championsScreen.classList.add("hidden")
     coachScreen.classList.add("hidden") // Oculta o técnico
+    knockoutScreen.classList.remove("hidden"); // Mostra o mata-mata
     
     btnGames.classList.add("active")
     btnGroups.classList.remove("active")
     btnChampions.classList.remove("active")
-    btnCoach.classList.remove("active")
+    btnCoach.classList.remove("active") // Oculta o técnico
+    btnKnockout.classList.add("active"); // Ativa o botão
 
     renderAllCards() 
   })
@@ -591,11 +597,13 @@ btnGames.addEventListener("click", () => {
     groupsScreen.classList.remove("hidden")
     championsScreen.classList.add("hidden")
     coachScreen.classList.add("hidden") // Oculta o técnico
+    knockoutScreen.classList.remove("hidden"); // Mostra o mata-mata
     
     btnGames.classList.remove("active")
     btnGroups.classList.add("active")
     btnChampions.classList.remove("active")
     btnCoach.classList.remove("active")
+    btnKnockout.classList.add("active"); // Ativa o botão
     
     renderGroupsTable()
   })
@@ -636,11 +644,13 @@ btnGames.addEventListener("click", () => {
     groupsScreen.classList.add("hidden")
     championsScreen.classList.remove("hidden")
     coachScreen.classList.add("hidden") // Oculta o técnico
+    knockoutScreen.classList.remove("hidden"); // Mostra o mata-mata
     
     btnGames.classList.remove("active")
     btnGroups.classList.remove("active")
     btnChampions.classList.add("active")
     btnCoach.classList.remove("active")
+    btnKnockout.classList.add("active"); // Ativa o botão
     
     renderChampions()
   })
@@ -651,11 +661,13 @@ btnGames.addEventListener("click", () => {
     groupsScreen.classList.add("hidden")
     championsScreen.classList.add("hidden")
     coachScreen.classList.remove("hidden") // Mostra o técnico
+    knockoutScreen.classList.remove("hidden"); // Mostra o mata-mata
     
     btnGames.classList.remove("active")
     btnGroups.classList.remove("active")
     btnChampions.classList.remove("active")
     btnCoach.classList.add("active")
+    btnKnockout.classList.add("active"); // Ativa o botão
     
     initCoachModule() // Inicializa o campo e as peças
   })

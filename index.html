@@ -52,6 +52,9 @@
       <button id="btnGroups">
         Grupos
       </button>
+      <button id="btnKnockout">
+        Mata-Mata
+      </button>
       <button id="btnChampions">
         Campeões
       </button>
@@ -98,6 +101,16 @@
     <main id="groupsScreen" class="hidden">
       <div id="groupsContainer"></div>
     </main>
+
+    <!--Essa parte corresponde ao Playoff (Oculta por padrão via "hidden")-->
+  <main id="knockoutScreen" class="hidden">
+  <div id="knockoutContainer" class="knockout-bracket">
+    <!-- As chaves serão geradas aqui via JavaScript ou estaticamente -->
+    <h2 class="section-title">Fase Eliminatória - Copa 2026</h2>
+    <p style="color: #fff; text-align: center;">A fase mata-mata inicia após o término da fase de grupos.</p>
+  </div>
+</main>
+
 
     <!-- 4. Tela de Campeões Históricos (Oculta por padrão via CSS "hidden") -->
     <main id="championsScreen" class="hidden">

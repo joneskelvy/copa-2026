@@ -130,48 +130,48 @@ const matchesData = [
     date: "24/06",
     day: "quarta",
     games: [
-      { id: "switzerland-canada", home: "switzerland", hour: "16:00", away: "canada", score1: "-", score2: "-", broadcasters: [] },
-      { id: "bosnia-qatar", home: "bosnia", hour: "16:00", away: "qatar", score1: "-", score2: "-", broadcasters: [] },
+      { id: "switzerland-canada", home: "switzerland", hour: "16:00", away: "canada", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "bosnia-qatar", home: "bosnia", hour: "16:00", away: "qatar", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
       { id: "scotland-brazil", home: "scotland", hour: "19:00", away: "brazil", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
-      { id: "morocco-haiti", home: "morocco", hour: "19:00", away: "haiti", score1: "-", score2: "-", broadcasters: [] },
-      { id: "czech-mexico", home: "czech", hour: "22:00", away: "mexico", score1: "-", score2: "-", broadcasters: [] },
-      { id: "southafrica-southkorea", home: "southafrica", hour: "22:00", away: "southkorea", score1: "-", score2: "-", broadcasters: [] }
+      { id: "morocco-haiti", home: "morocco", hour: "19:00", away: "haiti", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "czech-mexico", home: "czech", hour: "22:00", away: "mexico", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "southafrica-southkorea", home: "southafrica", hour: "22:00", away: "southkorea", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]
   },
   {
     date: "25/06",
     day: "quinta",
     games: [
-      { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "-", score2: "-", broadcasters: [] },
-      { id: "curacao-ivorycoast", home: "curacao", hour: "17:00", away: "ivorycoast", score1: "-", score2: "-", broadcasters: [] },
-      { id: "japan-sweden", home: "japan", hour: "20:00", away: "sweden", score1: "-", score2: "-", broadcasters: [] },
-      { id: "tunisia-netherlands", home: "tunisia", hour: "20:00", away: "netherlands", score1: "-", score2: "-", broadcasters: [] },
-      { id: "turkey-usa", home: "turkey", hour: "23:00", away: "usa", score1: "-", score2: "-", broadcasters: [] },
-      { id: "paraguay-australia", home: "paraguay", hour: "23:00", away: "australia", score1: "-", score2: "-", broadcasters: [] }
+      { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "curacao-ivorycoast", home: "curacao", hour: "17:00", away: "ivorycoast", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "japan-sweden", home: "japan", hour: "20:00", away: "sweden", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "tunisia-netherlands", home: "tunisia", hour: "20:00", away: "netherlands", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "turkey-usa", home: "turkey", hour: "23:00", away: "usa", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "paraguay-australia", home: "paraguay", hour: "23:00", away: "australia", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]
   },
   {
     date: "26/06",
     day: "sexta",
     games: [
-      { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "-", score2: "-", broadcasters: [] },
-      { id: "senegal-iraq", home: "senegal", hour: "16:00", away: "iraq", score1: "-", score2: "-", broadcasters: [] },
-      { id: "capeverde-saudia", home: "capeverde", hour: "21:00", away: "saudia", score1: "-", score2: "-", broadcasters: [] },
-      { id: "uruguay-spain", home: "uruguay", hour: "21:00", away: "spain", score1: "-", score2: "-", broadcasters: [] }
+      { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "senegal-iraq", home: "senegal", hour: "16:00", away: "iraq", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "capeverde-saudia", home: "capeverde", hour: "21:00", away: "saudia", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "uruguay-spain", home: "uruguay", hour: "21:00", away: "spain", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]
   },
   {
     date: "27/06",
     day: "sábado",
     games: [
-      { id: "egypt-iran", home: "egypt", hour: "00:00", away: "iran", score1: "-", score2: "-", broadcasters: [] },
-      { id: "newzealand-belgium", home: "newzealand", hour: "00:00", away: "belgium", score1: "-", score2: "-", broadcasters: [] },
-      { id: "panama-england", home: "panama", hour: "18:00", away: "england", score1: "-", score2: "-", broadcasters: [] },
-      { id: "croatia-ghana", home: "croatia", hour: "18:00", away: "ghana", score1: "-", score2: "-", broadcasters: [] },
-      { id: "colombia-portugal", home: "colombia", hour: "20:30", away: "portugal", score1: "-", score2: "-", broadcasters: [] },
-      { id: "congo-uzbekistan", home: "congo", hour: "20:30", away: "uzbekistan", score1: "-", score2: "-", broadcasters: [] },
-      { id: "algeria-austria", home: "algeria", hour: "23:00", away: "austria", score1: "-", score2: "-", broadcasters: [] },
-      { id: "jordan-argentina", home: "jordan", hour: "23:00", away: "argentina", score1: "-", score2: "-", broadcasters: [] }
+      { id: "egypt-iran", home: "egypt", hour: "00:00", away: "iran", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "newzealand-belgium", home: "newzealand", hour: "00:00", away: "belgium", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "panama-england", home: "panama", hour: "18:00", away: "england", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "croatia-ghana", home: "croatia", hour: "18:00", away: "ghana", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "colombia-portugal", home: "colombia", hour: "20:30", away: "portugal", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "congo-uzbekistan", home: "congo", hour: "20:30", away: "uzbekistan", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "algeria-austria", home: "algeria", hour: "23:00", away: "austria", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
+      { id: "jordan-argentina", home: "jordan", hour: "23:00", away: "argentina", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]
   }
 ];
@@ -197,6 +197,8 @@ const groupsMapping = {
 // ==========================================
 function calculateGroups() {
   const tableData = {};
+
+
 
   // Inicializa todos os países mapeados com 0 pontos
   Object.values(groupsMapping).flat().forEach(country => {
@@ -236,6 +238,35 @@ function calculateGroups() {
 
   return tableData;
 }
+
+// ==========================================
+// CLASSIFICADOS PARA O MATA-MATA
+// ==========================================
+function getQualifiedTeams() {
+  const stats = calculateGroups();
+
+  const qualified = {};
+
+  Object.entries(groupsMapping).forEach(([groupName, teams]) => {
+
+    const sorted = teams
+      .map(team => stats[team])
+      .sort((a, b) =>
+        b.P - a.P ||
+        b.V - a.V ||
+        b.SG - a.SG
+      );
+
+    qualified[groupName] = {
+      first: sorted[0].name,
+      second: sorted[1].name
+    };
+  });
+
+  return qualified;
+}
+
+
 
 // ==========================================
 // RENDERIZAÇÃO DA TABELA DE GRUPOS
@@ -291,6 +322,50 @@ function renderGroupsTable() {
 
   container.innerHTML = html;
 }
+
+// ==========================================
+// MATA-MATA
+// ==========================================
+function renderKnockout() {
+
+  const qualified = getQualifiedTeams();
+
+  const matches = [
+    [qualified["Grupo A"].first, qualified["Grupo B"].second],
+    [qualified["Grupo C"].first, qualified["Grupo D"].second],
+    [qualified["Grupo E"].first, qualified["Grupo F"].second],
+    [qualified["Grupo G"].first, qualified["Grupo H"].second],
+    [qualified["Grupo I"].first, qualified["Grupo J"].second],
+    [qualified["Grupo K"].first, qualified["Grupo L"].second],
+
+    [qualified["Grupo B"].first, qualified["Grupo A"].second],
+    [qualified["Grupo D"].first, qualified["Grupo C"].second],
+    [qualified["Grupo F"].first, qualified["Grupo E"].second],
+    [qualified["Grupo H"].first, qualified["Grupo G"].second],
+    [qualified["Grupo J"].first, qualified["Grupo I"].second],
+    [qualified["Grupo L"].first, qualified["Grupo K"].second]
+  ];
+
+  let html = `
+    <div class="knockout-stage">
+      <h2>16 Avos de Final</h2>
+  `;
+
+  matches.forEach(match => {
+    html += `
+      <div class="knockout-match">
+        <span>${formatCountryName(match[0])}</span>
+        <strong>x</strong>
+        <span>${formatCountryName(match[1])}</span>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  document.querySelector("#knockoutContainer").innerHTML = html;
+}
+
 
 function createCard(date, day, gamesHtml) {
   return `
@@ -560,16 +635,29 @@ if ("serviceWorker" in navigator) {
 // ==========================================
 const btnGames = document.querySelector("#btnGames")
 const btnGroups = document.querySelector("#btnGroups")
+const btnKnockout = document.querySelector("#btnKnockout")
 const btnChampions = document.querySelector("#btnChampions")
 
 const gamesScreen = document.querySelector("#gamesScreen")
 const groupsScreen = document.querySelector("#groupsScreen")
+const knockoutScreen = document.querySelector("#knockoutScreen")
 const championsScreen = document.querySelector("#championsScreen")
 
 const btnCoach = document.querySelector("#btnCoach")
 const coachScreen = document.querySelector("#coachScreen")
 
-if (btnGames && btnGroups && btnChampions && btnCoach && gamesScreen && groupsScreen && championsScreen && coachScreen) {
+if (
+  btnGames &&
+  btnGroups &&
+  btnKnockout &&
+  btnChampions &&
+  btnCoach &&
+  gamesScreen &&
+  groupsScreen &&
+  knockoutScreen &&
+  championsScreen &&
+  coachScreen
+) {
   
 btnGames.addEventListener("click", () => {
     gamesScreen.classList.remove("hidden")
@@ -599,6 +687,26 @@ btnGames.addEventListener("click", () => {
     
     renderGroupsTable()
   })
+
+  // Clique na aba MATA-MATA
+btnKnockout.addEventListener("click", () => {
+
+  gamesScreen.classList.add("hidden")
+  groupsScreen.classList.add("hidden")
+  championsScreen.classList.add("hidden")
+  coachScreen.classList.add("hidden")
+
+  knockoutScreen.classList.remove("hidden")
+
+  btnGames.classList.remove("active")
+  btnGroups.classList.remove("active")
+  btnChampions.classList.remove("active")
+  btnCoach.classList.remove("active")
+
+  btnKnockout.classList.add("active")
+
+  renderKnockout()
+})
 
   function scrollToTodayGame() {
   // 1. Pega a data de hoje e formata para o padrão do seu projeto (ex: "16/06")

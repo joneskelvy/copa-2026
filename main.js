@@ -112,14 +112,14 @@ const matchesData = [
     games: [
       { id: "argentina-austria", home: "argentina", hour: "14:00", away: "austria", score1: "2", score2: "0", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
       { id: "france-iraq", home: "france", hour: "18:00", away: "iraq", score1: "3", score2: "0", broadcasters: ["CazéTV"] },
-      { id: "norway-senegal", home: "norway", hour: "21:00", away: "senegal", score1: "3", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] }
+      { id: "norway-senegal", home: "norway", hour: "21:00", away: "senegal", score1: "3", score2: "2", broadcasters: ["CazéTV", "Globo", "SporTV"] }
     ]
   },
   {
     date: "23/06",
     day: "terça",
     games: [
-      { id: "jordan-algeria", home: "jordan", hour: "00:00", away: "algeria", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "jordan-algeria", home: "jordan", hour: "00:00", away: "algeria", score1: "1", score2: "0", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "portugal-uzbekistan", home: "portugal", hour: "14:00", away: "uzbekistan", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
       { id: "england-ghana", home: "england", hour: "17:00", away: "ghana", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
       { id: "panama-croatia", home: "panama", hour: "20:00", away: "croatia", score1: "-", score2: "-", broadcasters: ["CazéTV"] },

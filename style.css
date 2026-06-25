@@ -7,6 +7,7 @@
   box-sizing: border-box;
 }
 
+
 :root {
   --card-color-border-title: #746615;
   --card-color-primary: #f7dd43;
@@ -539,7 +540,7 @@ header img {
 .group-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  table-layout: fixed;
 }
 
 /* Alinhamento dos cabeçalhos da tabela */
@@ -603,12 +604,12 @@ header img {
   display: block;
 }
 
-/* Linha Amarela de Classificação */
+/* Linha Amarela de Classificação 
 .group-table tr:nth-child(1) td,
 .group-table tr:nth-child(2) td {
   border-left: 1px solid #F7DD43;
   padding-left: 4px;
-}
+}*/
 
 /* ==========================================
    RODAPÉ (ESTÁTICO / DESIGN SLIM)
@@ -1026,3 +1027,124 @@ header img {
   border-color: rgba(247, 221, 67, 0.4);
 }
 
+/* ==========================================
+   STATUS DOS TIMES NOS GRUPOS
+   ========================================== */
+
+.qualified td {
+  border-left: 4px solid #00ff6a;
+}
+
+.best-third td {
+  border-left: 4px solid #f7dd43;
+}
+
+.eliminated td {
+  border-left: 4px solid #ff4d4d;
+}
+
+
+/* cards de jogos */
+.knockout-card {
+  padding: 32px 23px;
+  width: 320px;
+  text-align: center;
+
+  box-shadow: 0 0 10px rgba(59,130,246,.4),
+              0 0 30px rgba(59,130,246,.4);
+
+  background: #181f42;
+  border-bottom: 2px solid var(--card-color-primary);
+  border-radius: 6px;
+
+  animation: appear 0.6s ease-out;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.knockout-card:hover {
+  transform: translateY(-5px);
+  border-color: #3b82f6;
+}
+
+/* linha do jogo */
+.match-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.match-row img {
+  width: 24px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.score {
+  font-weight: 700;
+  color: #f7dd43;
+}
+
+/* conexão visual tipo bracket */
+.round::after {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background: #323238;
+  position: absolute;
+  right: -40px;
+  top: 50%;
+}
+
+.knockout-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.knockout-match {
+  background: var(--card-color);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+/* ==========================================
+   AJUSTES FINAIS - MATAMATA (COPA 2026)
+   ========================================== */
+
+#knockoutCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* Garante que os cards gerados dinamicamente no mata-mata sigam o padrão exato do dia 11/06 */
+#knockoutCardsContainer .card {
+  animation: appear 0.6s ease-out;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+#knockoutCardsContainer .card:hover {
+  transform: translateY(-5px);
+  border-color: #3b82f6; /* Destaca com um leve azul sutil ao passar o mouse */
+}
+
+#knockoutContainer #cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 30px;
+}
+
+/* Remove o efeito verde fantasma se o botão não for o clicado ativo */
+header nav button:not(.active) {
+  background: transparent !important;
+  color: #ffffff !important;
+}

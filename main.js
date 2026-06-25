@@ -142,11 +142,11 @@ const matchesData = [
     date: "25/06",
     day: "quinta",
     games: [
-      { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTv"] },
+      { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "curacao-ivorycoast", home: "curacao", hour: "17:00", away: "ivorycoast", score1: "-", score2: "-", broadcasters: ["CazéTV", "SporTV"] },
       { id: "japan-sweden", home: "japan", hour: "20:00", away: "sweden", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] },
       { id: "tunisia-netherlands", home: "tunisia", hour: "20:00", away: "netherlands", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "turkey-usa", home: "turkey", hour: "23:00", away: "usa", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTv"] },
+      { id: "turkey-usa", home: "turkey", hour: "23:00", away: "usa", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "paraguay-australia", home: "paraguay", hour: "23:00", away: "australia", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
     ]
   },
@@ -154,7 +154,7 @@ const matchesData = [
     date: "26/06",
     day: "sexta",
     games: [
-      { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTv"] },
+      { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "senegal-iraq", home: "senegal", hour: "16:00", away: "iraq", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
       { id: "capeverde-saudia", home: "capeverde", hour: "21:00", away: "saudia", score1: "-", score2: "-", broadcasters: ["CazéTV", "SporTV"] },
       { id: "uruguay-spain", home: "uruguay", hour: "21:00", away: "spain", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] }

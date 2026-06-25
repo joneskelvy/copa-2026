@@ -134,8 +134,8 @@ const matchesData = [
       { id: "bosnia-qatar", home: "bosnia", hour: "16:00", away: "qatar", score1: "3", score2: "1", broadcasters: ["CazéTV"] },
       { id: "scotland-brazil", home: "scotland", hour: "19:00", away: "brazil", score1: "0", score2: "3", broadcasters: ["CazéTV", "Globo", "SporTV", "SBT"] },
       { id: "morocco-haiti", home: "morocco", hour: "19:00", away: "haiti", score1: "4", score2: "2", broadcasters: ["CazéTV"] },
-      { id: "czech-mexico", home: "czech", hour: "22:00", away: "mexico", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "southafrica-southkorea", home: "southafrica", hour: "22:00", away: "southkorea", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
+      { id: "czech-mexico", home: "czech", hour: "22:00", away: "mexico", score1: "0", score2: "2", broadcasters: ["CazéTV"] },
+      { id: "southafrica-southkorea", home: "southafrica", hour: "22:00", away: "southkorea", score1: "1", score2: "0", broadcasters: ["CazéTV"] }
     ]
   },
   {

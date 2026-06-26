@@ -441,7 +441,7 @@ header img {
 
 .match-info small {
   color: #f7dd43;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -1204,7 +1204,7 @@ header nav button:not(.active) {
 
 .match-info small {
   display: block;
-  font-size: 12px;
+  font-size: 20px;
   opacity: 0.7;
   margin-top: 4px;
 }
@@ -1478,4 +1478,41 @@ header nav button:not(.active) {
   letter-spacing: 0.5px;
   color: #ffffff;
   text-shadow: 0 0 8px rgba(255,255,255,.15);
+}
+
+.knockout-time {
+  display: inline-block;
+
+  margin-top: 14px;
+  padding: 10px 22px;
+
+  background: linear-gradient(
+    135deg,
+    #ffd700,
+    #ffb300
+  );
+
+  color: #111;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+
+  border-radius: 30px;
+
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.35),
+    0 0 30px rgba(255, 215, 0, 0.15);
+
+  transition: all .3s ease;
+}
+
+.knockout-time:hover {
+  transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+  .knockout-time {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
 }

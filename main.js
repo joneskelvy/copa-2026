@@ -588,7 +588,7 @@ function createKnockoutMatch(home, away, date, hour, stage, broadcasters = []) {
   </div>
 
    <small class="match-date">
-    ${date} • ${hour}
+    ${hour}
   </small>
 </div>
 

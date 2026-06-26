@@ -142,12 +142,12 @@ const matchesData = [
     date: "25/06",
     day: "quinta",
     games: [
-      { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
-      { id: "curacao-ivorycoast", home: "curacao", hour: "17:00", away: "ivorycoast", score1: "-", score2: "-", broadcasters: ["CazéTV", "SporTV"] },
-      { id: "japan-sweden", home: "japan", hour: "20:00", away: "sweden", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] },
-      { id: "tunisia-netherlands", home: "tunisia", hour: "20:00", away: "netherlands", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "turkey-usa", home: "turkey", hour: "23:00", away: "usa", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
-      { id: "paraguay-australia", home: "paraguay", hour: "23:00", away: "australia", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
+       { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "2", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "curacao-ivorycoast", home: "curacao", hour: "17:00", away: "ivorycoast", score1: "0", score2: "2", broadcasters: ["CazéTV", "SporTV"] },
+      { id: "japan-sweden", home: "japan", hour: "20:00", away: "sweden", score1: "1", score2: "1", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] },
+      { id: "tunisia-netherlands", home: "tunisia", hour: "20:00", away: "netherlands", score1: "1", score2: "3", broadcasters: ["CazéTV"] },
+      { id: "turkey-usa", home: "turkey", hour: "23:00", away: "usa", score1: "3", score2: "2", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "paraguay-australia", home: "paraguay", hour: "23:00", away: "australia", score1: "0", score2: "0", broadcasters: ["CazéTV"] }
     ]
   },
   {
@@ -330,38 +330,169 @@ function renderKnockout() {
 
   const qualified = getQualifiedTeams();
 
-  const matches = [
-    [qualified["Grupo A"].first, qualified["Grupo B"].second],
-    [qualified["Grupo C"].first, qualified["Grupo D"].second],
-    [qualified["Grupo E"].first, qualified["Grupo F"].second],
-    [qualified["Grupo G"].first, qualified["Grupo H"].second],
-    [qualified["Grupo I"].first, qualified["Grupo J"].second],
-    [qualified["Grupo K"].first, qualified["Grupo L"].second],
-
-    [qualified["Grupo B"].first, qualified["Grupo A"].second],
-    [qualified["Grupo D"].first, qualified["Grupo C"].second],
-    [qualified["Grupo F"].first, qualified["Grupo E"].second],
-    [qualified["Grupo H"].first, qualified["Grupo G"].second],
-    [qualified["Grupo J"].first, qualified["Grupo I"].second],
-    [qualified["Grupo L"].first, qualified["Grupo K"].second]
-  ];
-
-  let html = `
+   let html = `
     <div class="knockout-stage">
-      <h2>16 Avos de Final</h2>
+      🏆 FASE ELIMINATÓRIA
+    </div>
+
+      <div class="knockout-subtitle">
+    16 AVOS DE FINAL
+  </div>
   `;
 
+  const matches = [
+
+    // 28/06
+    {
+      date: "28/06",
+      hour: "16:00",
+      home: qualified["Grupo A"].second,
+      away: qualified["Grupo B"].second
+    },
+
+    // 29/06
+    {
+      date: "29/06",
+      hour: "14:00",
+      home: qualified["Grupo C"].first,
+      away: qualified["Grupo F"].second
+    },
+    {
+      date: "29/06",
+      hour: "17:30",
+      home: qualified["Grupo E"].first,
+      away: "Melhor 3º (ABCDF)"
+    },
+    {
+      date: "29/06",
+      hour: "22:00",
+      home: qualified["Grupo F"].first,
+      away: qualified["Grupo C"].second
+    },
+
+    // 30/06
+    {
+      date: "30/06",
+      hour: "14:00",
+      home: qualified["Grupo E"].second,
+      away: qualified["Grupo I"].second
+    },
+    {
+      date: "30/06",
+      hour: "18:00",
+      home: qualified["Grupo I"].first,
+      away: "Melhor 3º (CDFGH)"
+    },
+    {
+      date: "30/06",
+      hour: "22:00",
+      home: qualified["Grupo A"].first,
+      away: "Melhor 3º (CEFHI)"
+    },
+
+    // 01/07
+    {
+      date: "01/07",
+      hour: "13:00",
+      home: qualified["Grupo L"].first,
+      away: "Melhor 3º (EHIJK)"
+    },
+    {
+      date: "01/07",
+      hour: "17:00",
+      home: qualified["Grupo G"].first,
+      away: "Melhor 3º (AEHIJ)"
+    },
+    {
+      date: "01/07",
+      hour: "21:00",
+      home: qualified["Grupo D"].first,
+      away: "Melhor 3º (BEFIJ)"
+    },
+
+    // 02/07
+    {
+      date: "02/07",
+      hour: "16:00",
+      home: qualified["Grupo H"].first,
+      away: qualified["Grupo J"].second
+    },
+    {
+      date: "02/07",
+      hour: "20:00",
+      home: qualified["Grupo K"].second,
+      away: qualified["Grupo L"].second
+    },
+
+    // 03/07
+    {
+      date: "03/07",
+      hour: "00:00",
+      home: qualified["Grupo B"].first,
+      away: "Melhor 3º (EFGIJ)"
+    },
+    {
+      date: "03/07",
+      hour: "15:00",
+      home: qualified["Grupo D"].second,
+      away: qualified["Grupo G"].second
+    },
+    {
+      date: "03/07",
+      hour: "19:00",
+      home: qualified["Grupo J"].first,
+      away: qualified["Grupo H"].second
+    },
+    {
+      date: "03/07",
+      hour: "22:30",
+      home: qualified["Grupo K"].first,
+      away: "Melhor 3º (DEIJL)"
+    }
+  ];
+
+  const weekDays = {
+    "28/06": "DOMINGO",
+    "29/06": "SEGUNDA-FEIRA",
+    "30/06": "TERÇA-FEIRA",
+    "01/07": "QUARTA-FEIRA",
+    "02/07": "QUINTA-FEIRA",
+    "03/07": "SEXTA-FEIRA"
+  };
+
+  let currentDate = "";
+
   matches.forEach(match => {
-    html += `
-      <div class="knockout-match">
-        <span>${formatCountryName(match[0])}</span>
-        <strong>x</strong>
-        <span>${formatCountryName(match[1])}</span>
-      </div>
-    `;
+
+    if (currentDate !== match.date) {
+
+      currentDate = match.date;
+
+      html += `
+        <div class="knockout-day">
+          ${match.date} • ${weekDays[match.date]}
+        </div>
+      `;
+    }
+
+    html += createKnockoutMatch(
+      match.home,
+      match.away,
+      match.date,
+      match.hour,
+      "32 Avos de Final",
+      ["Globo", "SporTV", "CazéTV"]
+    );
   });
 
-  html += `</div>`;
+  const container = document.querySelector("#knockoutContainer");
+
+  if (container) {
+    container.innerHTML = html;
+  }
+
+
+console.log(html);
 
   document.querySelector("#knockoutContainer").innerHTML = html;
 }
@@ -429,6 +560,45 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcas
       </div>
     </li>
   `
+}
+
+function createKnockoutMatch(home, away, date, hour, stage, broadcasters = []) {
+
+  const homeFlag = home.includes("Melhor")
+    ? ""
+    : `<img src="assets/icon-${home}.svg">`;
+
+  const awayFlag = away.includes("Melhor")
+    ? ""
+    : `<img src="assets/icon-${away}.svg">`;
+
+  return `
+    <li class="match-card knockout">
+
+      <div class="flag">
+        ${homeFlag}
+        <span class="country-name">${formatCountryName(home)}</span>
+      </div>
+
+      <div class="match-info">
+  <div class="score-box">
+    <span>-</span>
+    <strong>x</strong>
+    <span>-</span>
+  </div>
+
+   <small class="match-date">
+    ${date} • ${hour}
+  </small>
+</div>
+
+      <div class="flag">
+        ${awayFlag}
+        <span class="country-name">${formatCountryName(away)}</span>
+      </div>
+
+    </li>
+  `;
 }
 
 function formatCountryName(name) {
@@ -660,13 +830,15 @@ if (
 ) {
   
 btnGames.addEventListener("click", () => {
-    gamesScreen.classList.remove("hidden")
+   gamesScreen.classList.remove("hidden")
     groupsScreen.classList.add("hidden")
+    knockoutScreen.classList.add("hidden")
     championsScreen.classList.add("hidden")
     coachScreen.classList.add("hidden") // Oculta o técnico
     
-    btnGames.classList.add("active")
+   btnGames.classList.add("active")
     btnGroups.classList.remove("active")
+    btnKnockout.classList.remove("active")
     btnChampions.classList.remove("active")
     btnCoach.classList.remove("active")
 
@@ -675,13 +847,15 @@ btnGames.addEventListener("click", () => {
 
   // Clique na aba GRUPOS
   btnGroups.addEventListener("click", () => {
-    gamesScreen.classList.add("hidden")
+     gamesScreen.classList.add("hidden")
     groupsScreen.classList.remove("hidden")
+    knockoutScreen.classList.add("hidden")
     championsScreen.classList.add("hidden")
     coachScreen.classList.add("hidden") // Oculta o técnico
     
-    btnGames.classList.remove("active")
+   btnGames.classList.remove("active")
     btnGroups.classList.add("active")
+    btnKnockout.classList.remove("active")
     btnChampions.classList.remove("active")
     btnCoach.classList.remove("active")
     
@@ -740,28 +914,35 @@ btnKnockout.addEventListener("click", () => {
 
   // Clique na aba CAMPEÕES
   btnChampions.addEventListener("click", () => {
-    gamesScreen.classList.add("hidden")
-    groupsScreen.classList.add("hidden")
-    championsScreen.classList.remove("hidden")
-    coachScreen.classList.add("hidden") // Oculta o técnico
-    
-    btnGames.classList.remove("active")
-    btnGroups.classList.remove("active")
-    btnChampions.classList.add("active")
-    btnCoach.classList.remove("active")
-    
-    renderChampions()
-  })
+  knockoutScreen.classList.add("hidden")
+  const knockoutContainer = document.querySelector("#knockoutContainer")
+  if (knockoutContainer) knockoutContainer.innerHTML = ""
+
+  gamesScreen.classList.add("hidden")
+  groupsScreen.classList.add("hidden")
+  championsScreen.classList.remove("hidden")
+  coachScreen.classList.add("hidden")
+
+  btnGames.classList.remove("active")
+  btnGroups.classList.remove("active")
+  btnKnockout.classList.remove("active")
+  btnChampions.classList.add("active")
+  btnCoach.classList.remove("active")
+
+  renderChampions()
+})
 
   // Clique na aba SEJA TÉCNICO (O que estava faltando!)
   btnCoach.addEventListener("click", () => {
     gamesScreen.classList.add("hidden")
     groupsScreen.classList.add("hidden")
+    knockoutScreen.classList.add("hidden")
     championsScreen.classList.add("hidden")
     coachScreen.classList.remove("hidden") // Mostra o técnico
     
     btnGames.classList.remove("active")
     btnGroups.classList.remove("active")
+    btnKnockout.classList.remove("active")
     btnChampions.classList.remove("active")
     btnCoach.classList.add("active")
     

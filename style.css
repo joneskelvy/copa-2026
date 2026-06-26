@@ -1516,3 +1516,102 @@ header nav button:not(.active) {
     padding: 8px 16px;
   }
 }
+
+.best-thirds {
+  margin-top: 40px;
+}
+
+.best-thirds h2 {
+  text-align: center;
+  color: #ffd700;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.thirds-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.thirds-table th {
+  background: #111827;
+  color: #fff;
+  padding: 12px;
+}
+
+.thirds-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.thirds-table img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.qualified-third {
+  background: rgba(0,255,106,.08);
+}
+
+.qualified-third td:first-child {
+  border-left: 4px solid #00ff6a;
+}
+
+.best-thirds-card {
+  margin-top: 40px;
+  animation: appear .5s ease;
+}
+
+.best-thirds-title {
+  text-align: center;
+  color: #ffd700;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.qualified-third {
+  background: rgba(0,255,106,.08);
+}
+
+.qualified-third td:first-child {
+  border-left: 4px solid #00ff6a;
+}
+
+.thirds-note {
+  text-align: center;
+  margin-top: 12px;
+  color: #00ff6a;
+  font-weight: 700;
+}
+
+.best-thirds-card{
+  margin-top: 30px;
+  background: #202024;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.best-thirds-title{
+  text-align:center;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.qualified-third{
+  background: rgba(0,255,106,.12);
+}
+
+.thirds-note{
+  text-align:center;
+  margin-top: 15px;
+  color:#00ff6a;
+  font-weight:700;
+}

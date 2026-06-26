@@ -320,8 +320,103 @@ function renderGroupsTable() {
     `;
   });
 
-  container.innerHTML = html;
+  container.innerHTML = html + renderBestThirds();
 }
+
+function getBestThirdPlaced() {
+
+  const stats = calculateGroups();
+  const thirds = [];
+
+  Object.entries(groupsMapping).forEach(([groupName, teams]) => {
+
+    const sorted = teams
+      .map(team => stats[team])
+      .sort((a, b) =>
+        b.P - a.P ||
+        b.V - a.V ||
+        b.SG - a.SG
+      );
+
+    const third = sorted[2];
+
+    thirds.push({
+      group: groupName,
+      name: third.name,
+      P: third.P,
+      V: third.V,
+      SG: third.SG
+    });
+
+  });
+
+  return thirds.sort((a, b) =>
+    b.P - a.P ||
+    b.V - a.V ||
+    b.SG - a.SG
+  );
+}
+
+function renderBestThirds() {
+
+  const thirds = getBestThirdPlaced();
+
+  return `
+    <div class="best-thirds-card">
+
+      <h2 class="best-thirds-title">
+        ⭐ MELHORES 3º COLOCADOS
+      </h2>
+
+      <table class="group-table">
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Seleção</th>
+            <th>P</th>
+            <th>V</th>
+            <th>SG</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          ${thirds.map((team, index) => `
+
+            <tr class="${index < 8 ? "qualified-third" : ""}">
+
+              <td>${index + 1}</td>
+
+              <td>
+                <img
+                  class="table-flag"
+                  src="assets/icon-${team.name}.svg"
+                  alt="${formatCountryName(team.name)}"
+                >
+                ${formatCountryName(team.name)}
+              </td>
+
+              <td>${team.P}</td>
+              <td>${team.V}</td>
+              <td>${team.SG}</td>
+
+            </tr>
+
+          `).join("")}
+
+        </tbody>
+
+      </table>
+
+      <p class="thirds-note">
+        ✅ Os 8 primeiros avançam para os 16 Avos de Final
+      </p>
+
+    </div>
+  `;
+}
+
 
 // ==========================================
 // MATA-MATA

@@ -154,8 +154,8 @@ const matchesData = [
     date: "26/06",
     day: "sexta",
     games: [
-      { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "1", score2: "3", broadcasters: ["CazéTV", "Globo", "SporTV"] },
-      { id: "senegal-iraq", home: "senegal", hour: "16:00", away: "iraq", score1: "2", score2: "0", broadcasters: ["CazéTV"] },
+      { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "1", score2: "4", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "senegal-iraq", home: "senegal", hour: "16:00", away: "iraq", score1: "5", score2: "0", broadcasters: ["CazéTV"] },
       { id: "capeverde-saudia", home: "capeverde", hour: "21:00", away: "saudia", score1: "-", score2: "-", broadcasters: ["CazéTV", "SporTV"] },
       { id: "uruguay-spain", home: "uruguay", hour: "21:00", away: "spain", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] }
     ]

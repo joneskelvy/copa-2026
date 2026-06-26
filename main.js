@@ -327,6 +327,7 @@ function getBestThirdPlaced() {
 
   const stats = calculateGroups();
   const thirds = [];
+  
 
   Object.entries(groupsMapping).forEach(([groupName, teams]) => {
 
@@ -425,6 +426,8 @@ function renderKnockout() {
 
   const qualified = getQualifiedTeams();
 
+  const bestThirds = getBestThirdPlaced();
+
    let html = `
     <div class="knockout-stage">
       🏆 FASE ELIMINATÓRIA
@@ -452,12 +455,14 @@ function renderKnockout() {
       home: qualified["Grupo C"].first,
       away: qualified["Grupo F"].second
     },
+   
     {
       date: "29/06",
       hour: "17:30",
       home: qualified["Grupo E"].first,
-      away: "Melhor 3º (ABCDF)"
-    },
+      away: bestThirds[0].name
+      },
+    
     {
       date: "29/06",
       hour: "22:00",
@@ -472,17 +477,19 @@ function renderKnockout() {
       home: qualified["Grupo E"].second,
       away: qualified["Grupo I"].second
     },
+    
     {
-      date: "30/06",
-      hour: "18:00",
-      home: qualified["Grupo I"].first,
-      away: "Melhor 3º (CDFGH)"
+    date: "30/06",
+    hour: "18:00",
+    home: qualified["Grupo I"].first,
+    away: bestThirds[1].name
     },
+    
     {
-      date: "30/06",
-      hour: "22:00",
-      home: qualified["Grupo A"].first,
-      away: "Melhor 3º (CEFHI)"
+    date: "30/06",
+    hour: "22:00",
+    home: qualified["Grupo A"].first,
+    away: bestThirds[2].name
     },
 
     // 01/07
@@ -490,19 +497,21 @@ function renderKnockout() {
       date: "01/07",
       hour: "13:00",
       home: qualified["Grupo L"].first,
-      away: "Melhor 3º (EHIJK)"
+      away: bestThirds[3].name
     },
-    {
+    
+   {
       date: "01/07",
       hour: "17:00",
       home: qualified["Grupo G"].first,
-      away: "Melhor 3º (AEHIJ)"
+      away: bestThirds[4].name
     },
-    {
-      date: "01/07",
-      hour: "21:00",
-      home: qualified["Grupo D"].first,
-      away: "Melhor 3º (BEFIJ)"
+    
+     {
+    date: "01/07",
+    hour: "21:00",
+    home: qualified["Grupo D"].first,
+    away: bestThirds[5].name
     },
 
     // 02/07
@@ -524,8 +533,9 @@ function renderKnockout() {
       date: "03/07",
       hour: "00:00",
       home: qualified["Grupo B"].first,
-      away: "Melhor 3º (EFGIJ)"
+      away: bestThirds[6].name
     },
+    
     {
       date: "03/07",
       hour: "15:00",
@@ -538,11 +548,12 @@ function renderKnockout() {
       home: qualified["Grupo J"].first,
       away: qualified["Grupo H"].second
     },
+   
     {
       date: "03/07",
       hour: "22:30",
       home: qualified["Grupo K"].first,
-      away: "Melhor 3º (DEIJL)"
+      away: bestThirds[7].name
     }
   ];
 

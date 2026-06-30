@@ -1615,3 +1615,46 @@ header nav button:not(.active) {
   color:#00ff6a;
   font-weight:700;
 }
+
+.match-broadcasters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.broadcast-btn {
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: white;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: 0.2s;
+}
+
+.broadcast-btn:hover {
+  background: #ffd700;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+
+  .match-broadcasters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 6px;
+    max-width: 120px;
+  }
+
+  .broadcast-btn {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+    border-radius: 10px;
+  }
+
+}

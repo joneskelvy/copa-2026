@@ -151,27 +151,27 @@ const matchesData = [
     ]
   },
   {
-    date: "26/06",
+      date: "26/06",
     day: "sexta",
     games: [
       { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "1", score2: "4", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "senegal-iraq", home: "senegal", hour: "16:00", away: "iraq", score1: "5", score2: "0", broadcasters: ["CazéTV"] },
-      { id: "capeverde-saudia", home: "capeverde", hour: "21:00", away: "saudia", score1: "-", score2: "-", broadcasters: ["CazéTV", "SporTV"] },
-      { id: "uruguay-spain", home: "uruguay", hour: "21:00", away: "spain", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] }
+      { id: "capeverde-saudia", home: "capeverde", hour: "21:00", away: "saudia", score1: "0", score2: "0", broadcasters: ["CazéTV", "SporTV"] },
+      { id: "uruguay-spain", home: "uruguay", hour: "21:00", away: "spain", score1: "0", score2: "1", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] }
     ]
   },
   {
     date: "27/06",
     day: "sábado",
     games: [
-      { id: "egypt-iran", home: "egypt", hour: "00:00", away: "iran", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
-      { id: "newzealand-belgium", home: "newzealand", hour: "00:00", away: "belgium", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "panama-england", home: "panama", hour: "18:00", away: "england", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] },
-      { id: "croatia-ghana", home: "croatia", hour: "18:00", away: "ghana", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "colombia-portugal", home: "colombia", hour: "20:30", away: "portugal", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "congo-uzbekistan", home: "congo", hour: "20:30", away: "uzbekistan", score1: "-", score2: "-", broadcasters: ["CazéTV"] },
-      { id: "algeria-austria", home: "algeria", hour: "23:00", away: "austria", score1: "-", score2: "-", broadcasters: ["CazéTV", "Globo", "SporTV"] },
-      { id: "jordan-argentina", home: "jordan", hour: "23:00", away: "argentina", score1: "-", score2: "-", broadcasters: ["CazéTV"] }
+      { id: "egypt-iran", home: "egypt", hour: "00:00", away: "iran", score1: "1", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "newzealand-belgium", home: "newzealand", hour: "00:00", away: "belgium", score1: "1", score2: "5", broadcasters: ["CazéTV"] },
+      { id: "panama-england", home: "panama", hour: "18:00", away: "england", score1: "0", score2: "2", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] },
+      { id: "croatia-ghana", home: "croatia", hour: "18:00", away: "ghana", score1: "2", score2: "1", broadcasters: ["CazéTV"] },
+      { id: "colombia-portugal", home: "colombia", hour: "20:30", away: "portugal", score1: "0", score2: "0", broadcasters: ["CazéTV"] },
+      { id: "congo-uzbekistan", home: "congo", hour: "20:30", away: "uzbekistan", score1: "3", score2: "1", broadcasters: ["CazéTV"] },
+      { id: "algeria-austria", home: "algeria", hour: "23:00", away: "austria", score1: "3", score2: "3", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "jordan-argentina", home: "jordan", hour: "23:00", away: "argentina", score1: "1", score2: "3", broadcasters: ["CazéTV"] }
     ]
   }
 ];
@@ -418,15 +418,178 @@ function renderBestThirds() {
   `;
 }
 
+const knockoutResults = {
+  game1: { score1: "0", score2: "1" },
+  game2: { score1: "2", score2: "1" },
+  game3: { score1: "(3)1", score2: "1(4*)" },
+  game4: { score1: "(2)1", score2: "1(3*)" },
+  game5: { score1: "-", score2: "-" },
+  game6: { score1: "-", score2: "-" },
+  game7: { score1: "-", score2: "-" },
+  game8: { score1: "-", score2: "-" },
+  game9: { score1: "-", score2: "-" },
+  game10: { score1: "-", score2: "-" },
+  game11: { score1: "-", score2: "-" },
+  game12: { score1: "-", score2: "-" },
+  game13: { score1: "-", score2: "-" },
+  game14: { score1: "-", score2: "-" },
+  game15: { score1: "-", score2: "-" },
+  game16: { score1: "-", score2: "-" }
+};
 
 // ==========================================
 // MATA-MATA
 // ==========================================
 function renderKnockout() {
 
-  const qualified = getQualifiedTeams();
 
-  const bestThirds = getBestThirdPlaced();
+  const matches = [
+
+  {
+    id: "game1",
+    date: "28/06",
+    hour: "16:00",
+    home: "southafrica",
+    away: "canada",
+    broadcasters: ["CazéTV"]
+  },
+
+{
+  id: "game2",
+  date: "29/06",
+  hour: "14:00",
+  home: "brazil",
+  away: "japan",
+  broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+},
+
+  {
+    id: "game3",
+    date: "29/06",
+    hour: "17:30",
+    home: "germany",
+    away: "paraguay",
+    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+  },
+
+  {
+    id: "game4",
+    date: "29/06",
+    hour: "22:00",
+    home: "netherlands",
+    away: "morocco",
+    broadcasters: ["CazéTV"]
+  },
+
+  {
+    id: "game5",
+    date: "30/06",
+    hour: "14:00",
+    home: "ivorycoast",
+    away: "norway",
+    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+  },
+
+  {
+    id: "game6",
+    date: "30/06",
+    hour: "18:00",
+    home: "france",
+    away: "sweden",
+    broadcasters: ["CazéTV"]
+  },
+
+  {
+    id: "game7",
+    date: "30/06",
+    hour: "22:00",
+    home: "mexico",
+    away: "ecuador",
+    broadcasters:  ["Globo", "SporTV", "CazéTV"]
+  },
+
+  {
+    id: "game8",
+    date: "01/07",
+    hour: "13:00",
+    home: "england",
+    away: "congo",
+    broadcasters: ["CazéTV"]
+  },
+
+  {
+    id: "game9",
+    date: "01/07",
+    hour: "17:00",
+    home: "belgium",
+    away: "senegal",
+    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+  },
+
+  {
+    id: "game10",
+    date: "01/07",
+    hour: "21:00",
+    home: "usa",
+    away: "bosnia",
+    broadcasters: ["CazéTV"]
+  },
+
+  {
+    id: "game11",
+    date: "02/07",
+    hour: "16:00",
+    home: "spain",
+    away: "austria",
+    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+  },
+
+  {
+    id: "game12",
+    date: "02/07",
+    hour: "20:00",
+    home: "portugal",
+    away: "croatia",
+    broadcasters: ["CazéTV"]
+  },
+
+  {
+    id: "game13",
+    date: "03/07",
+    hour: "00:00",
+    home: "switzerland",
+    away: "algeria",
+    broadcasters: ["CazéTV"]
+  },
+
+  {
+    id: "game14",
+    date: "03/07",
+    hour: "15:00",
+    home: "australia",
+    away: "egypt",
+    broadcasters:  ["Globo", "SporTV", "CazéTV"]
+  },
+
+  {
+    id: "game15",
+    date: "03/07",
+    hour: "19:00",
+    home: "argentina",
+    away: "capeverde",
+    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+  },
+
+  {
+    id: "game16",
+    date: "03/07",
+    hour: "22:30",
+    home: "colombia",
+    away: "ghana",
+    broadcasters: ["CazéTV"]
+  }
+
+];
 
    let html = `
     <div class="knockout-stage">
@@ -438,124 +601,6 @@ function renderKnockout() {
   </div>
   `;
 
-  const matches = [
-
-    // 28/06
-    {
-      date: "28/06",
-      hour: "16:00",
-      home: qualified["Grupo A"].second,
-      away: qualified["Grupo B"].second
-    },
-
-    // 29/06
-    {
-      date: "29/06",
-      hour: "14:00",
-      home: qualified["Grupo C"].first,
-      away: qualified["Grupo F"].second
-    },
-   
-    {
-      date: "29/06",
-      hour: "17:30",
-      home: qualified["Grupo E"].first,
-      away: bestThirds[0].name
-      },
-    
-    {
-      date: "29/06",
-      hour: "22:00",
-      home: qualified["Grupo F"].first,
-      away: qualified["Grupo C"].second
-    },
-
-    // 30/06
-    {
-      date: "30/06",
-      hour: "14:00",
-      home: qualified["Grupo E"].second,
-      away: qualified["Grupo I"].second
-    },
-    
-    {
-    date: "30/06",
-    hour: "18:00",
-    home: qualified["Grupo I"].first,
-    away: bestThirds[1].name
-    },
-    
-    {
-    date: "30/06",
-    hour: "22:00",
-    home: qualified["Grupo A"].first,
-    away: bestThirds[2].name
-    },
-
-    // 01/07
-    {
-      date: "01/07",
-      hour: "13:00",
-      home: qualified["Grupo L"].first,
-      away: bestThirds[3].name
-    },
-    
-   {
-      date: "01/07",
-      hour: "17:00",
-      home: qualified["Grupo G"].first,
-      away: bestThirds[4].name
-    },
-    
-     {
-    date: "01/07",
-    hour: "21:00",
-    home: qualified["Grupo D"].first,
-    away: bestThirds[5].name
-    },
-
-    // 02/07
-    {
-      date: "02/07",
-      hour: "16:00",
-      home: qualified["Grupo H"].first,
-      away: qualified["Grupo J"].second
-    },
-    {
-      date: "02/07",
-      hour: "20:00",
-      home: qualified["Grupo K"].second,
-      away: qualified["Grupo L"].second
-    },
-
-    // 03/07
-    {
-      date: "03/07",
-      hour: "00:00",
-      home: qualified["Grupo B"].first,
-      away: bestThirds[6].name
-    },
-    
-    {
-      date: "03/07",
-      hour: "15:00",
-      home: qualified["Grupo D"].second,
-      away: qualified["Grupo G"].second
-    },
-    {
-      date: "03/07",
-      hour: "19:00",
-      home: qualified["Grupo J"].first,
-      away: qualified["Grupo H"].second
-    },
-   
-    {
-      date: "03/07",
-      hour: "22:30",
-      home: qualified["Grupo K"].first,
-      away: bestThirds[7].name
-    }
-  ];
 
   const weekDays = {
     "28/06": "DOMINGO",
@@ -581,14 +626,16 @@ function renderKnockout() {
       `;
     }
 
-    html += createKnockoutMatch(
-      match.home,
-      match.away,
-      match.date,
-      match.hour,
-      "32 Avos de Final",
-      ["Globo", "SporTV", "CazéTV"]
-    );
+ html += createKnockoutMatch(
+  match.home,
+  match.away,
+  match.date,
+  match.hour,
+  "16 Avos de Final",
+  knockoutResults[match.id]?.score1 ?? "-",
+  knockoutResults[match.id]?.score2 ?? "-",
+  match.broadcasters || []
+);
   });
 
   const container = document.querySelector("#knockoutContainer");
@@ -668,7 +715,16 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcas
   `
 }
 
-function createKnockoutMatch(home, away, date, hour, stage, broadcasters = []) {
+function createKnockoutMatch(
+  home,
+  away,
+  date,
+  hour,
+  stage,
+  score1 = "-",
+  score2 = "-",
+  broadcasters = []
+) {
 
   const homeFlag = home.includes("Melhor")
     ? ""
@@ -677,6 +733,18 @@ function createKnockoutMatch(home, away, date, hour, stage, broadcasters = []) {
   const awayFlag = away.includes("Melhor")
     ? ""
     : `<img src="assets/icon-${away}.svg">`;
+
+    const broadcastersHTML = broadcasters
+  .map(channel => `
+    <a
+      href="${streamingLinks[channel]}"
+      target="_blank"
+      class="broadcast-btn"
+    >
+      📺 ${channel}
+    </a>
+  `)
+  .join("");
 
   return `
     <li class="match-card knockout">
@@ -687,15 +755,21 @@ function createKnockoutMatch(home, away, date, hour, stage, broadcasters = []) {
       </div>
 
       <div class="match-info">
-  <div class="score-box">
-    <span>-</span>
-    <strong>x</strong>
-    <span>-</span>
-  </div>
 
-   <small class="match-date">
+  <div class="score-box">
+  <span>${score1}</span>
+  <strong>x</strong>
+  <span>${score2}</span>
+</div>
+
+  <small class="match-date">
     ${hour}
   </small>
+
+  <div class="match-broadcasters">
+  ${broadcastersHTML}
+</div>
+
 </div>
 
       <div class="flag">

@@ -425,7 +425,7 @@ const knockoutResults = {
   game4: { score1: "(2)1", score2: "1(3*)" },
   game5: { score1: "1", score2: "2" },
   game6: { score1: "3", score2: "0" },
-  game7: { score1: "-", score2: "-" },
+  game7: { score1: "2", score2: "0" },
   game8: { score1: "-", score2: "-" },
   game9: { score1: "-", score2: "-" },
   game10: { score1: "-", score2: "-" },

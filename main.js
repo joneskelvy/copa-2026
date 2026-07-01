@@ -421,13 +421,13 @@ function renderBestThirds() {
 const knockoutResults = {
   game1: { score1: "0", score2: "1" },
   game2: { score1: "2", score2: "1" },
-  game3: { score1: "(3)1", score2: "1(4*)" },
-  game4: { score1: "(2)1", score2: "1(3*)" },
+  game3: {score1: 1, score2: 1, penalties1: 3, penalties2: 4},
+  game4: {score1: 1, score2: 1, penalties1: 2, penalties2: 3},
   game5: { score1: "1", score2: "2" },
   game6: { score1: "3", score2: "0" },
   game7: { score1: "2", score2: "0" },
   game8: { score1: "2", score2: "1" },
-  game9: { score1: "-", score2: "-" },
+  game9: { score1: "0", score2: "1" },
   game10: { score1: "-", score2: "-" },
   game11: { score1: "-", score2: "-" },
   game12: { score1: "-", score2: "-" },
@@ -436,6 +436,25 @@ const knockoutResults = {
   game15: { score1: "-", score2: "-" },
   game16: { score1: "-", score2: "-" }
 };
+
+function getWinner(matchId, home, away) {
+
+  const result = knockoutResults[matchId];
+
+  if (!result) return null;
+
+  const score1 = Number(result.score1);
+  const score2 = Number(result.score2);
+
+  if (score1 > score2) return home;
+  if (score2 > score1) return away;
+
+  if (result.penalties1 > result.penalties2) return home;
+  if (result.penalties2 > result.penalties1) return away;
+
+  return null;
+}
+
 
 // ==========================================
 // MATA-MATA
@@ -591,6 +610,158 @@ function renderKnockout() {
 
 ];
 
+const winners = {
+
+  game1: getWinner(
+    "game1",
+    matches[0].home,
+    matches[0].away
+  ),
+
+  game2: getWinner(
+    "game2",
+    matches[1].home,
+    matches[1].away
+  ),
+
+  game3: getWinner(
+    "game3",
+    matches[2].home,
+    matches[2].away
+  ),
+
+  game4: getWinner(
+    "game4",
+    matches[3].home,
+    matches[3].away
+  ),
+
+  game5: getWinner(
+    "game5",
+    matches[4].home,
+    matches[4].away
+  ),
+
+  game6: getWinner(
+    "game6",
+    matches[5].home,
+    matches[5].away
+  ),
+
+  game7: getWinner(
+    "game7",
+    matches[6].home,
+    matches[6].away
+  ),
+
+  game8: getWinner(
+    "game8",
+    matches[7].home,
+    matches[7].away
+  ),
+
+  game9: getWinner(
+    "game9",
+    matches[8].home,
+    matches[8].away
+  ),
+
+  game10: getWinner(
+    "game10",
+    matches[9].home,
+    matches[9].away
+  ),
+
+  game11: getWinner(
+    "game11",
+    matches[10].home,
+    matches[10].away
+  ),
+
+  game12: getWinner(
+    "game12",
+    matches[11].home,
+    matches[11].away
+  ),
+
+  game13: getWinner(
+    "game13",
+    matches[12].home,
+    matches[12].away
+  ),
+
+  game14: getWinner(
+    "game14",
+    matches[13].home,
+    matches[13].away
+  ),
+
+  game15: getWinner(
+    "game15",
+    matches[14].home,
+    matches[14].away
+  ),
+
+  game16: getWinner(
+    "game16",
+    matches[15].home,
+    matches[15].away
+  )
+
+};
+
+const roundOf16 = [
+
+  {
+    id: "r16_1",
+    home: winners.game3,
+    away: winners.game6
+  },
+
+  {
+    id: "r16_2",
+    home: winners.game1,
+    away: winners.game4
+  },
+
+  {
+    id: "r16_3",
+    home: winners.game12,
+    away: winners.game11
+  },
+
+  {
+    id: "r16_4",
+    home: winners.game10,
+    away: winners.game9
+  },
+
+  {
+    id: "r16_5",
+    home: winners.game2,
+    away: winners.game5
+  },
+
+  {
+    id: "r16_6",
+    home: winners.game7,
+    away: winners.game8
+  },
+
+  {
+    id: "r16_7",
+    home: winners.game15,
+    away: winners.game14
+  },
+
+  {
+    id: "r16_8",
+    home: winners.game13,
+    away: winners.game16
+  }
+
+];
+
    let html = `
     <div class="knockout-stage">
       🏆 FASE ELIMINATÓRIA
@@ -625,6 +796,7 @@ function renderKnockout() {
         </div>
       `;
     }
+    
 
  html += createKnockoutMatch(
   match.home,
@@ -634,9 +806,29 @@ function renderKnockout() {
   "16 Avos de Final",
   knockoutResults[match.id]?.score1 ?? "-",
   knockoutResults[match.id]?.score2 ?? "-",
+  knockoutResults[match.id]?.penalties1,
+  knockoutResults[match.id]?.penalties2,
   match.broadcasters || []
 );
   });
+
+  html += `
+  <div class="knockout-subtitle">
+    OITAVAS DE FINAL
+  </div>
+`;
+
+roundOf16.forEach(match => {
+
+  html += createKnockoutMatch(
+    match.home || "A definir",
+    match.away || "A definir",
+    "",
+    "",
+    "Oitavas de Final"
+  );
+
+});
 
   const container = document.querySelector("#knockoutContainer");
 
@@ -723,16 +915,18 @@ function createKnockoutMatch(
   stage,
   score1 = "-",
   score2 = "-",
+  penalties1,
+  penalties2,
   broadcasters = []
 ) {
 
-  const homeFlag = home.includes("Melhor")
-    ? ""
-    : `<img src="assets/icon-${home}.svg">`;
+const homeFlag = !home
+  ? `<img src="assets/icon-tbd.svg">`
+  : `<img src="assets/icon-${home}.svg" onerror="this.src='assets/icon-tbd.svg'">`;
 
-  const awayFlag = away.includes("Melhor")
-    ? ""
-    : `<img src="assets/icon-${away}.svg">`;
+const awayFlag = !away
+  ? `<img src="assets/icon-tbd.svg">`
+  : `<img src="assets/icon-${away}.svg" onerror="this.src='assets/icon-tbd.svg'">`;
 
     const broadcastersHTML = broadcasters
   .map(channel => `
@@ -746,6 +940,16 @@ function createKnockoutMatch(
   `)
   .join("");
 
+  const displayScore1 =
+  penalties1 !== undefined
+    ? `(${penalties1}) ${score1}`
+    : score1;
+
+const displayScore2 =
+  penalties2 !== undefined
+    ? `${score2} (${penalties2})`
+    : score2;
+
   return `
     <li class="match-card knockout">
 
@@ -757,9 +961,9 @@ function createKnockoutMatch(
       <div class="match-info">
 
   <div class="score-box">
-  <span>${score1}</span>
+  <span>${displayScore1}</span>
   <strong>x</strong>
-  <span>${score2}</span>
+  <span>${displayScore2}</span>
 </div>
 
   <small class="match-date">
@@ -782,6 +986,15 @@ function createKnockoutMatch(
 }
 
 function formatCountryName(name) {
+
+   if (!name) {
+    return "A definir";
+  }
+
+  if (name === "a-definir") {
+    return "A definir";
+  }
+
   const names = {
     southafrica: "África do Sul",
     southkorea: "Coreia do Sul",

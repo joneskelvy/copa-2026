@@ -430,8 +430,8 @@ const knockoutResults = {
   game9: { score1: "3", score2: "2" },
   game10: { score1: "2", score2: "0" },
   game11: { score1: "3", score2: "0" },
-  game12: { score1: "-", score2: "-" },
-  game13: { score1: "-", score2: "-" },
+  game12: { score1: "2", score2: "1" },
+  game13: { score1: "2", score2: "0" },
   game14: { score1: "-", score2: "-" },
   game15: { score1: "-", score2: "-" },
   game16: { score1: "-", score2: "-" }

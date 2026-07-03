@@ -432,7 +432,7 @@ const knockoutResults = {
   game11: { score1: "3", score2: "0" },
   game12: { score1: "2", score2: "1" },
   game13: { score1: "2", score2: "0" },
-  game14: { score1: "-", score2: "-" },
+  game14: {score1: 1, score2: 1, penalties1: 2, penalties2: 4},
   game15: { score1: "-", score2: "-" },
   game16: { score1: "-", score2: "-" }
 };

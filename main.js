@@ -433,9 +433,43 @@ const knockoutResults = {
   game12: { score1: "2", score2: "1" },
   game13: { score1: "2", score2: "0" },
   game14: {score1: 1, score2: 1, penalties1: 2, penalties2: 4},
-  game15: { score1: "-", score2: "-" },
-  game16: { score1: "-", score2: "-" }
+  game15: { score1: "3", score2: "2" },
+  game16: { score1: "1", score2: "0" }
 };
+
+// ==========================================
+// RESULTADOS DAS OITAVAS DE FINAL
+// ==========================================
+const roundOf16Results = {
+
+  r16_1: { score1: "0", score2: "1" },
+  r16_2: { score1: "-", score2: "-" },
+  r16_3: { score1: "-", score2: "-" },
+  r16_4: { score1: "-", score2: "-" },
+  r16_5: { score1: "-", score2: "-" },
+  r16_6: { score1: "-", score2: "-" },
+  r16_7: { score1: "-", score2: "-" },
+  r16_8: { score1: "-", score2: "-" }
+
+};
+
+function getRound16Winner(id, team1, team2) {
+
+    const match = roundOf16Results[id];
+
+    if (!match) return team1;
+
+    const s1 = Number(match.score1);
+    const s2 = Number(match.score2);
+
+    if (s1 > s2) return team1;
+    if (s2 > s1) return team2;
+
+    if (match.penalties1 > match.penalties2) return team1;
+    if (match.penalties2 > match.penalties1) return team2;
+
+    return team1;
+}
 
 function getWinner(matchId, home, away) {
 
@@ -710,77 +744,212 @@ const winners = {
 
 };
 
-const roundOf16 = [
+const roundOf16Matches = [
 
-  {
-    id: "r16_1",
-    home: winners.game3,
-    away: winners.game6
-  },
+{
+    id:"r16_1",
+    date:"04/07",
+    hour:"14:00",
+    home:"canada",
+    away:"morocco",
+    score1:"0",
+    score2:"3",
+    broadcasters:["Globo","SporTV","CazéTV"]
+},
 
-  {
-    id: "r16_2",
-    home: winners.game1,
-    away: winners.game4
-  },
+{
+    id:"r16_2",
+    date:"04/07",
+    hour:"18:00",
+    home:"paraguay",
+    away:"france",
+    score1:"0",
+    score2:"1",
+    broadcasters:["CazéTV"]
+},
 
-  {
-    id: "r16_3",
-    home: winners.game12,
-    away: winners.game11
-  },
+{
+    id:"r16_3",
+    date:"05/07",
+    hour:"17:00",
+    home:"brazil",
+    away:"norway",
+    score1:"1",
+    score2:"2",
+    broadcasters:["Globo","SporTV","CazéTV"]
+},
 
-  {
-    id: "r16_4",
-    home: winners.game10,
-    away: winners.game9
-  },
+{
+    id:"r16_4",
+    date:"05/07",
+    hour:"22:00",
+    home:"mexico",
+    away:"england",
+    score1:"2",
+    score2:"3",
+    broadcasters:["CazéTV"]
+},
 
-  {
-    id: "r16_5",
-    home: winners.game2,
-    away: winners.game5
-  },
+{
+    id:"r16_5",
+    date:"06/07",
+    hour:"16:00",
+    home:"portugal",
+    away:"spain",
+    score1:"0",
+    score2:"1",
+    broadcasters:["Globo","SporTV","CazéTV"]
+},
 
-  {
-    id: "r16_6",
-    home: winners.game7,
-    away: winners.game8
-  },
+{
+    id:"r16_6",
+    date:"06/07",
+    hour:"21:00",
+    home:"usa",
+    away:"belgium",
+    score1:"1",
+    score2:"4",
+    broadcasters:["CazéTV"]
+},
 
-  {
-    id: "r16_7",
-    home: winners.game15,
-    away: winners.game14
-  },
+{
+    id:"r16_7",
+    date:"07/07",
+    hour:"13:00",
+    home:"argentina",
+    away:"egypt",
+    score1:"3",
+    score2:"2",
+    broadcasters:["Globo","SporTV","CazéTV"]
+},
 
-  {
-    id: "r16_8",
-    home: winners.game13,
-    away: winners.game16
-  }
+{
+    id:"r16_8",
+    date:"07/07",
+    hour:"17:00",
+    home:"switzerland",
+    away:"colombia",
+    score1:"0",
+    score2:"0",
+    penalties1:4,
+    penalties2:3,
+    broadcasters:["CazéTV"]
+}
 
 ];
-
-   let html = `
-    <div class="knockout-stage">
-      🏆 FASE ELIMINATÓRIA
-    </div>
-
-      <div class="knockout-subtitle">
-    16 AVOS DE FINAL
-  </div>
-  `;
-
-
-  const weekDays = {
+const weekDays = {
     "28/06": "DOMINGO",
     "29/06": "SEGUNDA-FEIRA",
     "30/06": "TERÇA-FEIRA",
     "01/07": "QUARTA-FEIRA",
     "02/07": "QUINTA-FEIRA",
-    "03/07": "SEXTA-FEIRA"
-  };
+    "03/07": "SEXTA-FEIRA",
+    "04/07": "SÁBADO",
+    "05/07": "DOMINGO",
+    "06/07": "SEGUNDA-FEIRA",
+    "07/07": "TERÇA-FEIRA",
+    "09/07": "QUINTA-FEIRA",
+    "10/07": "SEXTA-FEIRA",
+    "11/07": "SÁBADO",
+    "14/07": "TERÇA-FEIRA",
+    "15/07": "QUARTA-FEIRA"
+};
+
+
+let html = `
+<div class="knockout-stage">
+🏆 FASE ELIMINATÓRIA
+</div>
+`;
+  
+
+  const quarterFinalMatches = [
+
+{
+    id:"qf1",
+    date:"09/07",
+    hour:"17:00",
+    home:"france",
+    away:"morocco",
+    score1:"2",
+    score2:"0",
+    broadcasters:["Globo","SporTV","CazéTV"]
+},
+
+{
+    id:"qf2",
+    date:"10/07",
+    hour:"16:00",
+    home:"spain",
+    away:"belgium",
+    score1:"2",
+    score2:"1",
+    broadcasters:["CazéTV"]
+},
+
+{
+    id:"qf3",
+    date:"11/07",
+    hour:"18:00",
+    home:"norway",
+    away:"england",
+    score1:"1",
+    score2:"2",
+    broadcasters:["Globo","SporTV","CazéTV"]
+},
+
+{
+    id:"qf4",
+    date:"11/07",
+    hour:"22:00",
+    home:"argentina",
+    away:"switzerland",
+    score1:"3",
+    score2:"1",
+    broadcasters:["CazéTV"]
+}
+
+];
+
+// ======================
+// SEMIFINAIS
+// ======================
+
+const semiFinalMatches = [
+
+{
+    id:"sf1",
+    date:"14/07",
+    hour:"16:00",
+    home:"france",
+    away:"spain",
+    score1:"-",
+    score2:"-",
+    broadcasters:["Globo","SporTV","CazéTV"]
+},
+
+{
+    id:"sf2",
+    date:"15/07",
+    hour:"16:00",
+    home:"england",
+    away:"argentina",
+    score1:"-",
+    score2:"-",
+    broadcasters:["Globo","SporTV","CazéTV"]
+}
+
+]; // <-- FECHAMENTO QUE ESTAVA FALTANDO
+
+
+html += `
+<div class="knockout-subtitle">
+  16 AVOS DE FINAL
+</div>
+`;
+
+
+
 
   let currentDate = "";
 
@@ -818,17 +987,86 @@ const roundOf16 = [
   </div>
 `;
 
-roundOf16.forEach(match => {
+roundOf16Matches.forEach(match => {
 
   html += createKnockoutMatch(
-    match.home || "A definir",
-    match.away || "A definir",
-    "",
-    "",
-    "Oitavas de Final"
+    match.home,
+    match.away,
+    match.date,
+    match.hour,
+    "Oitavas de Final",
+    match.score1,
+    match.score2,
+    match.penalties1,
+    match.penalties2,
+    match.broadcasters
   );
 
 });
+
+html += `
+<div class="knockout-subtitle">
+    QUARTAS DE FINAL
+</div>
+`;
+
+quarterFinalMatches.forEach(match => {
+
+    html += createKnockoutMatch(
+
+        match.home,
+        match.away,
+        match.date,
+        match.hour,
+        "Quartas de Final",
+
+        match.score1,
+        match.score2,
+
+        match.penalties1,
+        match.penalties2,
+
+        match.broadcasters
+
+    );
+
+});
+
+let currentSemiDate = "";
+
+semiFinalMatches.forEach(match => {
+
+  if (currentSemiDate !== match.date) {
+
+    currentSemiDate = match.date;
+
+    html += `
+      <div class="knockout-day">
+        ${match.date} • ${weekDays[match.date]}
+      </div>
+    `;
+  }
+
+  html += createKnockoutMatch(
+
+    match.home,
+    match.away,
+    match.date,
+    match.hour,
+    "Semifinal",
+
+    match.score1,
+    match.score2,
+
+    match.penalties1,
+    match.penalties2,
+
+    match.broadcasters
+
+  );
+
+});
+
 
   const container = document.querySelector("#knockoutContainer");
 

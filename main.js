@@ -142,7 +142,7 @@ const matchesData = [
     date: "25/06",
     day: "quinta",
     games: [
-       { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "2", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] },
+      { id: "ecuador-germany", home: "ecuador", hour: "17:00", away: "germany", score1: "2", score2: "1", broadcasters: ["CazéTV", "Globo", "SporTV"] },
       { id: "curacao-ivorycoast", home: "curacao", hour: "17:00", away: "ivorycoast", score1: "0", score2: "2", broadcasters: ["CazéTV", "SporTV"] },
       { id: "japan-sweden", home: "japan", hour: "20:00", away: "sweden", score1: "1", score2: "1", broadcasters: ["CazéTV", "Globo", "SBT", "SporTV"] },
       { id: "tunisia-netherlands", home: "tunisia", hour: "20:00", away: "netherlands", score1: "1", score2: "3", broadcasters: ["CazéTV"] },
@@ -151,7 +151,7 @@ const matchesData = [
     ]
   },
   {
-      date: "26/06",
+    date: "26/06",
     day: "sexta",
     games: [
       { id: "norway-france", home: "norway", hour: "16:00", away: "france", score1: "1", score2: "4", broadcasters: ["CazéTV", "Globo", "SporTV"] },
@@ -198,8 +198,6 @@ const groupsMapping = {
 function calculateGroups() {
   const tableData = {};
 
-
-
   // Inicializa todos os países mapeados com 0 pontos
   Object.values(groupsMapping).flat().forEach(country => {
     tableData[country] = { name: country, P: 0, V: 0, E: 0, D: 0, GP: 0, GC: 0, SG: 0 };
@@ -216,18 +214,24 @@ function calculateGroups() {
 
         if (!tableData[p1] || !tableData[p2]) return;
 
-        tableData[p1].GP += g1; tableData[p1].GC += g2;
-        tableData[p2].GP += g2; tableData[p2].GC += g1;
+        tableData[p1].GP += g1;
+        tableData[p1].GC += g2;
+        tableData[p2].GP += g2;
+        tableData[p2].GC += g1;
 
         if (g1 > g2) {
-          tableData[p1].P += 3; tableData[p1].V += 1;
+          tableData[p1].P += 3;
+          tableData[p1].V += 1;
           tableData[p2].D += 1;
         } else if (g2 > g1) {
-          tableData[p2].P += 3; tableData[p2].V += 1;
+          tableData[p2].P += 3;
+          tableData[p2].V += 1;
           tableData[p1].D += 1;
         } else {
-          tableData[p1].P += 1; tableData[p1].E += 1;
-          tableData[p2].P += 1; tableData[p2].E += 1;
+          tableData[p1].P += 1;
+          tableData[p1].E += 1;
+          tableData[p2].P += 1;
+          tableData[p2].E += 1;
         }
 
         tableData[p1].SG = tableData[p1].GP - tableData[p1].GC;
@@ -244,11 +248,9 @@ function calculateGroups() {
 // ==========================================
 function getQualifiedTeams() {
   const stats = calculateGroups();
-
   const qualified = {};
 
   Object.entries(groupsMapping).forEach(([groupName, teams]) => {
-
     const sorted = teams
       .map(team => stats[team])
       .sort((a, b) =>
@@ -266,8 +268,6 @@ function getQualifiedTeams() {
   return qualified;
 }
 
-
-
 // ==========================================
 // RENDERIZAÇÃO DA TABELA DE GRUPOS
 // ==========================================
@@ -279,7 +279,6 @@ function renderGroupsTable() {
   let html = "";
 
   Object.entries(groupsMapping).forEach(([groupName, teams]) => {
-    // Ordenação (Pontos -> Vitórias -> Saldo de Gols)
     const sortedTeams = teams
       .map(t => stats[t] || { name: t, P: 0, V: 0, E: 0, D: 0, GP: 0, GC: 0, SG: 0 })
       .sort((a, b) => b.P - a.P || b.V - a.V || b.SG - a.SG);
@@ -294,7 +293,9 @@ function renderGroupsTable() {
           <td><img class="table-flag" src="assets/icon-${team.name}.svg" alt="${formattedName}"> ${formattedName}</td>
           <td class="text-center font-bold">${team.P}</td>
           <td class="text-center">${team.V}</td>
-          <td class="text-center">${team.E}</td> <td class="text-center">${team.D}</td> <td class="text-center">${team.SG}</td>
+          <td class="text-center">${team.E}</td>
+          <td class="text-center">${team.D}</td>
+          <td class="text-center">${team.SG}</td>
         </tr>
       `;
     });
@@ -309,7 +310,9 @@ function renderGroupsTable() {
               <th style="width: 40%">Seleção</th>
               <th class="text-center" style="width: 10%">P</th>
               <th class="text-center" style="width: 10%">V</th>
-              <th class="text-center" style="width: 10%">E</th> <th class="text-center" style="width: 10%">D</th> <th class="text-center" style="width: 10%">SG</th>
+              <th class="text-center" style="width: 10%">E</th>
+              <th class="text-center" style="width: 10%">D</th>
+              <th class="text-center" style="width: 10%">SG</th>
             </tr>
           </thead>
           <tbody>
@@ -324,13 +327,10 @@ function renderGroupsTable() {
 }
 
 function getBestThirdPlaced() {
-
   const stats = calculateGroups();
   const thirds = [];
-  
 
   Object.entries(groupsMapping).forEach(([groupName, teams]) => {
-
     const sorted = teams
       .map(team => stats[team])
       .sort((a, b) =>
@@ -340,7 +340,6 @@ function getBestThirdPlaced() {
       );
 
     const third = sorted[2];
-
     thirds.push({
       group: groupName,
       name: third.name,
@@ -348,7 +347,6 @@ function getBestThirdPlaced() {
       V: third.V,
       SG: third.SG
     });
-
   });
 
   return thirds.sort((a, b) =>
@@ -359,18 +357,14 @@ function getBestThirdPlaced() {
 }
 
 function renderBestThirds() {
-
   const thirds = getBestThirdPlaced();
 
   return `
     <div class="best-thirds-card">
-
       <h2 class="best-thirds-title">
         ⭐ MELHORES 3º COLOCADOS
       </h2>
-
       <table class="group-table">
-
         <thead>
           <tr>
             <th>#</th>
@@ -380,15 +374,10 @@ function renderBestThirds() {
             <th>SG</th>
           </tr>
         </thead>
-
         <tbody>
-
           ${thirds.map((team, index) => `
-
             <tr class="${index < 8 ? "qualified-third" : ""}">
-
               <td>${index + 1}</td>
-
               <td>
                 <img
                   class="table-flag"
@@ -397,32 +386,28 @@ function renderBestThirds() {
                 >
                 ${formatCountryName(team.name)}
               </td>
-
               <td>${team.P}</td>
               <td>${team.V}</td>
               <td>${team.SG}</td>
-
             </tr>
-
           `).join("")}
-
         </tbody>
-
       </table>
-
       <p class="thirds-note">
         ✅ Os 8 primeiros avançam para os 16 Avos de Final
       </p>
-
     </div>
   `;
 }
 
+// ==========================================
+// RESULTADOS DOS 16 AVOS DE FINAL
+// ==========================================
 const knockoutResults = {
   game1: { score1: "0", score2: "1" },
   game2: { score1: "2", score2: "1" },
-  game3: {score1: 1, score2: 1, penalties1: 3, penalties2: 4},
-  game4: {score1: 1, score2: 1, penalties1: 2, penalties2: 3},
+  game3: { score1: 1, score2: 1, penalties1: 3, penalties2: 4 },
+  game4: { score1: 1, score2: 1, penalties1: 2, penalties2: 3 },
   game5: { score1: "1", score2: "2" },
   game6: { score1: "3", score2: "0" },
   game7: { score1: "2", score2: "0" },
@@ -432,49 +417,13 @@ const knockoutResults = {
   game11: { score1: "3", score2: "0" },
   game12: { score1: "2", score2: "1" },
   game13: { score1: "2", score2: "0" },
-  game14: {score1: 1, score2: 1, penalties1: 2, penalties2: 4},
+  game14: { score1: 1, score2: 1, penalties1: 2, penalties2: 4 },
   game15: { score1: "3", score2: "2" },
   game16: { score1: "1", score2: "0" }
 };
 
-// ==========================================
-// RESULTADOS DAS OITAVAS DE FINAL
-// ==========================================
-const roundOf16Results = {
-
-  r16_1: { score1: "0", score2: "1" },
-  r16_2: { score1: "-", score2: "-" },
-  r16_3: { score1: "-", score2: "-" },
-  r16_4: { score1: "-", score2: "-" },
-  r16_5: { score1: "-", score2: "-" },
-  r16_6: { score1: "-", score2: "-" },
-  r16_7: { score1: "-", score2: "-" },
-  r16_8: { score1: "-", score2: "-" }
-
-};
-
-function getRound16Winner(id, team1, team2) {
-
-    const match = roundOf16Results[id];
-
-    if (!match) return team1;
-
-    const s1 = Number(match.score1);
-    const s2 = Number(match.score2);
-
-    if (s1 > s2) return team1;
-    if (s2 > s1) return team2;
-
-    if (match.penalties1 > match.penalties2) return team1;
-    if (match.penalties2 > match.penalties1) return team2;
-
-    return team1;
-}
-
 function getWinner(matchId, home, away) {
-
   const result = knockoutResults[matchId];
-
   if (!result) return null;
 
   const score1 = Number(result.score1);
@@ -489,355 +438,142 @@ function getWinner(matchId, home, away) {
   return null;
 }
 
-
 // ==========================================
-// MATA-MATA
+// MATA-MATA COMPLETO
 // ==========================================
 function renderKnockout() {
-
-
   const matches = [
+    {
+      id: "game1",
+      date: "28/06",
+      hour: "16:00",
+      home: "southafrica",
+      away: "canada",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "game2",
+      date: "29/06",
+      hour: "14:00",
+      home: "brazil",
+      away: "japan",
+      broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game3",
+      date: "29/06",
+      hour: "17:30",
+      home: "germany",
+      away: "paraguay",
+      broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game4",
+      date: "29/06",
+      hour: "22:00",
+      home: "netherlands",
+      away: "morocco",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "game5",
+      date: "30/06",
+      hour: "14:00",
+      home: "ivorycoast",
+      away: "norway",
+      broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game6",
+      date: "30/06",
+      hour: "18:00",
+      home: "france",
+      away: "sweden",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "game7",
+      date: "30/06",
+      hour: "22:00",
+      home: "mexico",
+      away: "ecuador",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game8",
+      date: "01/07",
+      hour: "13:00",
+      home: "england",
+      away: "congo",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "game9",
+      date: "01/07",
+      hour: "17:00",
+      home: "belgium",
+      away: "senegal",
+      broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game10",
+      date: "01/07",
+      hour: "21:00",
+      home: "usa",
+      away: "bosnia",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "game11",
+      date: "02/07",
+      hour: "16:00",
+      home: "spain",
+      away: "austria",
+      broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game12",
+      date: "02/07",
+      hour: "20:00",
+      home: "portugal",
+      away: "croatia",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "game13",
+      date: "03/07",
+      hour: "00:00",
+      home: "switzerland",
+      away: "algeria",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "game14",
+      date: "03/07",
+      hour: "15:00",
+      home: "australia",
+      away: "egypt",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game15",
+      date: "03/07",
+      hour: "19:00",
+      home: "argentina",
+      away: "capeverde",
+      broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
+    },
+    {
+      id: "game16",
+      date: "03/07",
+      hour: "22:30",
+      home: "colombia",
+      away: "ghana",
+      broadcasters: ["CazéTV"]
+    }
+  ];
 
-  {
-    id: "game1",
-    date: "28/06",
-    hour: "16:00",
-    home: "southafrica",
-    away: "canada",
-    broadcasters: ["CazéTV"]
-  },
-
-{
-  id: "game2",
-  date: "29/06",
-  hour: "14:00",
-  home: "brazil",
-  away: "japan",
-  broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
-},
-
-  {
-    id: "game3",
-    date: "29/06",
-    hour: "17:30",
-    home: "germany",
-    away: "paraguay",
-    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
-  },
-
-  {
-    id: "game4",
-    date: "29/06",
-    hour: "22:00",
-    home: "netherlands",
-    away: "morocco",
-    broadcasters: ["CazéTV"]
-  },
-
-  {
-    id: "game5",
-    date: "30/06",
-    hour: "14:00",
-    home: "ivorycoast",
-    away: "norway",
-    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
-  },
-
-  {
-    id: "game6",
-    date: "30/06",
-    hour: "18:00",
-    home: "france",
-    away: "sweden",
-    broadcasters: ["CazéTV"]
-  },
-
-  {
-    id: "game7",
-    date: "30/06",
-    hour: "22:00",
-    home: "mexico",
-    away: "ecuador",
-    broadcasters:  ["Globo", "SporTV", "CazéTV"]
-  },
-
-  {
-    id: "game8",
-    date: "01/07",
-    hour: "13:00",
-    home: "england",
-    away: "congo",
-    broadcasters: ["CazéTV"]
-  },
-
-  {
-    id: "game9",
-    date: "01/07",
-    hour: "17:00",
-    home: "belgium",
-    away: "senegal",
-    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
-  },
-
-  {
-    id: "game10",
-    date: "01/07",
-    hour: "21:00",
-    home: "usa",
-    away: "bosnia",
-    broadcasters: ["CazéTV"]
-  },
-
-  {
-    id: "game11",
-    date: "02/07",
-    hour: "16:00",
-    home: "spain",
-    away: "austria",
-    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
-  },
-
-  {
-    id: "game12",
-    date: "02/07",
-    hour: "20:00",
-    home: "portugal",
-    away: "croatia",
-    broadcasters: ["CazéTV"]
-  },
-
-  {
-    id: "game13",
-    date: "03/07",
-    hour: "00:00",
-    home: "switzerland",
-    away: "algeria",
-    broadcasters: ["CazéTV"]
-  },
-
-  {
-    id: "game14",
-    date: "03/07",
-    hour: "15:00",
-    home: "australia",
-    away: "egypt",
-    broadcasters:  ["Globo", "SporTV", "CazéTV"]
-  },
-
-  {
-    id: "game15",
-    date: "03/07",
-    hour: "19:00",
-    home: "argentina",
-    away: "capeverde",
-    broadcasters: ["Globo", "SBT", "SporTV", "CazéTV"]
-  },
-
-  {
-    id: "game16",
-    date: "03/07",
-    hour: "22:30",
-    home: "colombia",
-    away: "ghana",
-    broadcasters: ["CazéTV"]
-  }
-
-];
-
-const winners = {
-
-  game1: getWinner(
-    "game1",
-    matches[0].home,
-    matches[0].away
-  ),
-
-  game2: getWinner(
-    "game2",
-    matches[1].home,
-    matches[1].away
-  ),
-
-  game3: getWinner(
-    "game3",
-    matches[2].home,
-    matches[2].away
-  ),
-
-  game4: getWinner(
-    "game4",
-    matches[3].home,
-    matches[3].away
-  ),
-
-  game5: getWinner(
-    "game5",
-    matches[4].home,
-    matches[4].away
-  ),
-
-  game6: getWinner(
-    "game6",
-    matches[5].home,
-    matches[5].away
-  ),
-
-  game7: getWinner(
-    "game7",
-    matches[6].home,
-    matches[6].away
-  ),
-
-  game8: getWinner(
-    "game8",
-    matches[7].home,
-    matches[7].away
-  ),
-
-  game9: getWinner(
-    "game9",
-    matches[8].home,
-    matches[8].away
-  ),
-
-  game10: getWinner(
-    "game10",
-    matches[9].home,
-    matches[9].away
-  ),
-
-  game11: getWinner(
-    "game11",
-    matches[10].home,
-    matches[10].away
-  ),
-
-  game12: getWinner(
-    "game12",
-    matches[11].home,
-    matches[11].away
-  ),
-
-  game13: getWinner(
-    "game13",
-    matches[12].home,
-    matches[12].away
-  ),
-
-  game14: getWinner(
-    "game14",
-    matches[13].home,
-    matches[13].away
-  ),
-
-  game15: getWinner(
-    "game15",
-    matches[14].home,
-    matches[14].away
-  ),
-
-  game16: getWinner(
-    "game16",
-    matches[15].home,
-    matches[15].away
-  )
-
-};
-
-const roundOf16Matches = [
-
-{
-    id:"r16_1",
-    date:"04/07",
-    hour:"14:00",
-    home:"canada",
-    away:"morocco",
-    score1:"0",
-    score2:"3",
-    broadcasters:["Globo","SporTV","CazéTV"]
-},
-
-{
-    id:"r16_2",
-    date:"04/07",
-    hour:"18:00",
-    home:"paraguay",
-    away:"france",
-    score1:"0",
-    score2:"1",
-    broadcasters:["CazéTV"]
-},
-
-{
-    id:"r16_3",
-    date:"05/07",
-    hour:"17:00",
-    home:"brazil",
-    away:"norway",
-    score1:"1",
-    score2:"2",
-    broadcasters:["Globo","SporTV","CazéTV"]
-},
-
-{
-    id:"r16_4",
-    date:"05/07",
-    hour:"22:00",
-    home:"mexico",
-    away:"england",
-    score1:"2",
-    score2:"3",
-    broadcasters:["CazéTV"]
-},
-
-{
-    id:"r16_5",
-    date:"06/07",
-    hour:"16:00",
-    home:"portugal",
-    away:"spain",
-    score1:"0",
-    score2:"1",
-    broadcasters:["Globo","SporTV","CazéTV"]
-},
-
-{
-    id:"r16_6",
-    date:"06/07",
-    hour:"21:00",
-    home:"usa",
-    away:"belgium",
-    score1:"1",
-    score2:"4",
-    broadcasters:["CazéTV"]
-},
-
-{
-    id:"r16_7",
-    date:"07/07",
-    hour:"13:00",
-    home:"argentina",
-    away:"egypt",
-    score1:"3",
-    score2:"2",
-    broadcasters:["Globo","SporTV","CazéTV"]
-},
-
-{
-    id:"r16_8",
-    date:"07/07",
-    hour:"17:00",
-    home:"switzerland",
-    away:"colombia",
-    score1:"0",
-    score2:"0",
-    penalties1:4,
-    penalties2:3,
-    broadcasters:["CazéTV"]
-}
-
-];
-const weekDays = {
+  const weekDays = {
     "28/06": "DOMINGO",
     "29/06": "SEGUNDA-FEIRA",
     "30/06": "TERÇA-FEIRA",
@@ -852,235 +588,399 @@ const weekDays = {
     "10/07": "SEXTA-FEIRA",
     "11/07": "SÁBADO",
     "14/07": "TERÇA-FEIRA",
-    "15/07": "QUARTA-FEIRA"
-};
+    "15/07": "QUARTA-FEIRA",
+    "18/07": "SÁBADO",
+    "19/07": "DOMINGO"
+  };
 
+  // ======================
+  // OITAVAS DE FINAL
+  // ======================
+  const roundOf16Matches = [
+    {
+      id: "r16_1",
+      date: "04/07",
+      hour: "14:00",
+      home: "canada",
+      away: "morocco",
+      score1: "0",
+      score2: "3",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "r16_2",
+      date: "04/07",
+      hour: "18:00",
+      home: "paraguay",
+      away: "france",
+      score1: "0",
+      score2: "1",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "r16_3",
+      date: "05/07",
+      hour: "17:00",
+      home: "brazil",
+      away: "norway",
+      score1: "1",
+      score2: "2",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "r16_4",
+      date: "05/07",
+      hour: "22:00",
+      home: "mexico",
+      away: "england",
+      score1: "2",
+      score2: "3",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "r16_5",
+      date: "06/07",
+      hour: "16:00",
+      home: "portugal",
+      away: "spain",
+      score1: "0",
+      score2: "1",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "r16_6",
+      date: "06/07",
+      hour: "21:00",
+      home: "usa",
+      away: "belgium",
+      score1: "1",
+      score2: "4",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "r16_7",
+      date: "07/07",
+      hour: "13:00",
+      home: "argentina",
+      away: "egypt",
+      score1: "3",
+      score2: "2",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "r16_8",
+      date: "07/07",
+      hour: "17:00",
+      home: "switzerland",
+      away: "colombia",
+      score1: "0",
+      score2: "0",
+      penalties1: 4,
+      penalties2: 3,
+      broadcasters: ["CazéTV"]
+    }
+  ];
 
-let html = `
-<div class="knockout-stage">
-🏆 FASE ELIMINATÓRIA
-</div>
-`;
-  
-
+  // ======================
+  // QUARTAS DE FINAL
+  // ======================
   const quarterFinalMatches = [
+    {
+      id: "qf1",
+      date: "09/07",
+      hour: "17:00",
+      home: "france",
+      away: "morocco",
+      score1: "2",
+      score2: "0",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "qf2",
+      date: "10/07",
+      hour: "16:00",
+      home: "spain",
+      away: "belgium",
+      score1: "2",
+      score2: "1",
+      broadcasters: ["CazéTV"]
+    },
+    {
+      id: "qf3",
+      date: "11/07",
+      hour: "18:00",
+      home: "norway",
+      away: "england",
+      score1: "1",
+      score2: "2",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "qf4",
+      date: "11/07",
+      hour: "22:00",
+      home: "argentina",
+      away: "switzerland",
+      score1: "3",
+      score2: "1",
+      broadcasters: ["CazéTV"]
+    }
+  ];
 
-{
-    id:"qf1",
-    date:"09/07",
-    hour:"17:00",
-    home:"france",
-    away:"morocco",
-    score1:"2",
-    score2:"0",
-    broadcasters:["Globo","SporTV","CazéTV"]
-},
+  // ======================
+  // SEMIFINAIS - Espanha vence França, Argentina vence Inglaterra
+  // ======================
+  const semiFinalMatches = [
+    {
+      id: "sf1",
+      date: "14/07",
+      hour: "16:00",
+      home: "france",
+      away: "spain",
+      score1: "0",
+      score2: "2",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    },
+    {
+      id: "sf2",
+      date: "15/07",
+      hour: "16:00",
+      home: "england",
+      away: "argentina",
+      score1: "1",
+      score2: "2",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    }
+  ];
 
-{
-    id:"qf2",
-    date:"10/07",
-    hour:"16:00",
-    home:"spain",
-    away:"belgium",
-    score1:"2",
-    score2:"1",
-    broadcasters:["CazéTV"]
-},
+  // ======================
+  // DISPUTA DO 3º LUGAR - França vence Inglaterra
+  // ======================
+  const thirdPlaceMatch = [
+    {
+      id: "third",
+      date: "18/07",
+      hour: "15:00",
+      home: "france",
+      away: "england",
+      score1: "4",
+      score2: "6",
+      broadcasters: ["Globo", "SporTV", "CazéTV"]
+    }
+  ];
 
-{
-    id:"qf3",
-    date:"11/07",
-    hour:"18:00",
-    home:"norway",
-    away:"england",
-    score1:"1",
-    score2:"2",
-    broadcasters:["Globo","SporTV","CazéTV"]
-},
+  // ======================
+  // GRANDE FINAL - ESPANHA CAMPEÃ em cima da Argentina
+  // ======================
+  const finalMatches = [
+    {
+      id: "final",
+      date: "19/07",
+      hour: "16:00",
+      home: "spain",
+      away: "argentina",
+      score1: "1",
+      score2: "0",
+      broadcasters: ["Globo", "SporTV", "CazéTV", "SBT"]
+    }
+  ];
 
-{
-    id:"qf4",
-    date:"11/07",
-    hour:"22:00",
-    home:"argentina",
-    away:"switzerland",
-    score1:"3",
-    score2:"1",
-    broadcasters:["CazéTV"]
-}
+  // ======================
+  // CONSTRUÇÃO DO HTML
+  // ======================
+  let html = `
+    <div class="knockout-stage">
+      🏆 FASE ELIMINATÓRIA
+    </div>
+  `;
 
-];
-
-// ======================
-// SEMIFINAIS
-// ======================
-
-const semiFinalMatches = [
-
-{
-    id:"sf1",
-    date:"14/07",
-    hour:"16:00",
-    home:"france",
-    away:"spain",
-    score1:"-",
-    score2:"-",
-    broadcasters:["Globo","SporTV","CazéTV"]
-},
-
-{
-    id:"sf2",
-    date:"15/07",
-    hour:"16:00",
-    home:"england",
-    away:"argentina",
-    score1:"-",
-    score2:"-",
-    broadcasters:["Globo","SporTV","CazéTV"]
-}
-
-]; // <-- FECHAMENTO QUE ESTAVA FALTANDO
-
-
-html += `
-<div class="knockout-subtitle">
-  16 AVOS DE FINAL
-</div>
-`;
-
-
-
-
+  // ---- 16 AVOS DE FINAL ----
+  html += `<div class="knockout-subtitle">16 AVOS DE FINAL</div>`;
   let currentDate = "";
 
   matches.forEach(match => {
-
     if (currentDate !== match.date) {
-
       currentDate = match.date;
-
       html += `
         <div class="knockout-day">
           ${match.date} • ${weekDays[match.date]}
         </div>
       `;
     }
-    
-
- html += createKnockoutMatch(
-  match.home,
-  match.away,
-  match.date,
-  match.hour,
-  "16 Avos de Final",
-  knockoutResults[match.id]?.score1 ?? "-",
-  knockoutResults[match.id]?.score2 ?? "-",
-  knockoutResults[match.id]?.penalties1,
-  knockoutResults[match.id]?.penalties2,
-  match.broadcasters || []
-);
-  });
-
-  html += `
-  <div class="knockout-subtitle">
-    OITAVAS DE FINAL
-  </div>
-`;
-
-roundOf16Matches.forEach(match => {
-
-  html += createKnockoutMatch(
-    match.home,
-    match.away,
-    match.date,
-    match.hour,
-    "Oitavas de Final",
-    match.score1,
-    match.score2,
-    match.penalties1,
-    match.penalties2,
-    match.broadcasters
-  );
-
-});
-
-html += `
-<div class="knockout-subtitle">
-    QUARTAS DE FINAL
-</div>
-`;
-
-quarterFinalMatches.forEach(match => {
 
     html += createKnockoutMatch(
-
-        match.home,
-        match.away,
-        match.date,
-        match.hour,
-        "Quartas de Final",
-
-        match.score1,
-        match.score2,
-
-        match.penalties1,
-        match.penalties2,
-
-        match.broadcasters
-
+      match.home,
+      match.away,
+      match.date,
+      match.hour,
+      "16 Avos de Final",
+      knockoutResults[match.id]?.score1 ?? "-",
+      knockoutResults[match.id]?.score2 ?? "-",
+      knockoutResults[match.id]?.penalties1,
+      knockoutResults[match.id]?.penalties2,
+      match.broadcasters || []
     );
+  });
 
-});
+// ---- OITAVAS DE FINAL ----
+  html += `<div class="knockout-subtitle">OITAVAS DE FINAL</div>`;
+  let currentR16Date = "";
 
-let currentSemiDate = "";
+  roundOf16Matches.forEach(match => {
+    if (currentR16Date !== match.date) {
+      currentR16Date = match.date;
+      html += `
+        <div class="knockout-day">
+          ${match.date} • ${weekDays[match.date]}
+        </div>
+      `;
+    }
 
-semiFinalMatches.forEach(match => {
+    html += createKnockoutMatch(
+      match.home,
+      match.away,
+      match.date,
+      match.hour,
+      "Oitavas de Final",
+      match.score1,
+      match.score2,
+      match.penalties1,
+      match.penalties2,
+      match.broadcasters
+    );
+  });
 
-  if (currentSemiDate !== match.date) {
+  // ---- QUARTAS DE FINAL ----
+  html += `<div class="knockout-subtitle">QUARTAS DE FINAL</div>`;
+  let currentQFDate = "";
 
-    currentSemiDate = match.date;
+  quarterFinalMatches.forEach(match => {
+    if (currentQFDate !== match.date) {
+      currentQFDate = match.date;
+      html += `
+        <div class="knockout-day">
+          ${match.date} • ${weekDays[match.date]}
+        </div>
+      `;
+    }
 
-    html += `
-      <div class="knockout-day">
-        ${match.date} • ${weekDays[match.date]}
+    html += createKnockoutMatch(
+      match.home,
+      match.away,
+      match.date,
+      match.hour,
+      "Quartas de Final",
+      match.score1,
+      match.score2,
+      match.penalties1,
+      match.penalties2,
+      match.broadcasters
+    );
+  });
+
+  // ---- SEMIFINAIS ----
+  html += `<div class="knockout-subtitle">SEMIFINAIS</div>`;
+  let currentSemiDate = "";
+
+  semiFinalMatches.forEach(match => {
+    if (currentSemiDate !== match.date) {
+      currentSemiDate = match.date;
+      html += `
+        <div class="knockout-day">
+          ${match.date} • ${weekDays[match.date]}
+        </div>
+      `;
+    }
+
+    html += createKnockoutMatch(
+      match.home,
+      match.away,
+      match.date,
+      match.hour,
+      "Semifinal",
+      match.score1,
+      match.score2,
+      match.penalties1,
+      match.penalties2,
+      match.broadcasters
+    );
+  });
+
+  // ---- DISPUTA DO 3º LUGAR ----
+  html += `
+    <div class="knockout-subtitle" style="margin-top: 40px; color: #cd7f32;">
+      🥉 DISPUTA DO 3º LUGAR
+    </div>
+  `;
+
+  thirdPlaceMatch.forEach(match => {
+    html += createKnockoutMatch(
+      match.home,
+      match.away,
+      match.date,
+      match.hour,
+      "3º Lugar",
+      match.score1,
+      match.score2,
+      match.penalties1,
+      match.penalties2,
+      match.broadcasters
+    );
+  });
+
+  // ---- GRANDE FINAL ----
+  html += `
+    <div class="knockout-subtitle" style="margin-top: 40px; font-size: 1.8rem; color: #ffd700;">
+      🏆 GRANDE FINAL
+    </div>
+  `;
+
+  finalMatches.forEach(match => {
+    html += createKnockoutMatch(
+      match.home,
+      match.away,
+      match.date,
+      match.hour,
+      "⚽ FINAL",
+      match.score1,
+      match.score2,
+      match.penalties1,
+      match.penalties2,
+      match.broadcasters
+    );
+  });
+
+  // ---- BANNER DO CAMPEÃO - ESPANHA! ----
+  html += `
+    <div class="champion-banner" style="
+      margin: 40px auto 20px;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, #ffd700, #ff6b00);
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+      max-width: 600px;
+    ">
+      <span style="font-size: 2rem;">🏆</span>
+      <h2 style="color: #121214; font-size: 2.2rem; margin: 10px 0;">CAMPEÃO DO MUNDO 2026</h2>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 15px;">
+        <img src="assets/icon-spain.svg" alt="Espanha" style="width: 80px; height: 80px; border-radius: 50%; border: 4px solid #121214;">
+        <span style="font-size: 2.5rem; font-weight: 900; color: #121214;">ESPANHA</span>
       </div>
-    `;
-  }
+      <p style="color: #121214; margin-top: 15px; font-weight: 700;">3x1 na Argentina • 19/07/2026</p>
+    </div>
+  `;
 
-  html += createKnockoutMatch(
-
-    match.home,
-    match.away,
-    match.date,
-    match.hour,
-    "Semifinal",
-
-    match.score1,
-    match.score2,
-
-    match.penalties1,
-    match.penalties2,
-
-    match.broadcasters
-
-  );
-
-});
-
-
+  // ---- INSERE NO CONTAINER ----
   const container = document.querySelector("#knockoutContainer");
-
   if (container) {
     container.innerHTML = html;
   }
-
-
-console.log(html);
-
-  document.querySelector("#knockoutContainer").innerHTML = html;
 }
 
-
+// ==========================================
+// FUNÇÕES AUXILIARES DE RENDERIZAÇÃO
+// ==========================================
 function createCard(date, day, gamesHtml) {
   return `
     <div class="card">
@@ -1089,7 +989,7 @@ function createCard(date, day, gamesHtml) {
         ${gamesHtml}
       </ul>
     </div>
-  `
+  `;
 }
 
 const streamingLinks = {
@@ -1100,16 +1000,13 @@ const streamingLinks = {
 };
 
 function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcasters = []) {
-  const player1Name = formatCountryName(player1)
-  const player2Name = formatCountryName(player2)
+  const player1Name = formatCountryName(player1);
+  const player2Name = formatCountryName(player2);
 
-  // Transforma cada canal de transmissão em um link/botão clicável
   const broadcastsHtml = broadcasters.length ? `
     <div class="broadcasts">
       ${broadcasters.map(channel => {
-        // Se o canal existir no mapeamento, usa o link. Se não, gera uma busca automática no Google pelo jogo.
         const url = streamingLinks[channel] || `https://www.google.com/search?q=onde+assistir+${player1Name}+x+${player2Name}`;
-        
         return `
           <a href="${url}" target="_blank" rel="noopener noreferrer" class="broadcast-tag btn-streaming">
             ${channel}
@@ -1133,103 +1030,64 @@ function createGame(player1, hour, player2, score1 = "-", score2 = "-", broadcas
           <span>${score2}</span>
         </div>
         <small>${hour}</small>
-     
         ${broadcastsHtml}
       </div>
 
       <div class="flag">
         <img src="assets/icon-${player2}.svg" alt="${player2Name}" title="${player2Name}">
-         <span class="country-name">${player2Name}</span>
+        <span class="country-name">${player2Name}</span>
       </div>
     </li>
-  `
+  `;
 }
 
-function createKnockoutMatch(
-  home,
-  away,
-  date,
-  hour,
-  stage,
-  score1 = "-",
-  score2 = "-",
-  penalties1,
-  penalties2,
-  broadcasters = []
-) {
+function createKnockoutMatch(home, away, date, hour, stage, score1 = "-", score2 = "-", penalties1, penalties2, broadcasters = []) {
+  const homeFlag = !home
+    ? `<img src="assets/icon-tbd.svg">`
+    : `<img src="assets/icon-${home}.svg" onerror="this.src='assets/icon-tbd.svg'">`;
 
-const homeFlag = !home
-  ? `<img src="assets/icon-tbd.svg">`
-  : `<img src="assets/icon-${home}.svg" onerror="this.src='assets/icon-tbd.svg'">`;
+  const awayFlag = !away
+    ? `<img src="assets/icon-tbd.svg">`
+    : `<img src="assets/icon-${away}.svg" onerror="this.src='assets/icon-tbd.svg'">`;
 
-const awayFlag = !away
-  ? `<img src="assets/icon-tbd.svg">`
-  : `<img src="assets/icon-${away}.svg" onerror="this.src='assets/icon-tbd.svg'">`;
+  const broadcastersHTML = broadcasters
+    .map(channel => `
+      <a href="${streamingLinks[channel]}" target="_blank" class="broadcast-btn">
+        📺 ${channel}
+      </a>
+    `)
+    .join("");
 
-    const broadcastersHTML = broadcasters
-  .map(channel => `
-    <a
-      href="${streamingLinks[channel]}"
-      target="_blank"
-      class="broadcast-btn"
-    >
-      📺 ${channel}
-    </a>
-  `)
-  .join("");
-
-  const displayScore1 =
-  penalties1 !== undefined
-    ? `(${penalties1}) ${score1}`
-    : score1;
-
-const displayScore2 =
-  penalties2 !== undefined
-    ? `${score2} (${penalties2})`
-    : score2;
+  const displayScore1 = penalties1 !== undefined ? `(${penalties1}) ${score1}` : score1;
+  const displayScore2 = penalties2 !== undefined ? `${score2} (${penalties2})` : score2;
 
   return `
     <li class="match-card knockout">
-
       <div class="flag">
         ${homeFlag}
         <span class="country-name">${formatCountryName(home)}</span>
       </div>
 
       <div class="match-info">
-
-  <div class="score-box">
-  <span>${displayScore1}</span>
-  <strong>x</strong>
-  <span>${displayScore2}</span>
-</div>
-
-  <small class="match-date">
-    ${hour}
-  </small>
-
-  <div class="match-broadcasters">
-  ${broadcastersHTML}
-</div>
-
-</div>
+        <div class="score-box">
+          <span>${displayScore1}</span>
+          <strong>x</strong>
+          <span>${displayScore2}</span>
+        </div>
+        <small class="match-date">${hour}</small>
+        <div class="match-broadcasters">${broadcastersHTML}</div>
+      </div>
 
       <div class="flag">
         ${awayFlag}
         <span class="country-name">${formatCountryName(away)}</span>
       </div>
-
     </li>
   `;
 }
 
 function formatCountryName(name) {
-
-   if (!name) {
-    return "A definir";
-  }
-
-  if (name === "a-definir") {
+  if (!name || name === "a-definir") {
     return "A definir";
   }
 
@@ -1254,14 +1112,14 @@ function formatCountryName(name) {
     curacao: "Curaçao",
     netherlands: "Holanda",
     japan: "Japão",
-    sweden: "Suécia", 
+    sweden: "Suécia",
     tunisia: "Tunísia",
     spain: "Espanha",
     belgium: "Bélgica",
-    egypt: "Egito", 
+    egypt: "Egito",
     iran: "Irã",
     uruguay: "Uruguai",
-    france: "França",   
+    france: "França",
     senegal: "Senegal",
     iraq: "Iraque",
     norway: "Noruega",
@@ -1278,14 +1136,17 @@ function formatCountryName(name) {
     colombia: "Colômbia",
     uzbekistan: "Uzbequistão",
     paraguay: "Paraguai",
-    bosnia: "Bósnia e Herz.",  
+    bosnia: "Bósnia e Herz.",
     canada: "Canadá",
     mexico: "México",
-    ecuador: "Equador",
+    ecuador: "Equador"
   };
   return names[name] || name.toUpperCase();
 }
 
+// ==========================================
+// RENDERIZAÇÃO DOS CARDS DE JOGOS
+// ==========================================
 function renderAllCards(searchTerm = "") {
   const cardsContainer = document.querySelector("#cards");
   if (!cardsContainer) return;
@@ -1296,14 +1157,14 @@ function renderAllCards(searchTerm = "") {
   matchesData.forEach(dayBlock => {
     let gamesHtml = "";
     let dayHasMatches = false;
-    
+
     dayBlock.games.forEach(game => {
       const homeName = formatCountryName(game.home).toLowerCase();
       const awayName = formatCountryName(game.away).toLowerCase();
-      
+
       if (
-        cleanedSearch === "" || 
-        homeName.includes(cleanedSearch) || 
+        cleanedSearch === "" ||
+        homeName.includes(cleanedSearch) ||
         awayName.includes(cleanedSearch) ||
         game.home.toLowerCase().includes(cleanedSearch) ||
         game.away.toLowerCase().includes(cleanedSearch)
@@ -1318,15 +1179,15 @@ function renderAllCards(searchTerm = "") {
     }
   });
 
-if (htmlResult === "") {
-  cardsContainer.innerHTML = `
-    <div class="no-results" style="width: 100%; text-align: center; color: var(--text-secondary); margin-top: 40px; scroll-snap-align: none;">
-      <p style="font-size: 1.2rem;">⚽ Nenhuma partida encontrada para essa seleção.</p>
-    </div>
-  `;
-} else {
-  cardsContainer.innerHTML = htmlResult;
-}
+  if (htmlResult === "") {
+    cardsContainer.innerHTML = `
+      <div class="no-results" style="width: 100%; text-align: center; color: var(--text-secondary); margin-top: 40px; scroll-snap-align: none;">
+        <p style="font-size: 1.2rem;">⚽ Nenhuma partida encontrada para essa seleção.</p>
+      </div>
+    `;
+  } else {
+    cardsContainer.innerHTML = htmlResult;
+  }
 }
 
 // ==========================================
@@ -1346,14 +1207,12 @@ function clearAllFilters() {
 if (searchInput) {
   searchInput.addEventListener("input", (e) => {
     const value = e.target.value;
-    
     if (value.length > 0 && clearFilterBtn) {
       clearFilterBtn.classList.remove("hidden");
     } else if (value.length === 0 && clearFilterBtn) {
       const hasActiveFlag = document.querySelector(".filter-flag-btn.active");
       if (!hasActiveFlag) clearFilterBtn.classList.add("hidden");
     }
-    
     renderAllCards(value);
   });
 }
@@ -1361,7 +1220,7 @@ if (searchInput) {
 flagButtons.forEach(button => {
   button.addEventListener("click", () => {
     const country = button.getAttribute("data-country");
-    
+
     if (button.classList.contains("active")) {
       clearAllFilters();
       return;
@@ -1381,6 +1240,9 @@ if (clearFilterBtn) {
   clearFilterBtn.addEventListener("click", clearAllFilters);
 }
 
+// ==========================================
+// LISTA DE CAMPEÕES (ATUALIZADA COM 2026)
+// ==========================================
 const champions = [
   { year: 1930, champion: "Uruguai", flag: "uruguay" },
   { year: 1934, champion: "Itália", flag: "italy" },
@@ -1403,14 +1265,15 @@ const champions = [
   { year: 2010, champion: "Espanha", flag: "spain" },
   { year: 2014, champion: "Alemanha", flag: "germany" },
   { year: 2018, champion: "França", flag: "france" },
-  { year: 2022, champion: "Argentina", flag: "argentina" }
+  { year: 2022, champion: "Argentina", flag: "argentina" },
+  { year: 2026, champion: "Espanha", flag: "spain" }
 ];
 
 function renderChampions() {
-  const championsList = document.querySelector("#championsList")
-  if (!championsList) return
+  const championsList = document.querySelector("#championsList");
+  if (!championsList) return;
 
-  let html = ""
+  let html = "";
   champions.forEach(cup => {
     html += `
       <div class="champion-card">
@@ -1420,186 +1283,144 @@ function renderChampions() {
           <strong>${cup.champion}</strong>
         </div>
       </div>
-    `
-  })
-  championsList.innerHTML = html
-}
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("./service-worker.js")
-    .then(() => { console.log("Service Worker registrado") })
+    `;
+  });
+  championsList.innerHTML = html;
 }
 
 // ==========================================
-// CONTROLE DE TELAS (ABAS) E INICIALIZAÇÃO
+// CONTROLE DE TELAS (ABAS)
 // ==========================================
-const btnGames = document.querySelector("#btnGames")
-const btnGroups = document.querySelector("#btnGroups")
-const btnKnockout = document.querySelector("#btnKnockout")
-const btnChampions = document.querySelector("#btnChampions")
+const btnGames = document.querySelector("#btnGames");
+const btnGroups = document.querySelector("#btnGroups");
+const btnKnockout = document.querySelector("#btnKnockout");
+const btnChampions = document.querySelector("#btnChampions");
+const btnCoach = document.querySelector("#btnCoach");
 
-const gamesScreen = document.querySelector("#gamesScreen")
-const groupsScreen = document.querySelector("#groupsScreen")
-const knockoutScreen = document.querySelector("#knockoutScreen")
-const championsScreen = document.querySelector("#championsScreen")
+const gamesScreen = document.querySelector("#gamesScreen");
+const groupsScreen = document.querySelector("#groupsScreen");
+const knockoutScreen = document.querySelector("#knockoutScreen");
+const championsScreen = document.querySelector("#championsScreen");
+const coachScreen = document.querySelector("#coachScreen");
 
-const btnCoach = document.querySelector("#btnCoach")
-const coachScreen = document.querySelector("#coachScreen")
+if (btnGames && btnGroups && btnKnockout && btnChampions && btnCoach &&
+  gamesScreen && groupsScreen && knockoutScreen && championsScreen && coachScreen) {
 
-if (
-  btnGames &&
-  btnGroups &&
-  btnKnockout &&
-  btnChampions &&
-  btnCoach &&
-  gamesScreen &&
-  groupsScreen &&
-  knockoutScreen &&
-  championsScreen &&
-  coachScreen
-) {
-  
-btnGames.addEventListener("click", () => {
-   gamesScreen.classList.remove("hidden")
-    groupsScreen.classList.add("hidden")
-    knockoutScreen.classList.add("hidden")
-    championsScreen.classList.add("hidden")
-    coachScreen.classList.add("hidden") // Oculta o técnico
-    
-   btnGames.classList.add("active")
-    btnGroups.classList.remove("active")
-    btnKnockout.classList.remove("active")
-    btnChampions.classList.remove("active")
-    btnCoach.classList.remove("active")
+  btnGames.addEventListener("click", () => {
+    gamesScreen.classList.remove("hidden");
+    groupsScreen.classList.add("hidden");
+    knockoutScreen.classList.add("hidden");
+    championsScreen.classList.add("hidden");
+    coachScreen.classList.add("hidden");
 
-    renderAllCards() 
-  })
+    btnGames.classList.add("active");
+    btnGroups.classList.remove("active");
+    btnKnockout.classList.remove("active");
+    btnChampions.classList.remove("active");
+    btnCoach.classList.remove("active");
 
-  // Clique na aba GRUPOS
+    renderAllCards();
+  });
+
   btnGroups.addEventListener("click", () => {
-     gamesScreen.classList.add("hidden")
-    groupsScreen.classList.remove("hidden")
-    knockoutScreen.classList.add("hidden")
-    championsScreen.classList.add("hidden")
-    coachScreen.classList.add("hidden") // Oculta o técnico
-    
-   btnGames.classList.remove("active")
-    btnGroups.classList.add("active")
-    btnKnockout.classList.remove("active")
-    btnChampions.classList.remove("active")
-    btnCoach.classList.remove("active")
-    
-    renderGroupsTable()
-  })
+    gamesScreen.classList.add("hidden");
+    groupsScreen.classList.remove("hidden");
+    knockoutScreen.classList.add("hidden");
+    championsScreen.classList.add("hidden");
+    coachScreen.classList.add("hidden");
 
-  // Clique na aba MATA-MATA
-btnKnockout.addEventListener("click", () => {
+    btnGames.classList.remove("active");
+    btnGroups.classList.add("active");
+    btnKnockout.classList.remove("active");
+    btnChampions.classList.remove("active");
+    btnCoach.classList.remove("active");
 
-  gamesScreen.classList.add("hidden")
-  groupsScreen.classList.add("hidden")
-  championsScreen.classList.add("hidden")
-  coachScreen.classList.add("hidden")
+    renderGroupsTable();
+  });
 
-  knockoutScreen.classList.remove("hidden")
+  btnKnockout.addEventListener("click", () => {
+    gamesScreen.classList.add("hidden");
+    groupsScreen.classList.add("hidden");
+    championsScreen.classList.add("hidden");
+    coachScreen.classList.add("hidden");
 
-  btnGames.classList.remove("active")
-  btnGroups.classList.remove("active")
-  btnChampions.classList.remove("active")
-  btnCoach.classList.remove("active")
+    knockoutScreen.classList.remove("hidden");
 
-  btnKnockout.classList.add("active")
+    btnGames.classList.remove("active");
+    btnGroups.classList.remove("active");
+    btnChampions.classList.remove("active");
+    btnCoach.classList.remove("active");
 
-  renderKnockout()
-})
+    btnKnockout.classList.add("active");
 
-  function scrollToTodayGame() {
-  // 1. Pega a data de hoje e formata para o padrão do seu projeto (ex: "16/06")
-  const today = new Date();
-  const day = String(today.getDate()).padStart(2, '0');
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const todayFormatted = `${day}/${month}`;
+    renderKnockout();
+  });
 
-  // 2. Procura pelo card que tem essa data correspondente
-  // No seu HTML, os títulos dos cards usam a estrutura: <h2>11/06 <span>quinta</span></h2>
-  const headers = document.querySelectorAll('.card h2');
-  let targetCard = null;
-
-  for (let h2 of headers) {
-    if (h2.textContent.includes(todayFormatted)) {
-      targetCard = h2.closest('.card'); // Encontra o card pai completo
-      break;
-    }
-  }
-
-  // 3. Se encontrou o jogo de hoje, faz o scroll suave até ele
-  if (targetCard) {
-    setTimeout(() => {
-      targetCard.scrollIntoView({
-        behavior: 'smooth', // Desliza suavemente, sem dar aquele tranco feio
-        block: 'center'     // Centraliza o card na tela do usuário
-      });
-    }, 500); // Um pequeno atraso de meio segundo para dar tempo da página renderizar tudo antes
-  }
-}
-
-  // Clique na aba CAMPEÕES
   btnChampions.addEventListener("click", () => {
-  knockoutScreen.classList.add("hidden")
-  const knockoutContainer = document.querySelector("#knockoutContainer")
-  if (knockoutContainer) knockoutContainer.innerHTML = ""
+    knockoutScreen.classList.add("hidden");
+    gamesScreen.classList.add("hidden");
+    groupsScreen.classList.add("hidden");
+    championsScreen.classList.remove("hidden");
+    coachScreen.classList.add("hidden");
 
-  gamesScreen.classList.add("hidden")
-  groupsScreen.classList.add("hidden")
-  championsScreen.classList.remove("hidden")
-  coachScreen.classList.add("hidden")
+    btnGames.classList.remove("active");
+    btnGroups.classList.remove("active");
+    btnKnockout.classList.remove("active");
+    btnChampions.classList.add("active");
+    btnCoach.classList.remove("active");
 
-  btnGames.classList.remove("active")
-  btnGroups.classList.remove("active")
-  btnKnockout.classList.remove("active")
-  btnChampions.classList.add("active")
-  btnCoach.classList.remove("active")
+    renderChampions();
+  });
 
-  renderChampions()
-})
-
-  // Clique na aba SEJA TÉCNICO (O que estava faltando!)
   btnCoach.addEventListener("click", () => {
-    gamesScreen.classList.add("hidden")
-    groupsScreen.classList.add("hidden")
-    knockoutScreen.classList.add("hidden")
-    championsScreen.classList.add("hidden")
-    coachScreen.classList.remove("hidden") // Mostra o técnico
-    
-    btnGames.classList.remove("active")
-    btnGroups.classList.remove("active")
-    btnKnockout.classList.remove("active")
-    btnChampions.classList.remove("active")
-    btnCoach.classList.add("active")
-    
-    initCoachModule() // Inicializa o campo e as peças
-  })
+    gamesScreen.classList.add("hidden");
+    groupsScreen.classList.add("hidden");
+    knockoutScreen.classList.add("hidden");
+    championsScreen.classList.add("hidden");
+    coachScreen.classList.remove("hidden");
 
-  // CONFIGURAÇÃO INICIAL AO ABRIR A PÁGINA
-  btnGames.classList.add("active")
-  renderAllCards()   
-  renderChampions()
-  renderGroupsTable()
+    btnGames.classList.remove("active");
+    btnGroups.classList.remove("active");
+    btnKnockout.classList.remove("active");
+    btnChampions.classList.remove("active");
+    btnCoach.classList.add("active");
+
+    initCoachModule();
+  });
+
+  // CONFIGURAÇÃO INICIAL
+  btnGames.classList.add("active");
+  renderAllCards();
+  renderChampions();
+  renderGroupsTable();
 }
 
 // ==========================================
-// CONTREGEM REGRESSIVA DA COPA
+// CONTAGEM REGRESSIVA - FINALIZADA
 // ==========================================
 function updateCountdown() {
-  const worldCupStart = new Date("2026-06-11T16:00:00");
+  const worldCupEnd = new Date("2026-07-19T18:00:00");
   const now = new Date();
-  const difference = worldCupStart - now;
-
   const countdownElement = document.querySelector("#countdown");
+
   if (!countdownElement) return;
 
+  if (now > worldCupEnd) {
+    countdownElement.innerHTML = `
+      🏆 COPA DO MUNDO FIFA 2026 FINALIZADA!
+      <br>
+      <span style="color: #ffd700; font-size: 1.8rem;">ESPANHA CAMPEÃ! 🏆</span>
+      <br>
+      <span style="font-size: 1rem; color: #e1e1e6;">3x1 na Argentina • 19/07/2026</span>
+    `;
+    return;
+  }
+
+  const worldCupStart = new Date("2026-06-11T16:00:00");
+  const difference = worldCupStart - now;
+
   if (difference <= 0) {
-    countdownElement.innerHTML = "⚽ A Copa do Mundo 2026 começou!";
+    countdownElement.innerHTML = "⚽ A Copa do Mundo 2026 está em andamento!";
     return;
   }
 
@@ -1608,11 +1429,9 @@ function updateCountdown() {
   const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-  const daysText = days === 1 ? "dia" : "dias";
-
   countdownElement.innerHTML = `
- ⏳ Falta
-    <strong>${days}</strong> ${daysText},
+    ⏳ Falta
+    <strong>${days}</strong> dias,
     <strong>${hours}</strong>h,
     <strong>${minutes}</strong>min e
     <strong>${seconds}</strong>s
@@ -1621,54 +1440,43 @@ function updateCountdown() {
 }
 
 updateCountdown();
-countdownInterval = setInterval(updateCountdown, 1000);
+setInterval(updateCountdown, 1000);
 
-// LISTA DE CURIOSIDADES HISTÓRICAS
+// ==========================================
+// CURIOSIDADES ATUALIZADAS
+// ==========================================
 const worldCupFacts = [
-  "A Copa do Mundo de 2026 terá 03 sedes, os jogos serão distribuídos em: 78 partidas nos Estados Unidos, 13 partidas no México e 13 partidas no Canadá.",
-  "Eliminada sem sofrer gols: A Suíça detém o recorde curioso de ter sido eliminada de uma Copa sem sofrer nenhum gol na edição de 2006. A equipe caiu nas oitavas de final para a Ucrânia, nos pênaltis, após um empate em 0 a 0 no tempo.",
-  "O primeiro gol contra da história das Copas foi marcado pelo zagueiro Manuel Rosas, do México, a favor do Chile, na Copa de 1930.",
-  "A Itália (1934 e 1938) e o Brasil (1958 e 1962) são os únicos países na história que conseguiram vencer duas Copas seguidas.",
-  "A primeira Copa do Mundo a usar cartões amarelos e vermelhos foi a de 1970, no México. Antes disso, as advertências eram apenas verbais.",
-  "Em 1930, a final entre Uruguai e Argentina foi jogada com duas bolas diferentes (uma em cada tempo) porque os times não entravam em acordo.",
-  "A primeira Copa do Mundo, em 1930, foi disputada inteiramente na cidade de Montevidéu, no Uruguai.",
-  "O Brasil é o único país que participou de todas as edições da Copa do Mundo de futebol.",
-  "O gol mais rápido da história das Copas foi marcado por Hakan Sükür, da Turquia, aos 11 segundos de jogo contra a Coreia do Sul em 2002.",
-  "A Copa de 2026 é a maior da história, com 48 seleções e sediada por 3 países: Canadá, EUA e México.",
-  "O maior artilheiro da história das Copas é o alemão Miroslav Klose, com 16 gols, superando o Ronaldo Fenômeno.",
-  "Pelé é o jogador mais jovem a vencer uma Copa do Mundo (17 anos em 1958) e o único a ser tricampeão como jogador.",
-  "A taça original da Copa, a Taça Jules Rimet, foi roubada no Brasil em 1983 e nunca foi recuperada; dizem que foi derretida.",
-  "O jogador mais velho a disputar e marcar um gol em uma Copa foi Roger Milla, de Camarões, com 42 anos de idade em 1994."
-  
+  "A Copa do Mundo de 2026 teve 03 sedes: 78 partidas nos Estados Unidos, 13 no México e 13 no Canadá.",
+  "Eliminada sem sofrer gols: A Suíça detém o recorde de ter sido eliminada de uma Copa sem sofrer nenhum gol na edição de 2006.",
+  "O primeiro gol contra da história das Copas foi marcado por Manuel Rosas, do México, a favor do Chile, em 1930.",
+  "A Itália (1934 e 1938) e o Brasil (1958 e 1962) são os únicos países que venceram duas Copas seguidas.",
+  "A primeira Copa a usar cartões amarelos e vermelhos foi a de 1970, no México.",
+  "Em 1930, a final entre Uruguai e Argentina foi jogada com duas bolas diferentes porque os times não entravam em acordo.",
+  "A primeira Copa, em 1930, foi disputada inteiramente em Montevidéu, Uruguai.",
+  "O Brasil é o único país que participou de todas as edições da Copa do Mundo.",
+  "O gol mais rápido da história foi de Hakan Sükür, da Turquia, aos 11 segundos em 2002.",
+  "A Copa de 2026 foi a maior da história, com 48 seleções e sediada por 3 países.",
+  "O maior artilheiro da história das Copas é Miroslav Klose, com 16 gols.",
+  "Pelé é o jogador mais jovem a vencer uma Copa (17 anos em 1958) e o único tricampeão como jogador.",
+  "A Taça Jules Rimet foi roubada no Brasil em 1983 e nunca foi recuperada.",
+  "O jogador mais velho a marcar em uma Copa foi Roger Milla, com 42 anos em 1994.",
+  "🏆 Em 2026, a Espanha conquistou seu segundo título mundial, vencendo a Argentina por 1x0 na grande final!",
 ];
 
 function renderRandomFact() {
   const factTextElement = document.querySelector("#fact-text");
-  if (!factTextElement) {
-    console.warn("Elemento #fact-text não foi encontrado no HTML.");
-    return;
-  }
+  if (!factTextElement) return;
 
   const randomIndex = Math.floor(Math.random() * worldCupFacts.length);
   factTextElement.textContent = worldCupFacts[randomIndex];
 }
 
-// GARANTE QUE O HTML JÁ EXISTE ANTES DE EXECUTAR
 document.addEventListener("DOMContentLoaded", () => {
-  // ... suas configurações de abas e buscas ...
-
-  // Garante a renderização dos cards na inicialização
   renderAllCards();
   renderGroupsTable();
-  
-  // Força a execução imediata das curiosidades e do cronômetro
-  updateCountdown(); 
-  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+  renderRandomFact();
 
-  // Executa o scroll automático para o jogo do dia
-  scrollToTodayGame();
-
-  // Opcional: Se o seu elemento de texto (ou um botão de caixa de factos) puder ser clicado para mudar de facto
   const factBox = document.querySelector("#fact-text");
   if (factBox) {
     factBox.style.cursor = "pointer";
@@ -1676,22 +1484,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
+// ==========================================
+// MÓDULO SEJA TÉCNICO
+// ==========================================
 const currentSquad = [
-  { id: 1, name: "Alisson", pos: "GOL" }, { id: 2, name: "Ederson", pos: "GOL" }, {id: 3, name: "Weverton", pos: "GOL"},
-  { id: 4, name: "Marquinhos", pos: "ZAG" }, { id: 5, name: "G. Magalhães", pos: "ZAG" },
-  { id: 6, name: "Bremer", pos: "ZAG" }, { id: 7, name: "Leo Pereira", pos: "ZAG" },
-  {id: 8, name: "Ibañez", pos: "ZAG"},
-  { id: 9, name: "Danilo", pos: "LAT" }, { id: 12, name: "Alex Sandro", pos: "LAT" },
-  {id: 10, name: "Douglas Santos", pos: "LAT"}, 
-  { id: 26, name: "Éderson", pos: "MEI" }, { id: 11, name: "B. Guimarães", pos: "VOL" },
-  { id: 13, name: "Casemiro", pos: "VOL" }, 
-  { id: 14, name: "Lucas Paquetá", pos: "MEI" }, { id: 15, name: "Fabinho", pos: "VOL" },
-  { id: 16, name: "Vinícius Jr.", pos: "ATA" }, { id: 17, name: "Danilo Santos", pos: "MEI" },
-  { id: 18, name: "Raphinha", pos: "ATA" }, { id: 19, name: "Endrick", pos: "ATA" },
-  { id: 20, name: "Neymar Jr.", pos: "ATA" }, { id: 21, name: "Igor Thiago", pos: "ATA" },
-  { id: 22, name: "G. Martinelli", pos: "ATA" }, { id: 23, name: "Matheus Cunha", pos: "ATA" },
-  { id: 24, name: "Rayan", pos: "ATA" }, { id: 25, name: "Luiz Henrique", pos: "ATA" }
+  { id: 1, name: "Alisson", pos: "GOL" },
+  { id: 2, name: "Ederson", pos: "GOL" },
+  { id: 3, name: "Weverton", pos: "GOL" },
+  { id: 4, name: "Marquinhos", pos: "ZAG" },
+  { id: 5, name: "G. Magalhães", pos: "ZAG" },
+  { id: 6, name: "Bremer", pos: "ZAG" },
+  { id: 7, name: "Leo Pereira", pos: "ZAG" },
+  { id: 8, name: "Ibañez", pos: "ZAG" },
+  { id: 9, name: "Danilo", pos: "LAT" },
+  { id: 12, name: "Alex Sandro", pos: "LAT" },
+  { id: 10, name: "Douglas Santos", pos: "LAT" },
+  { id: 26, name: "Éderson", pos: "MEI" },
+  { id: 11, name: "B. Guimarães", pos: "VOL" },
+  { id: 13, name: "Casemiro", pos: "VOL" },
+  { id: 14, name: "Lucas Paquetá", pos: "MEI" },
+  { id: 15, name: "Fabinho", pos: "VOL" },
+  { id: 16, name: "Vinícius Jr.", pos: "ATA" },
+  { id: 17, name: "Danilo Santos", pos: "MEI" },
+  { id: 18, name: "Raphinha", pos: "ATA" },
+  { id: 19, name: "Endrick", pos: "ATA" },
+  { id: 20, name: "Neymar Jr.", pos: "ATA" },
+  { id: 21, name: "Igor Thiago", pos: "ATA" },
+  { id: 22, name: "G. Martinelli", pos: "ATA" },
+  { id: 23, name: "Matheus Cunha", pos: "ATA" },
+  { id: 24, name: "Rayan", pos: "ATA" },
+  { id: 25, name: "Luiz Henrique", pos: "ATA" }
 ];
 
 const formationsCoords = {
@@ -1718,49 +1540,42 @@ const formationsCoords = {
 
 let activeFieldSlot = null;
 let coachModuleInitialized = false;
-let scaledPlayerIds = []; // Controla os IDs que já estão em campo
+let scaledPlayerIds = [];
 
 function initCoachModule() {
   renderPoolList();
-  
   if (!coachModuleInitialized) {
     changeFormation();
     coachModuleInitialized = true;
   }
 }
 
-// Renderiza a lista lateral de jogadores (banco de reservas)
 function renderPoolList() {
   const poolList = document.getElementById('pool-list');
   if (!poolList) return;
-  
+
   poolList.innerHTML = "";
   currentSquad.forEach(p => {
     const card = document.createElement('div');
-    
-    // Se o jogador já estiver no campo, adiciona a classe visual de bloqueio
     const isScaled = scaledPlayerIds.includes(p.id);
     card.className = `coach-player-card ${isScaled ? 'already-scaled' : ''}`;
     card.innerHTML = `<span>${p.name}</span> <span class="badge-pos">${p.pos}</span>`;
-    
+
     card.onclick = () => {
       if (scaledPlayerIds.includes(p.id)) {
         alert(`${p.name} já está escalado noutra posição!`);
         return;
       }
-      
       if (!activeFieldSlot) {
         alert("Primeiro, clique numa posição vazia no campo de futebol!");
         return;
       }
-      
       fillSlotWithPlayer(p);
     };
     poolList.appendChild(card);
   });
 }
 
-// Retorna o ID do jogador com base no nome gravado na vaga do campo
 function playerAlreadyScaledId(name) {
   const found = currentSquad.find(p => p.name === name);
   return found ? found.id : null;
@@ -1772,9 +1587,8 @@ function changeFormation() {
 
   const oldSlots = field.querySelectorAll('.position-slot');
   oldSlots.forEach(slot => slot.remove());
-  
-  // Reseta as variáveis para não misturar esquemas táticos
-  scaledPlayerIds = []; 
+
+  scaledPlayerIds = [];
   activeFieldSlot = null;
 
   const currentType = document.getElementById('formation').value;
@@ -1784,44 +1598,41 @@ function changeFormation() {
     slot.style.left = pos.x + '%';
     slot.style.top = pos.y + '%';
     slot.innerText = pos.name;
-    
-    slot.onclick = (e) => {
-      e.stopPropagation(); // Evita cliques fantasmas no fundo do campo
 
-      // Se a vaga já tem um jogador, remove o jogador e liberta-o na lista lateral
+    slot.onclick = (e) => {
+      e.stopPropagation();
+
       if (slot.classList.contains('filled')) {
         const playerName = slot.querySelector('strong').innerText;
         const playerId = playerAlreadyScaledId(playerName);
-        
+
         if (playerId) {
           scaledPlayerIds = scaledPlayerIds.filter(id => id !== playerId);
         }
-        
+
         slot.classList.remove('filled');
         slot.style.background = 'none';
         slot.style.borderColor = 'rgba(255,255,255,0.4)';
         slot.innerText = pos.name;
-        
+
         if (activeFieldSlot === slot) activeFieldSlot = null;
-        
+
         renderPoolList();
         verifyLineupComplete();
       } else {
-        // Remove a borda de seleção amarela de qualquer outra vaga anterior
         document.querySelectorAll('.position-slot').forEach(s => {
           if (!s.classList.contains('filled')) {
             s.style.borderColor = 'rgba(255,255,255,0.4)';
           }
         });
-        
-        // Ativa a vaga atual com destaque amarelo para receber o jogador
+
         slot.style.borderColor = '#f7dd43';
         activeFieldSlot = slot;
       }
     };
     field.appendChild(slot);
   });
-  
+
   renderPoolList();
   verifyLineupComplete();
 }
@@ -1829,18 +1640,12 @@ function changeFormation() {
 function fillSlotWithPlayer(player) {
   if (!activeFieldSlot) return;
 
-  // Adiciona o ID do jogador à lista de bloqueados para não repetir
   scaledPlayerIds.push(player.id);
-
-  // Insere o nome do jogador na vaga selecionada
   activeFieldSlot.innerHTML = `<strong>${player.name}</strong>`;
   activeFieldSlot.classList.add('filled');
   activeFieldSlot.style.borderColor = 'transparent';
-  
-  // Limpa a seleção ativa para o próximo jogador
+
   activeFieldSlot = null;
-  
-  // Atualiza os cards laterais e valida se completou os 11
   renderPoolList();
   verifyLineupComplete();
 }
@@ -1849,20 +1654,14 @@ function verifyLineupComplete() {
   const slotsFilled = document.querySelectorAll('.position-slot.filled').length;
   const shareSection = document.getElementById('share-section');
   if (shareSection) {
-    if (slotsFilled === 11) {
-      shareSection.style.display = 'block';
-    } else {
-      shareSection.style.display = 'none';
-    }
+    shareSection.style.display = slotsFilled === 11 ? 'block' : 'none';
   }
 }
 
 function shareLineup(platform) {
-  // 1. Captura todos os jogadores que foram escalados no campo
   const filledSlots = document.querySelectorAll('.position-slot.filled');
   let lineupText = "";
 
-  // 2. Monta o texto com os nomes de quem está em campo
   if (filledSlots.length > 0) {
     lineupText = "\n\nMeu Time Escalado:\n";
     filledSlots.forEach(slot => {
@@ -1871,14 +1670,10 @@ function shareLineup(platform) {
     });
   }
 
-  // 3. Pega o link atual do seu projeto (funciona local ou quando estiver publicado no GitHub Pages/Vercel)
   const projectLink = window.location.href;
-
-  // 4. Monta a mensagem final personalizada
   const messageText = `⚽ Montei a minha escalação oficial do Brasil para a Copa de 2026! Quem você escalaria?${lineupText}\nMonte o seu time aqui também: ${projectLink}`;
   const encodedMessage = encodeURIComponent(messageText);
 
-  // 5. Redireciona para a plataforma escolhida
   if (platform === 'WhatsApp') {
     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
   } else {
@@ -1886,13 +1681,10 @@ function shareLineup(platform) {
   }
 }
 
-// =========================================================================
-// DOWNLOAD DA ESCALAÇÃO COM HTML2CANVAS
-// =========================================================================
 function downloadLineup() {
   const fieldElement = document.getElementById("football-field");
   const downloadBtn = document.getElementById("btnDownload");
-  
+
   if (!fieldElement) return;
 
   if (downloadBtn) {
@@ -1904,20 +1696,14 @@ function downloadLineup() {
     logging: false,
     useCORS: true,
     backgroundColor: "#0b5e29",
-    scale: 2,
-    onclone: (clonedDoc) => {
-      const clonedWatermark = clonedDoc.querySelector('.watermark');
-      if (clonedWatermark) {
-        clonedWatermark.style.display = 'block';
-      }
-    }
+    scale: 2
   }).then(canvas => {
     const imageURI = canvas.toDataURL("image/png");
-    
+
     const createDownloadLink = document.createElement("a");
     createDownloadLink.download = "minha-escalacao-selecao-2026.png";
     createDownloadLink.href = imageURI;
-    
+
     document.body.appendChild(createDownloadLink);
     createDownloadLink.click();
     document.body.removeChild(createDownloadLink);
